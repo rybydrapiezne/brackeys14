@@ -14,19 +14,19 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private int ymin;
     [SerializeField] private float ymax;
     public List<GameObject> Nodes;
-    //private Node _currentParentNode;
     Queue<Node> queue=new Queue<Node>();
 
 
     void Start()
     {
         Nodes = new List<GameObject>();
-        RootNode.GetComponent<Node>().parent=null;
-        RootNode.GetComponent<Node>().level=0;
-        RootNode.GetComponent<Node>().ymin = ymin;
-        RootNode.GetComponent<Node>().ymax = ymax;
+        Node rootNode=RootNode.GetComponent<Node>();
+        rootNode.parent=null;
+        rootNode.level=0;
+        rootNode.ymin = ymin;
+        rootNode.ymax = ymax;
         EndNode.GetComponent<Node>().children=null;
-        queue.Enqueue(RootNode.GetComponent<Node>());
+        queue.Enqueue(rootNode);
         Nodes.Add(RootNode);
         GenerateGrid();
         ConnectNodes();
@@ -51,15 +51,17 @@ public class GenerateMap : MonoBehaviour
             for (int j = 0; j < paths; j++)
             {
                 GameObject node = Instantiate(NodePrefab);
-                node.GetComponent<Node>().level = currentParentNode.level+1;
-                node.GetComponent<Node>().ymin = currentParentNode.ymin+j*step;
-                node.GetComponent<Node>().ymax = currentParentNode.ymin+(j+1)*step;
-                Vector3 nodePos=new Vector3(currentParentNode.transform.position.x+nodeSpacing,(node.GetComponent<Node>().ymax+node.GetComponent<Node>().ymin)/2,0);
+                Node currentNode = node.GetComponent<Node>();
+                currentNode.level = currentParentNode.level+1;
+                currentNode.name=currentNode.name+" "+currentNode.level+"-"+currentParentNode.level;
+                currentNode.ymin = currentParentNode.ymin+j*step;
+                currentNode.ymax = currentParentNode.ymin+(j+1)*step;
+                Vector3 nodePos=new Vector3(currentParentNode.transform.position.x+nodeSpacing,(currentNode.ymax+currentNode.ymin)/2,0);
                 node.transform.position = nodePos;
-                node.GetComponent<Node>().parent = currentParentNode;
-                currentParentNode.children.Add(node.GetComponent<Node>());
+                currentNode.parent = currentParentNode;
+                currentParentNode.children.Add(currentNode);
                 Nodes.Add(node);
-                queue.Enqueue(node.GetComponent<Node>());
+                queue.Enqueue(currentNode);
             }
         }
     }
@@ -94,9 +96,5 @@ public class GenerateMap : MonoBehaviour
         line.SetPosition(0, node1.transform.position);
         line.SetPosition(1, node2.transform.position);
     }
-
-    void Update()
-    {
-        // Optional: Add logic for dynamic updates (e.g., pathfinding visualization)
-    }
+    
 }
