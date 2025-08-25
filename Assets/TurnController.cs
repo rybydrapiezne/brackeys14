@@ -36,35 +36,27 @@ public class TurnController : MonoBehaviour
         {
             if (currentNodeNode.children.Count > 1)
             {
-                foreach (Node n in currentNodeNode.children)
-                {
-                    if (nextNode.transform.position.y < n.transform.position.y)
-                    {
-                        nextNode = n.gameObject;
-                        nodeSelected = true;
-                        break;
-                    }
-                }
+                nextNode = currentNodeNode.children[0].transform.position.y > 
+                           currentNodeNode.children[1].transform.position.y ?
+                           currentNodeNode.children[0].gameObject : currentNodeNode.children[1].gameObject;
+                nodeSelected = true;
             }
             else
             {
                 nextNode = currentNodeNode.children[0].gameObject;
                 nodeSelected = true;
             }
+           
+
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (currentNodeNode.children.Count > 1)
             {
-                foreach (Node n in currentNodeNode.children)
-                {
-                    if (nextNode.transform.position.y > n.transform.position.y)
-                    {
-                        nextNode = n.gameObject;
-                        nodeSelected = true;
-                        break;
-                    }
-                }
+                nextNode = currentNodeNode.children[0].transform.position.y < 
+                           currentNodeNode.children[1].transform.position.y ?
+                    currentNodeNode.children[0].gameObject : currentNodeNode.children[1].gameObject;
+                nodeSelected = true;
             }
             else
             {

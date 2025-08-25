@@ -15,14 +15,18 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private float ymax;
     public List<GameObject> Nodes;
     Queue<Node> queue=new Queue<Node>();
+    private List<List<GameObject>> _levelNodes=new List<List<GameObject>>();
 
 
     void Start()
     {
+        
         Nodes = new List<GameObject>();
         Node rootNode=RootNode.GetComponent<Node>();
         rootNode.parent=null;
         rootNode.level=0;
+        _levelNodes.Add(new List<GameObject>());
+        _levelNodes[0].Add(RootNode);
         rootNode.ymin = ymin;
         rootNode.ymax = ymax;
         EndNode.GetComponent<Node>().children=null;
@@ -37,12 +41,21 @@ public class GenerateMap : MonoBehaviour
         while (queue.Count > 0)
         {
             Node currentParentNode = queue.Dequeue();
+            int paths;
             if (currentParentNode.level == rows)
             {
                 currentParentNode.children.Add(EndNode.GetComponent<Node>());
                 continue;
             }
-            int paths = Random.Range(1, 3);
+            int probability = Random.Range(0, 30);
+            if (probability <= 2)
+            {
+                paths = 2;
+            }
+            else
+            {
+                paths = 1;
+            }
             if (queue.Count == 0)
             {
                 paths = 2;
@@ -50,18 +63,84 @@ public class GenerateMap : MonoBehaviour
             float step=(currentParentNode.ymax-currentParentNode.ymin)/paths;
             for (int j = 0; j < paths; j++)
             {
+
                 GameObject node = Instantiate(NodePrefab);
                 Node currentNode = node.GetComponent<Node>();
+                if (_levelNodes.Count-1<currentParentNode.level+1)
+                {
+                    _levelNodes.Add(new List<GameObject>());
+                }
                 currentNode.level = currentParentNode.level+1;
+                _levelNodes[currentParentNode.level+1].Add(node);
                 currentNode.name=currentNode.name+" "+currentNode.level+"-"+currentParentNode.level;
-                currentNode.ymin = currentParentNode.ymin+j*step;
-                currentNode.ymax = currentParentNode.ymin+(j+1)*step;
-                Vector3 nodePos=new Vector3(currentParentNode.transform.position.x+nodeSpacing,(currentNode.ymax+currentNode.ymin)/2,0);
-                node.transform.position = nodePos;
-                currentNode.parent = currentParentNode;
+                node.transform.position = new Vector3(currentParentNode.transform.position.x+nodeSpacing, 0, 0);
+                currentNode.parent.Add(currentParentNode);
                 currentParentNode.children.Add(currentNode);
                 Nodes.Add(node);
                 queue.Enqueue(currentNode);
+            }
+        }
+
+        for(int i=0;i<_levelNodes.Count;i++)
+        {
+            float currYmin=ymin*_levelNodes[i].Count/2;
+            float currYmax=ymax*_levelNodes[i].Count/2;
+            float step=(currYmax-currYmin)/_levelNodes[i].Count;
+
+            for (int j = 0; j < _levelNodes[i].Count; j++)
+            {
+                Node currNode=_levelNodes[i][j].GetComponent<Node>();
+                currNode.ymin=currYmin+j*step;
+                currNode.ymax=currYmin+(j+1)*step;
+                Vector3 nodePos=new Vector3(_levelNodes[i][j].transform.position.x,(currNode.ymax+currNode.ymin)/2,0);
+                _levelNodes[i][j].transform.position=nodePos;
+                
+            }
+        }
+        GenerateConnections();
+    }
+
+    void GenerateConnections()
+    {
+        for(int i=0;i<_levelNodes.Count-1;i++)
+        {
+            for (int j = 0; j < _levelNodes[i].Count; j++)
+            {
+                if (_levelNodes[i][j].GetComponent<Node>().children.Count == 1 &&  _levelNodes[i][j].GetComponent<Node>().parent.Count == 1)
+                {
+                    int probability = Random.Range(0, 40);
+                    if (probability <= 2)
+                    {
+                        if (j != 0 && j != _levelNodes[i].Count - 1)
+                        {
+                            var direction = Random.Range(0, 2);
+                            if (direction == 0)
+                            {
+                                _levelNodes[i][j].GetComponent<Node>().children.Add(_levelNodes[i + 1][j + 1].GetComponent<Node>());
+                                _levelNodes[i+1][j+1].GetComponent<Node>().parent.Add(_levelNodes[i][j].GetComponent<Node>());
+                            }
+                            else
+                            {
+                                _levelNodes[i][j].GetComponent<Node>().children.Add(_levelNodes[i - 1][j - 1].GetComponent<Node>());
+                                _levelNodes[i-1][j-1].GetComponent<Node>().parent.Add(_levelNodes[i][j].GetComponent<Node>());
+                            }
+                        }
+                        else
+                        {
+                            if (j==0)
+                            {
+                                _levelNodes[i][j].GetComponent<Node>().children.Add(_levelNodes[i + 1][j + 1].GetComponent<Node>());
+                                _levelNodes[i+1][j+1].GetComponent<Node>().parent.Add(_levelNodes[i][j].GetComponent<Node>());
+                            }
+                            else
+                            {
+                                _levelNodes[i][j].GetComponent<Node>().children.Add(_levelNodes[i - 1][j - 1].GetComponent<Node>());
+                                _levelNodes[i-1][j-1].GetComponent<Node>().parent.Add(_levelNodes[i][j].GetComponent<Node>());
+                            }
+                        }
+                    }
+                }
+                
             }
         }
     }

@@ -153,10 +153,10 @@ MonoBehaviour:
   NodePrefab: {fileID: 7085920957105696477, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
   RootNode: {fileID: 1828556349}
   EndNode: {fileID: 1829235987}
-  rows: 10
+  rows: 20
   nodeSpacing: 5
-  ymin: -50
-  ymax: 50
+  ymin: -20
+  ymax: 20
   Nodes: []
 --- !u!4 &75135678
 Transform:
@@ -198,7 +198,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4265020051018922734, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.1
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 4265020051018922734, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
       propertyPath: m_LocalPosition.y
