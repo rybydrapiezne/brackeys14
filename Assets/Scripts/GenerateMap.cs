@@ -11,8 +11,9 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private GameObject EndNode;
     [SerializeField] private int rows;
     [SerializeField] private float nodeSpacing = 1f;
-    [SerializeField] private int ymin;
+    [SerializeField] private float ymin;
     [SerializeField] private float ymax;
+    [SerializeField] private int splits;
     public List<GameObject> Nodes;
     Queue<Node> queue=new Queue<Node>();
     private List<List<GameObject>> _levelNodes=new List<List<GameObject>>();
@@ -38,6 +39,7 @@ public class GenerateMap : MonoBehaviour
 
     void GenerateGrid()
     {
+        int currentSplits = 0;
         while (queue.Count > 0)
         {
             Node currentParentNode = queue.Dequeue();
@@ -48,9 +50,10 @@ public class GenerateMap : MonoBehaviour
                 continue;
             }
             int probability = Random.Range(0, 30);
-            if (probability <= 2)
+            if (probability <= 2 && currentSplits < splits)
             {
                 paths = 2;
+                currentSplits++;
             }
             else
             {
