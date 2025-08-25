@@ -150,15 +150,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1270050539}
-  NodePrefab: {fileID: 7085920957105696477, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
-  RootNode: {fileID: 1828556349}
-  EndNode: {fileID: 1829235987}
+  nodePrefab: {fileID: 7085920957105696477, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
+  rootNode: {fileID: 1828556349}
+  endNode: {fileID: 1829235987}
   rows: 20
   nodeSpacing: 8
   ymin: -20
   ymax: 20
   splits: 10
-  Nodes: []
+  nodes: []
 --- !u!4 &75135678
 Transform:
   m_ObjectHideFlags: 0

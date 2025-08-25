@@ -7,9 +7,9 @@ public class TurnController : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private float transitionSpeed = 2f;
     private Node currentNodeNode;
-    private bool isMoving = false;
+    private bool isMoving;
 
-    void Start()
+    private void Start()
     {
         currentNodeNode = currentNode.GetComponent<Node>();
         cam.transform.position = new Vector3(
@@ -19,26 +19,24 @@ public class TurnController : MonoBehaviour
         );
     }
 
-    void Update()
+    private void Update()
     {
-        if (!isMoving)
-        {
-            SelectPath();
-        }
+        if (!isMoving) SelectPath();
     }
 
     private void SelectPath()
     {
-        GameObject nextNode = currentNode;
-        bool nodeSelected = false;
+        var nextNode = currentNode;
+        var nodeSelected = false;
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (currentNodeNode.children.Count > 1)
             {
-                nextNode = currentNodeNode.children[0].transform.position.y > 
-                           currentNodeNode.children[1].transform.position.y ?
-                           currentNodeNode.children[0].gameObject : currentNodeNode.children[1].gameObject;
+                nextNode = currentNodeNode.children[0].transform.position.y >
+                           currentNodeNode.children[1].transform.position.y
+                    ? currentNodeNode.children[0].gameObject
+                    : currentNodeNode.children[1].gameObject;
                 nodeSelected = true;
             }
             else
@@ -46,16 +44,15 @@ public class TurnController : MonoBehaviour
                 nextNode = currentNodeNode.children[0].gameObject;
                 nodeSelected = true;
             }
-           
-
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (currentNodeNode.children.Count > 1)
             {
-                nextNode = currentNodeNode.children[0].transform.position.y < 
-                           currentNodeNode.children[1].transform.position.y ?
-                    currentNodeNode.children[0].gameObject : currentNodeNode.children[1].gameObject;
+                nextNode = currentNodeNode.children[0].transform.position.y <
+                           currentNodeNode.children[1].transform.position.y
+                    ? currentNodeNode.children[0].gameObject
+                    : currentNodeNode.children[1].gameObject;
                 nodeSelected = true;
             }
             else
@@ -65,22 +62,19 @@ public class TurnController : MonoBehaviour
             }
         }
 
-        if (nodeSelected && nextNode != currentNode)
-        {
-            StartCoroutine(TraverseToNextNode(nextNode));
-        }
+        if (nodeSelected && nextNode != currentNode) StartCoroutine(TraverseToNextNode(nextNode));
     }
 
-    IEnumerator TraverseToNextNode(GameObject nextNode)
+    private IEnumerator TraverseToNextNode(GameObject nextNode)
     {
         isMoving = true;
-        Vector3 startPosition = cam.transform.position;
-        Vector3 targetPosition = new Vector3(
+        var startPosition = cam.transform.position;
+        var targetPosition = new Vector3(
             nextNode.transform.position.x,
             nextNode.transform.position.y,
             cam.transform.position.z
         );
-        float elapsedTime = 0f;
+        var elapsedTime = 0f;
 
         while (elapsedTime < 1f)
         {
@@ -90,7 +84,7 @@ public class TurnController : MonoBehaviour
         }
 
         cam.transform.position = targetPosition;
-        
+
         currentNode = nextNode;
         currentNodeNode = currentNode.GetComponent<Node>();
         isMoving = false;
