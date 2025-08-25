@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using static ResourceSystem.ResourceType;
 
+
 public static class ResourceSystem
 {
-    public static event Action<ResourceType> OnResourceLimitReached;
-    public static event Action<ResourceType> OnOutOfResource;
-    public static event Action<ResourceType> OnResourceChanged;
+    public static event EventHandler<OnResourceLimitReachedArgs> OnResourceLimitReached;
+    public static event EventHandler<OnOutOfResourceArgs> OnOutOfResource;
+    public static event EventHandler<OnResourceChangedArgs> OnResourceChanged;
 
     public enum ResourceType
     {
@@ -32,32 +33,77 @@ public static class ResourceSystem
     public static bool addResource(ResourceType resource, int amount)
     {
         bool success = true;
+        int desired = resources[resource] + amount;
         if (amount >= 0)
         { // resource limit reached
-            if (resources[resource] + amount > maxResources[resource])
+            int max = maxResources[resource];
+            if (desired > max)
             {
-                resources[resource] = maxResources[resource];
+                resources[resource] = max;
                 success = false;
-                OnResourceLimitReached?.Invoke(resource);
+                OnResourceLimitReached?.Invoke(null, new OnResourceLimitReachedArgs(resource, amount, desired - max));
             }
         } else
         { // out of resource
-            if (resources[resource] + amount <= 0)
+            if (desired < 0)
             {
                 resources[resource] = 0;
                 success = false;
-                OnOutOfResource?.Invoke(resource);
+                OnOutOfResource?.Invoke(null, new OnOutOfResourceArgs(resource, amount, - desired));
             }
         }
-        
-        if(success) resources[resource] += amount;
 
-        OnResourceChanged?.Invoke(resource);
+        if (success) resources[resource] += amount;
+        
+        OnResourceChanged?.Invoke(null, new OnResourceChangedArgs(resource, amount));
+
         return success;
     }
 
     public static int getResource(ResourceType resource)
     {
         return resources[resource];
+    }
+}
+
+public class ResourceEventArgs : EventArgs
+{
+    public ResourceSystem.ResourceType Resource { get; }
+    public int AmountChanged { get; }
+
+    public ResourceEventArgs(ResourceSystem.ResourceType resource, int amountChanged)
+    {
+        Resource = resource;
+        AmountChanged = amountChanged;
+    }
+}
+
+
+public class OnResourceLimitReachedArgs : ResourceEventArgs
+{
+    /// <summary>How much the attempted addition exceeded the max (positive integer).</summary>
+    public int AmountOverLimit { get; }
+
+    public OnResourceLimitReachedArgs(ResourceSystem.ResourceType resource, int amountChanged, int amountOverLimit) : base(resource, amountChanged)
+    {
+        AmountOverLimit = amountOverLimit;
+    }
+}
+
+public class OnOutOfResourceArgs : ResourceEventArgs
+{
+    /// <summary>How much of the attempted usage of resources is missing (positive integer)</summary>
+    public int AmountMissing { get; }
+
+    public OnOutOfResourceArgs(ResourceSystem.ResourceType resource, int amountChanged, int amountMissing) : base(resource, amountChanged)
+    {
+        AmountMissing = amountMissing;
+    }
+}
+
+public class OnResourceChangedArgs : ResourceEventArgs
+{
+    public OnResourceChangedArgs(ResourceSystem.ResourceType resource, int amountChanged) : base(resource, amountChanged)
+    {
     }
 }
