@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class GenerateMap : MonoBehaviour
@@ -11,26 +10,21 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private GameObject endNode;
     [SerializeField] private int rows;
     [SerializeField] private float nodeSpacing = 1f;
-    [SerializeField] private float ymin;
-    [SerializeField] private float ymax;
-    [SerializeField] private int splits;
     public List<GameObject> nodes;
-    private readonly Queue<Node> _queue = new();
     private readonly List<List<GameObject>> _levelNodes = new();
+    private Material lineMaterial;
 
 
     private void Start()
     {
+        lineMaterial = new Material(Shader.Find("Sprites/Default"));
         nodes = new List<GameObject>();
         var rootNodeNode = rootNode.GetComponent<Node>();
         rootNodeNode.parent = null;
         rootNodeNode.level = 0;
         _levelNodes.Add(new List<GameObject>());
         _levelNodes[0].Add(this.rootNode);
-        rootNodeNode.ymin = ymin;
-        rootNodeNode.ymax = ymax;
         endNode.GetComponent<Node>().children = null;
-        _queue.Enqueue(rootNodeNode);
         nodes.Add(this.rootNode);
         GenerateGrid();
         ConnectNodes();
@@ -38,113 +32,61 @@ public class GenerateMap : MonoBehaviour
 
     private void GenerateGrid()
     {
-        var currentSplits = 0;
-        while (_queue.Count > 0)
+        // Create nodes and back connections
+        for(int level = 1; level < rows; level++)
         {
-            var currentParentNode = _queue.Dequeue();
-            int paths;
-            if (currentParentNode.level == rows)
-            {
-                currentParentNode.children.Add(endNode.GetComponent<Node>());
-                continue;
-            }
+            _levelNodes.Add(new List<GameObject>());
+            int nodesInRow = Random.Range(1, 5);
+            if (level == 1 || ( nodesInRow == 1 && Random.Range(0, 10) > 3) ) nodesInRow = 2;
 
-            var probability = Random.Range(0, 30);
-            if (probability <= 2 && currentSplits < splits)
-            {
-                paths = 2;
-                currentSplits++;
-            }
-            else
-            {
-                paths = 1;
-            }
-
-            if (_queue.Count == 0) paths = 2;
-            var step = (currentParentNode.ymax - currentParentNode.ymin) / paths;
-            for (var j = 0; j < paths; j++)
+            float levelOffset = Random.Range(-nodeSpacing, nodeSpacing);
+            for(int rowIndex = 0; rowIndex < nodesInRow; rowIndex++)
             {
                 var node = Instantiate(nodePrefab);
                 var currentNode = node.GetComponent<Node>();
-                if (_levelNodes.Count - 1 < currentParentNode.level + 1) _levelNodes.Add(new List<GameObject>());
-                currentNode.level = currentParentNode.level + 1;
-                _levelNodes[currentParentNode.level + 1].Add(node);
-                currentNode.name = currentNode.name + " " + currentNode.level + "-" + currentParentNode.level;
-                node.transform.position = new Vector3(currentParentNode.transform.position.x + nodeSpacing, 0, 0);
-                currentNode.parent.Add(currentParentNode);
-                currentParentNode.children.Add(currentNode);
+
+                currentNode.level = level;
+                currentNode.name = currentNode.name + " " + level + "-" + (level - 1);
+
+                _levelNodes[level].Add(node);
                 nodes.Add(node);
-                _queue.Enqueue(currentNode);
+
+                int previousLevelNodeCount = _levelNodes[level - 1].Count;
+                Node previousNode = _levelNodes[level - 1][Random.Range(0, previousLevelNodeCount)].GetComponent<Node>();
+                previousNode.children.Add(currentNode);
+                currentNode.parent.Add(previousNode);
+                
+
+                node.transform.position = new Vector3(level * nodeSpacing, (rowIndex - ((nodesInRow-1f)/2f)) * nodeSpacing + levelOffset, 0);
             }
         }
 
-        for (var i = 0; i < _levelNodes.Count; i++)
-        {
-            var currYmin = ymin * _levelNodes[i].Count / 2;
-            var currYmax = ymax * _levelNodes[i].Count / 2;
-            var step = (currYmax - currYmin) / _levelNodes[i].Count;
-
-            for (var j = 0; j < _levelNodes[i].Count; j++)
-            {
-                var currNode = _levelNodes[i][j].GetComponent<Node>();
-                currNode.ymin = currYmin + j * step;
-                currNode.ymax = currYmin + (j + 1) * step;
-                var nodePos = new Vector3(_levelNodes[i][j].transform.position.x, (currNode.ymax + currNode.ymin) / 2,
-                    0);
-                _levelNodes[i][j].transform.position = nodePos;
-            }
-        }
-
+        // Create missing connections
         GenerateConnections();
     }
 
     private void GenerateConnections()
     {
-        for (var i = 0; i < _levelNodes.Count - 1; i++)
-        for (var j = 0; j < _levelNodes[i].Count; j++)
-            if (_levelNodes[i][j].GetComponent<Node>().children.Count == 1 &&
-                _levelNodes[i][j].GetComponent<Node>().parent.Count == 1)
+        foreach (var node in nodes)
+        {
+            Node currentNode = node.GetComponent<Node>();
+            if (currentNode.level + 1 >= _levelNodes.Count)
             {
-                var probability = Random.Range(0, 40);
-                if (probability <= 2)
-                {
-                    if (j != 0 && j != _levelNodes[i].Count - 1)
-                    {
-                        var direction = Random.Range(0, 2);
-                        if (direction == 0)
-                        {
-                            _levelNodes[i][j].GetComponent<Node>().children
-                                .Add(_levelNodes[i + 1][j + 1].GetComponent<Node>());
-                            _levelNodes[i + 1][j + 1].GetComponent<Node>().parent
-                                .Add(_levelNodes[i][j].GetComponent<Node>());
-                        }
-                        else
-                        {
-                            _levelNodes[i][j].GetComponent<Node>().children
-                                .Add(_levelNodes[i + 1][j - 1].GetComponent<Node>());
-                            _levelNodes[i + 1][j - 1].GetComponent<Node>().parent
-                                .Add(_levelNodes[i][j].GetComponent<Node>());
-                        }
-                    }
-                    else
-                    {
-                        if (j == 0)
-                        {
-                            _levelNodes[i][j].GetComponent<Node>().children
-                                .Add(_levelNodes[i + 1][j + 1].GetComponent<Node>());
-                            _levelNodes[i + 1][j + 1].GetComponent<Node>().parent
-                                .Add(_levelNodes[i][j].GetComponent<Node>());
-                        }
-                        else
-                        {
-                            _levelNodes[i][j].GetComponent<Node>().children
-                                .Add(_levelNodes[i + 1][j - 1].GetComponent<Node>());
-                            _levelNodes[i + 1][j - 1].GetComponent<Node>().parent
-                                .Add(_levelNodes[i][j].GetComponent<Node>());
-                        }
-                    }
-                }
+                Node nextNode = endNode.GetComponent<Node>();
+                currentNode.children.Add(nextNode);
+                nextNode.parent.Add(currentNode);
+                continue;
             }
+
+            int nextLevelNodeCount = _levelNodes[currentNode.level + 1].Count;
+
+            if (currentNode.children.Count == 0)
+            {
+                Node nextNode = _levelNodes[currentNode.level + 1][Random.Range(0, nextLevelNodeCount)].GetComponent<Node>();
+                currentNode.children.Add(nextNode);
+                nextNode.parent.Add(currentNode);
+            }
+        }
     }
 
     private void ConnectNodes()
@@ -163,9 +105,9 @@ public class GenerateMap : MonoBehaviour
         var lineObject = new GameObject($"Line_{node1.name}_to_{node2.name}");
         var line = lineObject.AddComponent<LineRenderer>();
 
-        line.startWidth = 0.05f;
-        line.endWidth = 0.05f;
-        line.material = new Material(Shader.Find("Sprites/Default"));
+        line.startWidth = 0.2f;
+        line.endWidth = 0.2f;
+        line.material = lineMaterial;
         line.startColor = Color.white;
         line.endColor = Color.white;
 
