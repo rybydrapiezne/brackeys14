@@ -1,11 +1,16 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
-
+using static ResourceSystem;
 public class TurnController : MonoBehaviour
 {
     [SerializeField] private GameObject currentNode;
     [SerializeField] private Camera cam;
     [SerializeField] private float transitionSpeed = 2f;
+    [SerializeField] private int waterTraverseCost;
+    [SerializeField] private int moraleTraverseCost;
+    [SerializeField] private int foodTraverseCost;
+
     private Node currentNodeNode;
     private bool isMoving;
 
@@ -17,6 +22,8 @@ public class TurnController : MonoBehaviour
             currentNode.transform.position.y,
             cam.transform.position.z
         );
+        
+        
     }
 
     private void Update()
@@ -68,6 +75,9 @@ public class TurnController : MonoBehaviour
     private IEnumerator TraverseToNextNode(GameObject nextNode)
     {
         isMoving = true;
+        addResource(ResourceType.Water,-waterTraverseCost);
+        addResource(ResourceType.Morale,-moraleTraverseCost);
+        addResource(ResourceType.Food,-foodTraverseCost);
         var startPosition = cam.transform.position;
         var targetPosition = new Vector3(
             nextNode.transform.position.x,
