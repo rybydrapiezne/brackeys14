@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using static ResourceSystem;
@@ -10,7 +11,7 @@ public class TurnController : MonoBehaviour
     [SerializeField] private int waterTraverseCost;
     [SerializeField] private int moraleTraverseCost;
     [SerializeField] private int foodTraverseCost;
-
+    [SerializeField] private List<EncounterData> encounters;
     private Node currentNodeNode;
     private bool isMoving;
 
@@ -97,6 +98,9 @@ public class TurnController : MonoBehaviour
 
         currentNode = nextNode;
         currentNodeNode = currentNode.GetComponent<Node>();
+        int encounter=Random.Range(0,encounters.Count);
+        EncounterData currentEncounter = encounters[encounter];
+        currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,currentEncounter.encounterImage,currentEncounter.description,currentEncounter.choices);
         isMoving = false;
     }
 }
