@@ -1274,9 +1274,6 @@ MonoBehaviour:
   endNode: {fileID: 1030627140}
   rows: 20
   nodeSpacing: 8
-  ymin: -20
-  ymax: 20
-  splits: 10
   nodes: []
 --- !u!4 &1615240639
 Transform:

@@ -61,7 +61,7 @@ public class GenerateMap : MonoBehaviour
             }
         }
 
-        // Create missing connections
+        // Create missing forward connections
         GenerateConnections();
     }
 
@@ -100,19 +100,21 @@ public class GenerateMap : MonoBehaviour
         }
     }
 
+    private Vector3 lineOffset = new Vector3(0, 0, 1);
+
     private void DrawConnection(GameObject node1, GameObject node2)
     {
         var lineObject = new GameObject($"Line_{node1.name}_to_{node2.name}");
         var line = lineObject.AddComponent<LineRenderer>();
 
-        line.startWidth = 0.2f;
-        line.endWidth = 0.2f;
+        line.startWidth = 0.05f;
+        line.endWidth = 0.05f;
         line.material = lineMaterial;
-        line.startColor = Color.white;
-        line.endColor = Color.white;
+        line.startColor = Color.gray;
+        line.endColor = Color.gray;
 
         line.positionCount = 2;
-        line.SetPosition(0, node1.transform.position);
-        line.SetPosition(1, node2.transform.position);
+        line.SetPosition(0, node1.transform.position + lineOffset);
+        line.SetPosition(1, node2.transform.position + lineOffset);
     }
 }
