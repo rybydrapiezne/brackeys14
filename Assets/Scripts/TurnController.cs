@@ -14,9 +14,11 @@ public class TurnController : MonoBehaviour
     [SerializeField] private List<EncounterData> encounters;
     private Node currentNodeNode;
     private bool isMoving;
+    private bool encounterOngoing = false;
 
     private void Start()
     {
+        NodeEncounterController.onEncounterStart += EncounterStarted;
         currentNodeNode = currentNode.GetComponent<Node>();
         cam.transform.position = new Vector3(
             currentNode.transform.position.x,
@@ -29,9 +31,13 @@ public class TurnController : MonoBehaviour
 
     private void Update()
     {
-        if (!isMoving) SelectPath();
+        if (!isMoving&&!encounterOngoing) SelectPath();
     }
 
+    private void EncounterStarted(NodeEncounterController node)
+    {
+        encounterOngoing = true;
+    }
     private void SelectPath()
     {
         var nextNode = currentNode;
