@@ -8,9 +8,7 @@ public class TurnController : MonoBehaviour
     [SerializeField] private GameObject currentNode;
     [SerializeField] private Camera cam;
     [SerializeField] private float transitionSpeed = 2f;
-    [SerializeField] private int waterTraverseCost;
-    [SerializeField] private int moraleTraverseCost;
-    [SerializeField] private int foodTraverseCost;
+    [SerializeField] private int suppliesTraverseCost;
     [SerializeField] private List<EncounterData> encounters;
     private Node currentNodeNode;
     private bool isMoving;
@@ -88,9 +86,7 @@ public class TurnController : MonoBehaviour
     private IEnumerator TraverseToNextNode(GameObject nextNode)
     {
         isMoving = true;
-        addResource(ResourceType.Water,-waterTraverseCost);
-        addResource(ResourceType.Morale,-moraleTraverseCost);
-        addResource(ResourceType.Food,-foodTraverseCost);
+        addResource(ResourceType.Supplies,-suppliesTraverseCost);
         var startPosition = cam.transform.position;
         var targetPosition = new Vector3(
             nextNode.transform.position.x,

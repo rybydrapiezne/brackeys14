@@ -17,31 +17,27 @@ MonoBehaviour:
     on you.
   choices:
   - choiceDescription: You give them your valuables
-    waterOutcome: 0
-    moraleOutcome: 0
-    foodOutcome: 0
+    suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: -40
     gearOutcome: 0
     Prerequisites:
-    - ResourceType: 4
+    - ResourceType: 2
       AmountNeeded: 40
+      peopleAmount: 0
   - choiceDescription: You fight the bandits (FIGHT WIP)
-    waterOutcome: 10
-    moraleOutcome: 0
-    foodOutcome: 0
+    suppliesOutcome: 10
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 10
     Prerequisites: []
   - choiceDescription: You are trying to make a diversion to get away
-    waterOutcome: 0
-    moraleOutcome: 0
-    foodOutcome: 0
+    suppliesOutcome: 0
     peopleOutcome: -2
     valuablesOutcome: 0
     gearOutcome: 0
     Prerequisites:
-    - ResourceType: 3
+    - ResourceType: 1
       AmountNeeded: 3
+      peopleAmount: 3
   encounterImage: {fileID: 21300000, guid: 6459ff0a7f77f16209de557907f6aa48, type: 3}

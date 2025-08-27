@@ -17,27 +17,22 @@ MonoBehaviour:
     who come out to meet you, waving their weapons.
   choices:
   - choiceDescription: You avoid the oasis.
-    waterOutcome: 0
-    moraleOutcome: 0
-    foodOutcome: 0
+    suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     Prerequisites: []
   - choiceDescription: You barter with bandits for water supply.
-    waterOutcome: 40
-    moraleOutcome: 0
-    foodOutcome: 0
+    suppliesOutcome: 10
     peopleOutcome: 0
     valuablesOutcome: -20
     gearOutcome: 0
     Prerequisites:
-    - ResourceType: 4
+    - ResourceType: 2
       AmountNeeded: 20
+      peopleAmount: 0
   - choiceDescription: You fight the bandits for oasis. (FIGHT WIP)
-    waterOutcome: 40
-    moraleOutcome: 0
-    foodOutcome: 0
+    suppliesOutcome: 40
     peopleOutcome: 0
     valuablesOutcome: 10
     gearOutcome: 10

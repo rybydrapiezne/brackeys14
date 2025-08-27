@@ -16,12 +16,10 @@ public struct Choice
 {
     [TextArea(2, 5)]
     public string choiceDescription;
-    public int waterOutcome;
-    public int moraleOutcome;
-    public int foodOutcome;
+    public Amounts suppliesOutcome;
     public int peopleOutcome;
-    public int valuablesOutcome;
-    public int gearOutcome;
+    public Amounts valuablesOutcome;
+    public Amounts gearOutcome;
     public EncounterPrerequisistes[] Prerequisites;
 
 }

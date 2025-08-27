@@ -16,17 +16,15 @@ MonoBehaviour:
   description: You've stumbled upon oasis. There's no one here.
   choices:
   - choiceDescription: Short rest
-    waterOutcome: 40
+    suppliesOutcome: 40
     moraleOutcome: 0
-    foodOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     Prerequisites: []
   - choiceDescription: Long Rest
-    waterOutcome: 100
+    suppliesOutcome: 100
     moraleOutcome: 0
-    foodOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0

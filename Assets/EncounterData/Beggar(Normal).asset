@@ -16,21 +16,19 @@ MonoBehaviour:
   description: On your jurney you stumbled upon a man kneeling and begging.
   choices:
   - choiceDescription: Not our business
-    waterOutcome: 0
+    suppliesOutcome: 0
     moraleOutcome: 0
-    foodOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     Prerequisites: []
   - choiceDescription: You give him food
-    waterOutcome: 0
+    suppliesOutcome: 0
     moraleOutcome: 0
-    foodOutcome: -10
     peopleOutcome: 1
     valuablesOutcome: 0
     gearOutcome: 0
     Prerequisites:
-    - ResourceType: 1
+    - ResourceType: 0
       AmountNeeded: 10
   encounterImage: {fileID: 21300000, guid: 1aaae923fa02470a7877e8d984dfee27, type: 3}

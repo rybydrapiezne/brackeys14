@@ -15,28 +15,23 @@ MonoBehaviour:
   encounterName: Trade Caravan
   description: On your way you've encountered a trade caravan.
   choices:
-  - choiceDescription: You travel with them (WORK IN PROGRESS)
-    waterOutcome: 0
-    moraleOutcome: 0
-    foodOutcome: 0
+  - choiceDescription: You travel with them
+    suppliesOutcome: 10
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     Prerequisites: []
   - choiceDescription: You buy travelling gear.
-    waterOutcome: 0
-    moraleOutcome: 0
-    foodOutcome: 0
+    suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: -20
     gearOutcome: 40
     Prerequisites:
-    - ResourceType: 4
+    - ResourceType: 2
       AmountNeeded: 20
+      peopleAmount: 0
   - choiceDescription: You attack the traders. (FIGHT WIP)
-    waterOutcome: 0
-    moraleOutcome: 0
-    foodOutcome: 0
+    suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 40
     gearOutcome: 40

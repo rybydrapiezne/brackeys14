@@ -29,12 +29,24 @@ public class NodeEncounterController : MonoBehaviour
             choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = choices[i].choiceDescription;
             if (choices[i].Prerequisites.Length > 0)
             {
-                if (ResourceSystem.getResource(choices[index].Prerequisites[0].ResourceType) <
-                    choices[i].Prerequisites[0].AmountNeeded)
+                if (choices[i].Prerequisites[0].ResourceType != ResourceSystem.ResourceType.People)
                 {
-                    choiceButtons[i].GetComponent<Button>().interactable = false;
+                    if (ResourceSystem.getResource(choices[index].Prerequisites[0].ResourceType) <
+                        (int)choices[i].Prerequisites[0].AmountNeeded)
+                    {
+                        choiceButtons[i].GetComponent<Button>().interactable = false;
+                    }
+                }
+                else
+                {
+                    if (ResourceSystem.getResource(choices[index].Prerequisites[0].ResourceType) <
+                        choices[index].Prerequisites[0].peopleAmount)
+                    {
+                        choiceButtons[i].GetComponent<Button>().interactable = false;
+                    }
                 }
             }
+
             choiceButtons[i].SetActive(true);
             
             Button button = choiceButtons[i].GetComponent<Button>();
@@ -47,12 +59,10 @@ public class NodeEncounterController : MonoBehaviour
     private void HandleChoiceSelected(Choice choice)
     {
         encounterCanvas.SetActive(false);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.Food, choice.foodOutcome);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.Water, choice.waterOutcome);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.Morale,choice.moraleOutcome);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.People, choice.peopleOutcome);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.Valuables,choice.valuablesOutcome);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, choice.gearOutcome);
+        ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies,(int) choice.suppliesOutcome);
+        ResourceSystem.addResource(ResourceSystem.ResourceType.People,choice.peopleOutcome);
+        ResourceSystem.addResource(ResourceSystem.ResourceType.Valuables,(int) choice.valuablesOutcome);
+        ResourceSystem.addResource(ResourceSystem.ResourceType.Gear,(int) choice.gearOutcome);
         onEncounterEnd?.Invoke();
         
     }

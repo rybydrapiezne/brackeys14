@@ -4,6 +4,7 @@ using UnityEngine;
 public class EncounterPrerequisistes
 {
     public ResourceSystem.ResourceType ResourceType;
-    public int AmountNeeded;
+    public Amounts AmountNeeded;
+    public int peopleAmount=0;
 
 }
