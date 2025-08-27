@@ -19,6 +19,7 @@ public class TurnController : MonoBehaviour
     private void Start()
     {
         NodeEncounterController.onEncounterStart += EncounterStarted;
+        NodeEncounterController.onEncounterEnd += EncounterEnded;
         currentNodeNode = currentNode.GetComponent<Node>();
         cam.transform.position = new Vector3(
             currentNode.transform.position.x,
@@ -34,9 +35,14 @@ public class TurnController : MonoBehaviour
         if (!isMoving&&!encounterOngoing) SelectPath();
     }
 
-    private void EncounterStarted(NodeEncounterController node)
+    private void EncounterStarted()
     {
         encounterOngoing = true;
+    }
+
+    private void EncounterEnded()
+    {
+        encounterOngoing = false;
     }
     private void SelectPath()
     {
@@ -106,7 +112,8 @@ public class TurnController : MonoBehaviour
         currentNodeNode = currentNode.GetComponent<Node>();
         int encounter=Random.Range(0,encounters.Count);
         EncounterData currentEncounter = encounters[encounter];
-        currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,currentEncounter.encounterImage,currentEncounter.description,currentEncounter.choices);
+        currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
+            currentEncounter.encounterImage,currentEncounter.description,currentEncounter.encounterName,currentEncounter.choices);
         isMoving = false;
     }
 }

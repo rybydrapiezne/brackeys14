@@ -13,21 +13,31 @@ public static class ResourceSystem
     {
         Water,
         Food,
-        Morale
+        Morale,
+        People,
+        Valuables,
+        Gear
     }
 
     private static Dictionary<ResourceType, int> maxResources = new Dictionary<ResourceType, int>
     {
-        [Water] = 6,
-        [Food] = 10,
-        [Morale] = 12,
+        [Water] = 100,
+        [Food] = 100,
+        [Morale] = 100,
+        [People] = 20,
+        [Valuables]=1000,
+        [Gear]=1000
     };
 
     private static Dictionary<ResourceType, int> resources = new Dictionary<ResourceType, int>
     {
-        [Water] = 3,
-        [Food] = 6,
-        [Morale] = 5,
+        [Water] = 100,
+        [Food] = 100,
+        [Morale] = 100,
+        [People] = 10,
+        [Valuables]=0,
+        [Gear]=50
+        
     };
 
     public static bool addResource(ResourceType resource, int amount)

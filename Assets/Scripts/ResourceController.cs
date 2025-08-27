@@ -8,6 +8,9 @@ public class ResourceController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waterAmount;
     [SerializeField] private TextMeshProUGUI moraleAmount;
     [SerializeField] private TextMeshProUGUI foodAmount;
+    [SerializeField] private TextMeshProUGUI peopleAmount;
+    [SerializeField] private TextMeshProUGUI valuablesAmount;
+    [SerializeField] private TextMeshProUGUI gearAmount;
     void Start()
     {
         OnResourceChanged += UpdateText;
@@ -21,6 +24,9 @@ public class ResourceController : MonoBehaviour
         waterAmount.text=getResource(ResourceType.Water).ToString();
         moraleAmount.text=getResource(ResourceType.Morale).ToString();
         foodAmount.text=getResource(ResourceType.Food).ToString();
+        peopleAmount.text=getResource(ResourceType.People).ToString();
+        valuablesAmount.text=getResource(ResourceType.Valuables).ToString();
+        gearAmount.text=getResource(ResourceType.Gear).ToString();
     }
 
     private void OutOfResource(object s, OnOutOfResourceArgs args)
