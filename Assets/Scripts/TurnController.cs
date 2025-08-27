@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using static ResourceSystem;
@@ -7,15 +8,16 @@ public class TurnController : MonoBehaviour
     [SerializeField] private GameObject currentNode;
     [SerializeField] private Camera cam;
     [SerializeField] private float transitionSpeed = 2f;
-    [SerializeField] private int waterTraverseCost;
-    [SerializeField] private int moraleTraverseCost;
-    [SerializeField] private int foodTraverseCost;
-
+    [SerializeField] private int suppliesTraverseCost;
+    [SerializeField] private List<EncounterData> encounters;
     private Node currentNodeNode;
     private bool isMoving;
+    private bool encounterOngoing = false;
 
     private void Start()
     {
+        NodeEncounterController.onEncounterStart += EncounterStarted;
+        NodeEncounterController.onEncounterEnd += EncounterEnded;
         currentNodeNode = currentNode.GetComponent<Node>();
         cam.transform.position = new Vector3(
             currentNode.transform.position.x,
@@ -28,9 +30,18 @@ public class TurnController : MonoBehaviour
 
     private void Update()
     {
-        if (!isMoving) SelectPath();
+        if (!isMoving&&!encounterOngoing) SelectPath();
     }
 
+    private void EncounterStarted()
+    {
+        encounterOngoing = true;
+    }
+
+    private void EncounterEnded()
+    {
+        encounterOngoing = false;
+    }
     private void SelectPath()
     {
         var nextNode = currentNode;
@@ -75,9 +86,7 @@ public class TurnController : MonoBehaviour
     private IEnumerator TraverseToNextNode(GameObject nextNode)
     {
         isMoving = true;
-        addResource(ResourceType.Water,-waterTraverseCost);
-        addResource(ResourceType.Morale,-moraleTraverseCost);
-        addResource(ResourceType.Food,-foodTraverseCost);
+        addResource(ResourceType.Supplies,-suppliesTraverseCost);
         var startPosition = cam.transform.position;
         var targetPosition = new Vector3(
             nextNode.transform.position.x,
@@ -97,6 +106,10 @@ public class TurnController : MonoBehaviour
 
         currentNode = nextNode;
         currentNodeNode = currentNode.GetComponent<Node>();
+        int encounter=Random.Range(0,encounters.Count);
+        EncounterData currentEncounter = encounters[encounter];
+        currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
+            currentEncounter.encounterImage,currentEncounter.description,currentEncounter.encounterName,currentEncounter.choices);
         isMoving = false;
     }
 }
