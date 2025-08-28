@@ -90,7 +90,7 @@ public class TurnController : MonoBehaviour
         var startPosition = cam.transform.position;
         var targetPosition = new Vector3(
             nextNode.transform.position.x,
-            nextNode.transform.position.y,
+            0,
             cam.transform.position.z
         );
         var elapsedTime = 0f;
