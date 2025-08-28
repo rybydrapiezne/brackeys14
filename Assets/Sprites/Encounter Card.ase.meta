@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c064f6080ba55e34fbfe16e9aa472055
+guid: 0341c4909578faa72acf41dfdda4611e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,10 +33,10 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 0
+    spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 10
+    spritePixelsToUnits: 1
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638920090571376760
+  platformSettingsDirtyTick: 638920101137826160
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,19 +123,19 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Node
+  - name: Encounter Card
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5072464, y: -0.024096387}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 10
-      height: 8
-    spriteID: 1b9a0d17c11dd5044b33fcbeeb52e986
+      width: 207
+      height: 166
+    spriteID: b4df560e574456148899165367165fd4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,25 +148,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1414246138
+      value0: 3168704147
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Node
+    name: Encounter Card
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Node
+    - name: Encounter Card
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 10
-        height: 8
-      spriteId: 1b9a0d17c11dd5044b33fcbeeb52e986
+        x: 23
+        y: 4
+        width: 207
+        height: 166
+      spriteId: b4df560e574456148899165367165fd4
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -221,5 +221,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 10, y: 8}
-  previousTextureSize: {x: 32, y: 16}
+  canvasSize: {x: 256, y: 180}
+  previousTextureSize: {x: 256, y: 256}
