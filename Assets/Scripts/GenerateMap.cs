@@ -1,6 +1,29 @@
+using EasyTextEffects.Editor.MyBoxCopy.Extensions;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
+public class Dictionary<TKey1, TKey2, TValue> : Dictionary<Tuple<TKey1, TKey2>, TValue>, IDictionary<Tuple<TKey1, TKey2>, TValue>
+{
+
+    public TValue this[TKey1 key1, TKey2 key2]
+    {
+        get { return base[Tuple.Create(key1, key2)]; }
+        set { base[Tuple.Create(key1, key2)] = value; }
+    }
+
+    public void Add(TKey1 key1, TKey2 key2, TValue value)
+    {
+        base.Add(Tuple.Create(key1, key2), value);
+    }
+
+    public bool ContainsKey(TKey1 key1, TKey2 key2)
+    {
+        return base.ContainsKey(Tuple.Create(key1, key2));
+    }
+}
 
 public class GenerateMap : MonoBehaviour
 {
@@ -8,10 +31,20 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private GameObject nodePrefab;
     [SerializeField] private GameObject rootNode;
     [SerializeField] private GameObject endNode;
-    [SerializeField] private int rows;
-    [SerializeField] private float nodeSpacing = 1f;
+    
+    [Space(5)]
+    [SerializeField] private Vector2Int totalBiomes = new Vector2Int(10, 3); // Total biomes to go through (total biomes = biomesHorizontally.x * biomesHorizontally.y)
+    [SerializeField] private Vector2 biomeSpacing = Vector2.one;
+    [SerializeField] private Vector2 nodeInBiomeSpacing = Vector2.one;
+    [SerializeField] private int biomePathLength = 2; // Number of nodes horizontally in a biome
+    
+    [Space(2)]
+    [SerializeField] private float nodeRandomOffset = 1f;
+
+    [Space(5)]
     public List<GameObject> nodes;
     private readonly List<List<GameObject>> _levelNodes = new();
+    private readonly Dictionary<int, int, Dictionary<int, int, GameObject>> biomes = new(); // Biome X,Y -> Node X,Y GameObject
     private Material lineMaterial;
 
 
@@ -25,67 +58,111 @@ public class GenerateMap : MonoBehaviour
         _levelNodes.Add(new List<GameObject>());
         _levelNodes[0].Add(this.rootNode);
         endNode.GetComponent<Node>().children = null;
+        endNode.transform.position = new Vector3((totalBiomes.x + 1) * (biomeSpacing.x + nodeInBiomeSpacing.x), 0, 0);
+        rootNode.transform.position = new Vector3((biomePathLength-1) * nodeInBiomeSpacing.x, 0, 0);
         nodes.Add(this.rootNode);
-        GenerateGrid();
+
+        GenerateBiomes();
+
+        // Create connecting lines
         ConnectNodes();
     }
 
-    private void GenerateGrid()
+    private void GenerateBiomes()
     {
         // Create nodes and back connections
-        for(int level = 1; level < rows; level++)
+        for (int biomeX = 0; biomeX < totalBiomes.x; biomeX++)
         {
-            _levelNodes.Add(new List<GameObject>());
-            int nodesInRow = Random.Range(1, 5);
-            if (level == 1 || ( nodesInRow == 1 && Random.Range(0, 10) > 3) ) nodesInRow = 2;
+            int level = biomeX * biomePathLength;
 
-            float levelOffset = Random.Range(-nodeSpacing, nodeSpacing);
-            for(int rowIndex = 0; rowIndex < nodesInRow; rowIndex++)
+            for (int nodesX = 0; nodesX < biomePathLength; nodesX++)
+                _levelNodes.Add(new List<GameObject>());
+
+            for (int biomeY = 0; biomeY < totalBiomes.y; biomeY++)
             {
-                var node = Instantiate(nodePrefab);
-                var currentNode = node.GetComponent<Node>();
+                biomes[biomeX, biomeY] = new();
+                GenerateGrid(biomeX, biomeY, level);
+            }
 
-                currentNode.level = level;
-                currentNode.name = currentNode.name + " " + level + "-" + (level - 1);
-
-                _levelNodes[level].Add(node);
-                nodes.Add(node);
-
-                int previousLevelNodeCount = _levelNodes[level - 1].Count;
-                Node previousNode = _levelNodes[level - 1][Random.Range(0, previousLevelNodeCount)].GetComponent<Node>();
-                previousNode.children.Add(currentNode);
-                currentNode.parent.Add(previousNode);
-                
-
-                node.transform.position = new Vector3(level * nodeSpacing, (rowIndex - ((nodesInRow-1f)/2f)) * nodeSpacing + levelOffset, 0);
+            // Fix missing forward connections from previous biome, intersecting with other biomes
+            foreach (var node in _levelNodes[level])
+            {
+                Node currentNode = node.GetComponent<Node>();
+                if (currentNode.children.Count == 0)
+                {
+                    Node nextNode = _levelNodes[level + 1].GetRandom().GetComponent<Node>();
+                    currentNode.children.Add(nextNode);
+                    nextNode.parent.Add(currentNode);
+                }
             }
         }
 
-        // Create missing forward connections
-        GenerateConnections();
-    }
-
-    private void GenerateConnections()
-    {
-        foreach (var node in nodes)
+        // Connect last level nodes to endNode
+        foreach (var node in _levelNodes.Last())
         {
             Node currentNode = node.GetComponent<Node>();
-            if (currentNode.level + 1 >= _levelNodes.Count)
+            if (currentNode.children.Count == 0)
             {
                 Node nextNode = endNode.GetComponent<Node>();
                 currentNode.children.Add(nextNode);
                 nextNode.parent.Add(currentNode);
-                continue;
             }
+        }
+    }
 
-            int nextLevelNodeCount = _levelNodes[currentNode.level + 1].Count;
+    private void GenerateGrid(int biomeX, int biomeY, int outerLevel)
+    {
+        Vector2 biomeLocation = new Vector2(biomeX+1, biomeY - (totalBiomes.y - 1) / 2) * (biomeSpacing + nodeInBiomeSpacing);
+        List<GameObject> previousBiomeRowNodes = new();
 
-            if (currentNode.children.Count == 0)
+        for (int nodesX = 0; nodesX < biomePathLength; nodesX++)
+        {
+            int nodesInBiomeRow = (Random.value < 0.75f) ? 1 : 2; ; // 1 or 2, with greater probability of 1
+            List<GameObject> currentBiomeRowNodes = new();
+
+            for (int rowIndex = 0; rowIndex < nodesInBiomeRow; rowIndex++)
             {
-                Node nextNode = _levelNodes[currentNode.level + 1][Random.Range(0, nextLevelNodeCount)].GetComponent<Node>();
-                currentNode.children.Add(nextNode);
-                nextNode.parent.Add(currentNode);
+                int innerLevel = outerLevel + nodesX + 1;
+                var node = Instantiate(nodePrefab);
+                var currentNode = node.GetComponent<Node>();
+
+                currentNode.level = innerLevel;
+                currentNode.name = "Node " + biomeX + "," + biomeY + "-" + nodesX + ", " + rowIndex + "-" + innerLevel;
+
+                _levelNodes[innerLevel].Add(node);
+                biomes[biomeX, biomeY][nodesX, rowIndex] = node;
+                nodes.Add(node);
+                currentBiomeRowNodes.Add(node);
+
+                Node previousNode; // From all previous nodes if first in biome, or only biome ones if further
+
+                if (nodesX == 0)
+                    previousNode = _levelNodes[innerLevel - 1].GetRandom().GetComponent<Node>();
+                else
+                    previousNode = previousBiomeRowNodes.GetRandom().GetComponent<Node>();
+
+                previousNode.children.Add(currentNode);
+                currentNode.parent.Add(previousNode);
+
+
+                node.transform.position = biomeLocation + (new Vector3(nodesX, rowIndex - (nodesInBiomeRow - 1) / 2f, 0) * nodeInBiomeSpacing) + new Vector2(Random.Range(-nodeRandomOffset, nodeRandomOffset), Random.Range(-nodeRandomOffset, nodeRandomOffset));
             }
+
+            // Fix missing forward connections from previous level, biome-wise
+            if (nodesX < biomePathLength) {
+                foreach (var previousNodeGO in previousBiomeRowNodes)
+                {
+                    Node previousNode = previousNodeGO.GetComponent<Node>();
+                    if (previousNode.children.Count == 0)
+                    {
+                        Node currentNode = currentBiomeRowNodes.GetRandom().GetComponent<Node>();
+                        previousNode.children.Add(currentNode);
+                        currentNode.parent.Add(previousNode);
+                    }
+                }
+            }
+
+            previousBiomeRowNodes = currentBiomeRowNodes;
         }
     }
 
@@ -107,8 +184,8 @@ public class GenerateMap : MonoBehaviour
         var lineObject = new GameObject($"Line_{node1.name}_to_{node2.name}");
         var line = lineObject.AddComponent<LineRenderer>();
 
-        line.startWidth = 0.05f;
-        line.endWidth = 0.05f;
+        line.startWidth = 0.2f;
+        line.endWidth = 0.2f;
         line.material = lineMaterial;
         line.startColor = Color.gray;
         line.endColor = Color.gray;
