@@ -1745,12 +1745,15 @@ MonoBehaviour:
   nodePrefab: {fileID: 7085920957105696477, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
   rootNode: {fileID: 402189694}
   endNode: {fileID: 1030627140}
-  rows: 20
-  nodeSpacing: 8
-  ymin: -20
-  ymax: 20
-  splits: 10
+  totalBiomes: {x: 10, y: 3}
+  biomeSpacing: {x: 163, y: 99}
+  nodeInBiomeSpacing: {x: 70, y: 40}
+  biomePathLength: 2
+  biomeSpriteHorizontalOffset: 196
+  nodeRandomOffset: 1
   nodes: []
+  biomePrefab: {fileID: 0}
+  biomes: []
 --- !u!4 &1615240639
 Transform:
   m_ObjectHideFlags: 0
