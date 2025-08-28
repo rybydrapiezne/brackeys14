@@ -74,7 +74,7 @@ public class GenerateMap : MonoBehaviour
     public GameObject biomePrefab;
     public List<BiomeData> biomes;
 
-    private void Start()
+    private void Awake()
     {
         lineMaterial = new Material(Shader.Find("Sprites/Default"));
         nodes = new List<GameObject>();
