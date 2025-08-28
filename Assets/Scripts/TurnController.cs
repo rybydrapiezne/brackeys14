@@ -10,6 +10,7 @@ public class TurnController : MonoBehaviour
     [SerializeField] private float transitionSpeed = 2f;
     [SerializeField] private int suppliesTraverseCost;
     [SerializeField] private List<EncounterData> encounters;
+    [SerializeField] private GameObject playerCaravan;
     private Node currentNodeNode;
     private bool isMoving;
     private bool encounterOngoing = false;
@@ -24,6 +25,7 @@ public class TurnController : MonoBehaviour
             currentNode.transform.position.y,
             cam.transform.position.z
         );
+        playerCaravan.transform.position=currentNode.transform.position;
         
         
     }
@@ -86,6 +88,7 @@ public class TurnController : MonoBehaviour
     private IEnumerator TraverseToNextNode(GameObject nextNode)
     {
         isMoving = true;
+        playerCaravan.GetComponent<PlayerCaravanController>().startCaravanMovement(nextNode.transform.position);
         addResource(ResourceType.Supplies,-suppliesTraverseCost);
         var startPosition = cam.transform.position;
         var targetPosition = new Vector3(
@@ -108,6 +111,10 @@ public class TurnController : MonoBehaviour
         currentNodeNode = currentNode.GetComponent<Node>();
         int encounter=Random.Range(0,encounters.Count);
         EncounterData currentEncounter = encounters[encounter];
+        while (playerCaravan.GetComponent<PlayerCaravanController>().isMoving)
+        {
+            yield return null;
+        }
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
             currentEncounter.encounterImage,currentEncounter.description,currentEncounter.encounterName,currentEncounter.choices,currentEncounter.prerequisites);
         isMoving = false;
