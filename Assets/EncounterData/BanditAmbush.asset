@@ -21,23 +21,57 @@ MonoBehaviour:
     peopleOutcome: 0
     valuablesOutcome: -40
     gearOutcome: 0
-    Prerequisites:
-    - ResourceType: 2
-      AmountNeeded: 40
-      peopleAmount: 0
+    typeOfPrerequisites: 1
   - choiceDescription: You fight the bandits (FIGHT WIP)
     suppliesOutcome: 10
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 10
-    Prerequisites: []
+    typeOfPrerequisites: 0
   - choiceDescription: You are trying to make a diversion to get away
     suppliesOutcome: 0
     peopleOutcome: -2
     valuablesOutcome: 0
     gearOutcome: 0
-    Prerequisites:
-    - ResourceType: 1
-      AmountNeeded: 3
-      peopleAmount: 3
+    typeOfPrerequisites: 1
   encounterImage: {fileID: 21300000, guid: 6459ff0a7f77f16209de557907f6aa48, type: 3}
+  prerequisites:
+  - prerequisiteType: 1
+    normalPrerequisite:
+      ResourceType: 3
+      AmountNeeded: 40
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+  - prerequisiteType: 1
+    normalPrerequisite:
+      ResourceType: 2
+      AmountNeeded: 0
+      peopleAmount: 3
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0

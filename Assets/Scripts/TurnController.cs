@@ -109,7 +109,7 @@ public class TurnController : MonoBehaviour
         int encounter=Random.Range(0,encounters.Count);
         EncounterData currentEncounter = encounters[encounter];
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
-            currentEncounter.encounterImage,currentEncounter.description,currentEncounter.encounterName,currentEncounter.choices);
+            currentEncounter.encounterImage,currentEncounter.description,currentEncounter.encounterName,currentEncounter.choices,currentEncounter.prerequisites);
         isMoving = false;
     }
 }

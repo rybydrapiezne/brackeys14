@@ -17,18 +17,41 @@ MonoBehaviour:
   choices:
   - choiceDescription: Not our business
     suppliesOutcome: 0
-    moraleOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
-    Prerequisites: []
+    typeOfPrerequisites: 0
   - choiceDescription: You give him food
-    suppliesOutcome: 0
-    moraleOutcome: 0
+    suppliesOutcome: -10
     peopleOutcome: 1
     valuablesOutcome: 0
     gearOutcome: 0
-    Prerequisites:
-    - ResourceType: 0
-      AmountNeeded: 10
+    typeOfPrerequisites: 1
   encounterImage: {fileID: 21300000, guid: 1aaae923fa02470a7877e8d984dfee27, type: 3}
+  prerequisites:
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+  - prerequisiteType: 1
+    normalPrerequisite:
+      ResourceType: 1
+      AmountNeeded: 10
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0

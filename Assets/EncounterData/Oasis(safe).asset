@@ -17,16 +17,41 @@ MonoBehaviour:
   choices:
   - choiceDescription: Short rest
     suppliesOutcome: 40
-    moraleOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
-    Prerequisites: []
+    typeOfPrerequisites: 0
   - choiceDescription: Long Rest
     suppliesOutcome: 100
-    moraleOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
-    Prerequisites: []
+    typeOfPrerequisites: 0
   encounterImage: {fileID: 21300000, guid: 41607c0652af45f96833f30e2770a9f5, type: 3}
+  prerequisites:
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0

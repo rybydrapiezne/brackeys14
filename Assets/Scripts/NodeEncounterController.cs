@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Mono.Cecil;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,34 +14,81 @@ public class NodeEncounterController : MonoBehaviour
     public static Action onEncounterStart;
     public static Action onEncounterEnd;
 
-    public void EnableEncounter(int amountOfChoices, Sprite encounterImage, String encounterText,String encounterName, Choice[] choices)
+    public void EnableEncounter(int amountOfChoices, Sprite encounterImage, string encounterText, string encounterName, Choice[] choices, PrerequisiteWrapper[] prerequisites)
     {
         onEncounterStart?.Invoke();
         this.encounterImage.sprite = encounterImage;
         this.encounterText.text = encounterText;
         this.encounterName.text = encounterName;
         encounterCanvas.SetActive(true); 
-        
+
+        if (amountOfChoices > choiceButtons.Count)
+        {
+            Debug.LogError($"Not enough choice buttons! Required: {amountOfChoices}, Available: {choiceButtons.Count}");
+            return;
+        }
+
         for (int i = 0; i < amountOfChoices; i++)
         {
             int index = i;
             choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = choices[i].choiceDescription;
-            if (choices[i].Prerequisites.Length > 0)
+            
+            if (choices[i].typeOfPrerequisites == EncounterPrerequisiteType.Normal)
             {
-                if (choices[i].Prerequisites[0].ResourceType != ResourceSystem.ResourceType.People)
+                if (prerequisites[i].ToIPrerequisite() is EncounterNormalPrerequisistes normalPrerequisite)
                 {
-                    if (ResourceSystem.getResource(choices[index].Prerequisites[0].ResourceType) <
-                        (int)choices[i].Prerequisites[0].AmountNeeded)
+                    if (normalPrerequisite.ResourceType != ResourceSystem.ResourceType.People)
                     {
-                        choiceButtons[i].GetComponent<Button>().interactable = false;
+                        if (ResourceSystem.getResource(normalPrerequisite.ResourceType) < (int)normalPrerequisite.AmountNeeded)
+                        {
+                            choiceButtons[i].GetComponent<Button>().interactable = false;
+                        }
+                    }
+                    else
+                    {
+                        if (ResourceSystem.getResource(normalPrerequisite.ResourceType) < normalPrerequisite.peopleAmount)
+                        {
+                            choiceButtons[i].GetComponent<Button>().interactable = false;
+                        }
                     }
                 }
-                else
+            }
+            else if (choices[i].typeOfPrerequisites == EncounterPrerequisiteType.Conditional)
+            {
+                if (prerequisites[i].ToIPrerequisite() is EncounterConditionalPrerequisites conditionalPrerequisite)
                 {
-                    if (ResourceSystem.getResource(choices[index].Prerequisites[0].ResourceType) <
-                        choices[index].Prerequisites[0].peopleAmount)
+                    switch (conditionalPrerequisite.condition)
                     {
-                        choiceButtons[i].GetComponent<Button>().interactable = false;
+                        case EncounterConditionalPrerequisitesEnum.Greater:
+                            choiceButtons[i].GetComponent<Button>().interactable = 
+                                ConditionalPrerequisites.GreaterThan(
+                                    ResourceSystem.getResource(conditionalPrerequisite.value1),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value2),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value3),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value4),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value5),
+                                    conditionalPrerequisite.expected);
+                            break;
+                        case EncounterConditionalPrerequisitesEnum.Less:
+                            choiceButtons[i].GetComponent<Button>().interactable = 
+                                ConditionalPrerequisites.LowerThan(
+                                    ResourceSystem.getResource(conditionalPrerequisite.value1),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value2),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value3),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value4),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value5),
+                                    conditionalPrerequisite.expected);
+                            break;
+                        case EncounterConditionalPrerequisitesEnum.Equal:
+                            choiceButtons[i].GetComponent<Button>().interactable = 
+                                ConditionalPrerequisites.EqualTo(
+                                    ResourceSystem.getResource(conditionalPrerequisite.value1),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value2),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value3),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value4),
+                                    ResourceSystem.getResource(conditionalPrerequisite.value5),
+                                    conditionalPrerequisite.expected);
+                            break;
                     }
                 }
             }
@@ -51,7 +97,6 @@ public class NodeEncounterController : MonoBehaviour
             
             Button button = choiceButtons[i].GetComponent<Button>();
             button.onClick.RemoveAllListeners();
-            
             button.onClick.AddListener(() => HandleChoiceSelected(choices[index]));
         }
     }
@@ -59,11 +104,10 @@ public class NodeEncounterController : MonoBehaviour
     private void HandleChoiceSelected(Choice choice)
     {
         encounterCanvas.SetActive(false);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies,(int) choice.suppliesOutcome);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.People,choice.peopleOutcome);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.Valuables,(int) choice.valuablesOutcome);
-        ResourceSystem.addResource(ResourceSystem.ResourceType.Gear,(int) choice.gearOutcome);
+        ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)choice.suppliesOutcome);
+        ResourceSystem.addResource(ResourceSystem.ResourceType.People, choice.peopleOutcome);
+        ResourceSystem.addResource(ResourceSystem.ResourceType.Valuables, (int)choice.valuablesOutcome);
+        ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)choice.gearOutcome);
         onEncounterEnd?.Invoke();
-        
     }
 }

@@ -20,20 +20,57 @@ MonoBehaviour:
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
-    Prerequisites: []
+    typeOfPrerequisites: 0
   - choiceDescription: You buy travelling gear.
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: -20
     gearOutcome: 40
-    Prerequisites:
-    - ResourceType: 2
-      AmountNeeded: 20
-      peopleAmount: 0
+    typeOfPrerequisites: 1
   - choiceDescription: You attack the traders. (FIGHT WIP)
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 40
     gearOutcome: 40
-    Prerequisites: []
+    typeOfPrerequisites: 0
   encounterImage: {fileID: 21300000, guid: f711a5627ebf39c6fa823b71e9f43bc6, type: 3}
+  prerequisites:
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+  - prerequisiteType: 1
+    normalPrerequisite:
+      ResourceType: 3
+      AmountNeeded: 20
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0

@@ -11,6 +11,7 @@ public static class ResourceSystem
 
     public enum ResourceType
     {
+        None,
         Supplies,
         People,
         Valuables,
@@ -19,6 +20,7 @@ public static class ResourceSystem
 
     private static Dictionary<ResourceType, int> maxResources = new Dictionary<ResourceType, int>
     {
+        [None]=0,
         [Supplies] = 100,
         [People] = 20,
         [Valuables]=1000,
@@ -27,6 +29,7 @@ public static class ResourceSystem
 
     private static Dictionary<ResourceType, int> resources = new Dictionary<ResourceType, int>
     {
+        [None]=0,
         [Supplies] = 100,
         [People] = 10,
         [Valuables]=0,
