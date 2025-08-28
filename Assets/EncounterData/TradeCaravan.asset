@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0a9197b80dc0451b82ac1f7bc0e272, type: 3}
+  m_Name: TradeCaravan
+  m_EditorClassIdentifier: 
+  encounterName: Trade Caravan
+  description: On your way you've encountered a trade caravan.
+  choices:
+  - choiceDescription: You travel with them
+    suppliesOutcome: 10
+    peopleOutcome: 0
+    valuablesOutcome: 0
+    gearOutcome: 0
+    Prerequisites: []
+  - choiceDescription: You buy travelling gear.
+    suppliesOutcome: 0
+    peopleOutcome: 0
+    valuablesOutcome: -20
+    gearOutcome: 40
+    Prerequisites:
+    - ResourceType: 2
+      AmountNeeded: 20
+      peopleAmount: 0
+  - choiceDescription: You attack the traders. (FIGHT WIP)
+    suppliesOutcome: 0
+    peopleOutcome: 0
+    valuablesOutcome: 40
+    gearOutcome: 40
+    Prerequisites: []
+  encounterImage: {fileID: 21300000, guid: f711a5627ebf39c6fa823b71e9f43bc6, type: 3}

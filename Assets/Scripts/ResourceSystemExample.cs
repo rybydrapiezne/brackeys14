@@ -11,12 +11,12 @@ public class ResourceSystemExample : MonoBehaviour
         OnResourceChanged += updateText;
         OnOutOfResource += outOfResource;
         OnResourceLimitReached += limitReached;
-        updateText(null, new OnResourceChangedArgs(ResourceType.Water, 0));
+        updateText(null, new OnResourceChangedArgs(ResourceType.Supplies, 0));
     }
 
     public void addWater(int amount)
     {
-        if(!addResource(ResourceType.Water, amount))
+        if(!addResource(ResourceType.Supplies, amount))
         {
             if (amount < 0) Debug.Log("out of water!");
             else Debug.Log("too much water!");
@@ -25,7 +25,7 @@ public class ResourceSystemExample : MonoBehaviour
 
     private void updateText(object s, OnResourceChangedArgs a)
     {
-        waterText.text = "Water amount: " + getResource(ResourceType.Water);
+        waterText.text = "Water amount: " + getResource(ResourceType.Supplies);
         Debug.LogFormat("Updated Resource: {0}, Amount: {1}", a.Resource, a.AmountChanged);
     }
 
