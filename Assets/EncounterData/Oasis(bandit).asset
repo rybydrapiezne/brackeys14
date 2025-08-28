@@ -21,20 +21,57 @@ MonoBehaviour:
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
-    Prerequisites: []
+    typeOfPrerequisites: 0
   - choiceDescription: You barter with bandits for water supply.
     suppliesOutcome: 10
     peopleOutcome: 0
     valuablesOutcome: -20
     gearOutcome: 0
-    Prerequisites:
-    - ResourceType: 2
-      AmountNeeded: 20
-      peopleAmount: 0
+    typeOfPrerequisites: 1
   - choiceDescription: You fight the bandits for oasis. (FIGHT WIP)
     suppliesOutcome: 40
     peopleOutcome: 0
     valuablesOutcome: 10
     gearOutcome: 10
-    Prerequisites: []
+    typeOfPrerequisites: 0
   encounterImage: {fileID: 21300000, guid: 186f9a014942d201384ed5c446a2c0d7, type: 3}
+  prerequisites:
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+  - prerequisiteType: 1
+    normalPrerequisite:
+      ResourceType: 3
+      AmountNeeded: 20
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
