@@ -1,4 +1,3 @@
-using EasyTextEffects.Editor.MyBoxCopy.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +22,30 @@ public class Dictionary<TKey1, TKey2, TValue> : Dictionary<Tuple<TKey1, TKey2>, 
     {
         return base.ContainsKey(Tuple.Create(key1, key2));
     }
+}
+
+public static class MyCollections
+{
+    #region GetRandom
+
+    /// <summary>
+    /// Returns random element from collection
+    /// </summary>
+    public static T GetRandom<T>(this T[] collection) => collection[UnityEngine.Random.Range(0, collection.Length)];
+
+    /// <summary>
+    /// Returns random element from collection
+    /// </summary>
+    public static T GetRandom<T>(this IList<T> collection) => collection[UnityEngine.Random.Range(0, collection.Count)];
+
+    /// <summary>
+    /// Returns random element from collection
+    /// </summary>
+    // ReSharper disable PossibleMultipleEnumeration
+    public static T GetRandom<T>(this IEnumerable<T> collection) => collection.ElementAt(UnityEngine.Random.Range(0, collection.Count()));
+    // ReSharper restore PossibleMultipleEnumeration
+
+    #endregion
 }
 
 public class GenerateMap : MonoBehaviour
