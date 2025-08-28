@@ -129,7 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4265020051018922734, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4265020051018922734, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -235,7 +235,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1272,11 +1272,11 @@ MonoBehaviour:
   nodePrefab: {fileID: 7085920957105696477, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
   rootNode: {fileID: 402189694}
   endNode: {fileID: 1030627140}
-  rows: 20
-  nodeSpacing: 8
-  ymin: -20
-  ymax: 20
-  splits: 10
+  totalBiomes: {x: 10, y: 3}
+  biomeSpacing: {x: 6, y: 4}
+  nodeInBiomeSpacing: {x: 4, y: 4}
+  biomePathLength: 2
+  nodeRandomOffset: 0.5
   nodes: []
 --- !u!4 &1615240639
 Transform:

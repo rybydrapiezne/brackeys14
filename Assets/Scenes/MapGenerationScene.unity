@@ -153,12 +153,24 @@ MonoBehaviour:
   nodePrefab: {fileID: 7085920957105696477, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
   rootNode: {fileID: 1828556349}
   endNode: {fileID: 1829235987}
-  rows: 20
-  nodeSpacing: 8
-  ymin: -20
-  ymax: 20
-  splits: 10
+  totalBiomes: {x: 10, y: 3}
+  biomeSpacing: {x: 163, y: 99}
+  nodeInBiomeSpacing: {x: 70, y: 40}
+  biomePathLength: 2
+  biomeSpriteHorizontalOffset: 196
+  nodeRandomOffset: 14
   nodes: []
+  biomePrefab: {fileID: 6117114670451913498, guid: 44d7349bc861a5544bf48c03349d9f9f, type: 3}
+  biomes:
+  - {fileID: 11400000, guid: dd551a0d1b179b04587749cd59d78e55, type: 2}
+  - {fileID: 11400000, guid: 3a608e293e8a9e64488e4af1facff7df, type: 2}
+  - {fileID: 11400000, guid: 5ab4ffa7047c2034e904b6741d764fe3, type: 2}
+  - {fileID: 11400000, guid: 3428afff25892fe4eb4d870847f5651b, type: 2}
+  - {fileID: 11400000, guid: d1dba36bac6276840b6627b2dbf3a914, type: 2}
+  - {fileID: 11400000, guid: 3c1842766135b1645b962466f7f4093e, type: 2}
+  - {fileID: 11400000, guid: e273f34b1920a4f459a0e8dec804033a, type: 2}
+  - {fileID: 11400000, guid: c90db033a041f8d43be802aa8a4fb4d9, type: 2}
+  - {fileID: 11400000, guid: 3a750cbca97f93b4d993e16839a7fa79, type: 2}
 --- !u!4 &75135678
 Transform:
   m_ObjectHideFlags: 0
@@ -189,6 +201,9 @@ MonoBehaviour:
   currentNode: {fileID: 1828556349}
   cam: {fileID: 1270050539}
   transitionSpeed: 2
+  suppliesTraverseCost: 0
+  encounters:
+  - {fileID: 11400000, guid: 75ee3a5b48cf52cf58e69087d6bc97bb, type: 2}
 --- !u!1001 &383763992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311,7 +326,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 150
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
