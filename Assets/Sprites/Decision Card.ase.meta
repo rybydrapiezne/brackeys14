@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c064f6080ba55e34fbfe16e9aa472055
+guid: 83646482242120366a87ffc7ae7e1231
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 10
+    spritePixelsToUnits: 32
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638920090571376760
+  platformSettingsDirtyTick: 638920125139424740
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,7 +123,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Node
+  - name: Decision Card
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 10
-      height: 8
-    spriteID: 1b9a0d17c11dd5044b33fcbeeb52e986
+      width: 84
+      height: 92
+    spriteID: dea4165272db00fc685b5d001fa26d90
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,29 +144,50 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  spriteSheetImportData: []
+  spriteSheetImportData:
+  - name: Decision Card_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 84
+      height: 92
+    spriteID: d56f855658dec1f28a642495cf5666b3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1414246138
+      value0: 3195304854
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Node
+    name: Decision Card
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Node
+    - name: Decision Card
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 10
-        height: 8
-      spriteId: 1b9a0d17c11dd5044b33fcbeeb52e986
+        x: 4
+        y: 2
+        width: 84
+        height: 92
+      spriteId: dea4165272db00fc685b5d001fa26d90
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -221,5 +242,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 10, y: 8}
-  previousTextureSize: {x: 32, y: 16}
+  canvasSize: {x: 96, y: 96}
+  previousTextureSize: {x: 128, y: 128}
