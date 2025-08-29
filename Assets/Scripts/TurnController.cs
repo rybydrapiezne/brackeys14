@@ -14,6 +14,10 @@ public class TurnController : MonoBehaviour
     private Node currentNodeNode;
     private bool isMoving;
     private bool encounterOngoing = false;
+    [SerializeField] private AnimationCurve camMoveCurve;
+
+    private int levelsCheckCount = 5;
+    [SerializeField] private float fadedPathAlpha = 0.3f;
 
     private void Start()
     {
@@ -26,8 +30,19 @@ public class TurnController : MonoBehaviour
             cam.transform.position.z
         );
         playerCaravan.transform.position=currentNode.transform.position;
-        
-        
+
+        foreach (var node in GenerateMap.Instance.nodes)
+        {
+            Node nodeComponent = node.GetComponent<Node>();
+            if(nodeComponent.level >  levelsCheckCount){
+                foreach (var material in nodeComponent.material)
+                {
+                    Color materialColor = material.color;
+                    materialColor.a = fadedPathAlpha;
+                    material.color = materialColor;
+                }
+            }
+        }
     }
 
     private void Update()
@@ -49,6 +64,7 @@ public class TurnController : MonoBehaviour
         var nextNode = currentNode;
         var nodeSelected = false;
 
+        // Path choosing
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (currentNodeNode.children.Count > 1)
@@ -82,7 +98,82 @@ public class TurnController : MonoBehaviour
             }
         }
 
-        if (nodeSelected && nextNode != currentNode) StartCoroutine(TraverseToNextNode(nextNode));
+        if (nodeSelected && nextNode != currentNode)
+        {
+            // Fading unaccessable paths
+            Node nextNodeComponent = nextNode.GetComponent<Node>();
+            if (nextNodeComponent.children.Count > 0)
+                fadeUnavailablePaths(currentNodeNode, nextNodeComponent);
+            
+
+            // Starting traverse animation
+            StartCoroutine(TraverseToNextNode(nextNode));
+        }
+    }
+
+    private void fadeUnavailablePaths(Node currentNodeComponent, Node nextNodeComponent)
+    {
+        // Hide unavailable paths
+        Queue<Node> nodesToProcess = new Queue<Node>(currentNodeComponent.children);
+
+        while (true)
+        {
+            if (nodesToProcess.Count == 0) break;
+
+            Node currentNode = nodesToProcess.Dequeue();
+            if (currentNode.level >= nextNodeComponent.level + levelsCheckCount)
+                break;
+
+            foreach (var material in currentNode.material)
+            {
+                Color materialColor = material.color;
+                materialColor.a = fadedPathAlpha;
+                material.color = materialColor;
+            }
+
+            if (currentNode.children != null)
+            {
+                foreach (var child in currentNode.children)
+                {
+                    nodesToProcess.Enqueue(child);
+                }
+            }
+        }
+
+        // Show all possible paths
+        foreach (var material in nextNodeComponent.material)
+        {
+            // currently cannot determine target, rewrite required
+            Color materialColor = material.color;
+            materialColor.a = 1;
+            material.color = materialColor;
+        }
+
+        nodesToProcess = new Queue<Node>(nextNodeComponent.children);
+
+        while (true)
+        {
+            if (nodesToProcess.Count == 0) break;
+
+            Node currentNode = nodesToProcess.Dequeue();
+            if (currentNode.level >= nextNodeComponent.level + levelsCheckCount)
+                break;
+
+            foreach (var material in currentNode.material)
+            {
+                Color materialColor = material.color;
+                materialColor.a = 1;
+                material.color = materialColor;
+            }
+
+            if (currentNode.children != null)
+            {
+                foreach (var child in currentNode.children)
+                {
+                    nodesToProcess.Enqueue(child);
+                }
+            }
+        }
     }
 
     private IEnumerator TraverseToNextNode(GameObject nextNode)
@@ -101,7 +192,7 @@ public class TurnController : MonoBehaviour
         while (elapsedTime < 1f)
         {
             elapsedTime += Time.deltaTime * transitionSpeed;
-            cam.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime);
+            cam.transform.position = Vector3.Lerp(startPosition, targetPosition, camMoveCurve.Evaluate(elapsedTime));
             yield return null;
         }
 

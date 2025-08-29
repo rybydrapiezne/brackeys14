@@ -5,7 +5,7 @@ public class Node : MonoBehaviour
 {
     public List<Node> parent=new List<Node>();
     public List<Node> children=new List<Node>();
-    public Material material;
+    public List<Material> material;
     public int level;
     public Biome biome;
 }

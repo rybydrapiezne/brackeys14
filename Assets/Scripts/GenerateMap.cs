@@ -47,6 +47,15 @@ public static class BetterCollections
 
 public class GenerateMap : MonoBehaviour
 {
+    private static GenerateMap instance;
+    public static GenerateMap Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject nodePrefab;
     [SerializeField] private GameObject rootNode;
@@ -77,6 +86,14 @@ public class GenerateMap : MonoBehaviour
 
     private void Awake()
     {
+        if (instance)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+
+        instance = this;
+
         nodes = new List<GameObject>();
         var rootNodeNode = rootNode.GetComponent<Node>();
         rootNodeNode.parent = null;
@@ -225,7 +242,7 @@ public class GenerateMap : MonoBehaviour
         Vector3 startPos = node1.transform.position + lineOffset;
         Vector3 endPos = node2.transform.position + lineOffset;
         Material lineMaterial = new Material(baseMaterial);
-        node2.GetComponent<Node>().material = lineMaterial;
+        node1.GetComponent<Node>().material.Add(lineMaterial);
         Vector3 direction = (endPos - startPos).normalized;
         float distance = Vector3.Distance(startPos, endPos);
         
