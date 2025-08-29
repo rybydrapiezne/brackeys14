@@ -1307,7 +1307,8 @@ MonoBehaviour:
   nodePrefab: {fileID: 7085920957105696477, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
   rootNode: {fileID: 915472100}
   endNode: {fileID: 1599882444}
-  lineSegmentPrefab: {fileID: -2253911629886400664, guid: f97cb10d154c5920cb8c906809841aaa, type: 3}
+  lineSegmentPrefab: {fileID: 221915335718071613, guid: 33763d83d10a38a62989cf7ca5a9be9f, type: 3}
+  baseMaterial: {fileID: 2100000, guid: 3d5037fe451cefd9c8d4e8985d40f437, type: 2}
   lineSegmentSpacing: 10
   lineSegmentRandomOffset: 2
   totalBiomes: {x: 10, y: 3}

@@ -52,6 +52,7 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private GameObject rootNode;
     [SerializeField] private GameObject endNode;
     [SerializeField] private GameObject lineSegmentPrefab;
+    [SerializeField] private Material baseMaterial;
     [SerializeField] private float lineSegmentSpacing = 10f; // Custom spacing between line segment prefabs
     [SerializeField] private float lineSegmentRandomOffset = 2f; // Random offset for line segments
     [Space(5)]
@@ -223,7 +224,8 @@ public class GenerateMap : MonoBehaviour
         var lineObject = new GameObject($"Line_{node1.name}_to_{node2.name}");
         Vector3 startPos = node1.transform.position + lineOffset;
         Vector3 endPos = node2.transform.position + lineOffset;
-        
+        Material lineMaterial = new Material(baseMaterial);
+        node2.GetComponent<Node>().material = lineMaterial;
         Vector3 direction = (endPos - startPos).normalized;
         float distance = Vector3.Distance(startPos, endPos);
         
@@ -244,6 +246,7 @@ public class GenerateMap : MonoBehaviour
             float randomOffset = Random.Range(-lineSegmentRandomOffset, lineSegmentRandomOffset);
             Vector3 position = basePosition + perpendicular * randomOffset;
             GameObject segment = Instantiate(lineSegmentPrefab, position, Quaternion.identity, lineObject.transform);
+            segment.GetComponent<SpriteRenderer>().material = lineMaterial;
             
         }
     }
