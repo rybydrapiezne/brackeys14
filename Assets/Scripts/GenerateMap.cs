@@ -52,7 +52,7 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private GameObject nodePrefab;
     [SerializeField] private GameObject rootNode;
     [SerializeField] private GameObject endNode;
-    
+    [SerializeField] private Material lineMaterial;
     [Space(5)]
     [SerializeField] private Vector2Int totalBiomes = new Vector2Int(10, 3); // Total biomes to go through (total biomes = biomesHorizontally.x * biomesHorizontally.y)
     [SerializeField] private Vector2 biomeSpacing = new Vector2(163, 99);
@@ -68,7 +68,7 @@ public class GenerateMap : MonoBehaviour
     [Space(5)]
     public List<GameObject> nodes;
     private readonly List<List<GameObject>> _levelNodes = new();
-    private Material lineMaterial;
+
 
     [Space(5)]
     public GameObject biomePrefab;
@@ -76,7 +76,6 @@ public class GenerateMap : MonoBehaviour
 
     private void Awake()
     {
-        lineMaterial = new Material(Shader.Find("Sprites/Default"));
         nodes = new List<GameObject>();
         var rootNodeNode = rootNode.GetComponent<Node>();
         rootNodeNode.parent = null;
@@ -223,12 +222,12 @@ public class GenerateMap : MonoBehaviour
     {
         var lineObject = new GameObject($"Line_{node1.name}_to_{node2.name}");
         var line = lineObject.AddComponent<LineRenderer>();
-
-        line.startWidth = 1f;
-        line.endWidth = 1f;
+        line.startWidth = 3f;
+        line.endWidth = 3f;
         line.material = lineMaterial;
-        line.startColor = Color.gray;
-        line.endColor = Color.gray;
+        line.textureMode = LineTextureMode.Tile;
+        line.textureScale = new Vector2(0.16f, 0.9f);
+
 
         line.positionCount = 2;
         line.SetPosition(0, node1.transform.position + lineOffset);

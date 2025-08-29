@@ -1307,6 +1307,7 @@ MonoBehaviour:
   nodePrefab: {fileID: 7085920957105696477, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
   rootNode: {fileID: 915472100}
   endNode: {fileID: 1599882444}
+  lineMaterial: {fileID: 2100000, guid: 39cb88f89792ae0938d485213fd066b4, type: 2}
   totalBiomes: {x: 10, y: 3}
   biomeSpacing: {x: 163, y: 99}
   nodeInBiomeSpacing: {x: 70, y: 40}
