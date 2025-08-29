@@ -121,7 +121,8 @@ public class PlayerCaravanController : MonoBehaviour
             StartCoroutine(killMember(deadNomads[i]));
         }
 
-        Debug.LogWarning("Could not find Nomad");
+        if(removed == 0)
+            Debug.LogWarning("Could not find Nomad");
     }
 
     private IEnumerator killMember(GameObject member)

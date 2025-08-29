@@ -1291,6 +1291,32 @@ MonoBehaviour:
   encounters:
   - {fileID: 11400000, guid: 494cdc2a00c2fd1c5b9cb24cfa2a19e5, type: 2}
   playerCaravan: {fileID: 66711003}
+  camMoveCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  levelsCheckCount: 8
+  fadedPathColor: {r: 1, g: 1, b: 1, a: 0.3}
 --- !u!114 &1377193721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,7 +1333,8 @@ MonoBehaviour:
   nodePrefab: {fileID: 7085920957105696477, guid: 2a2d499b99a681c27bfa5d0a155befd7, type: 3}
   rootNode: {fileID: 915472100}
   endNode: {fileID: 1599882444}
-  lineSegmentPrefab: {fileID: -2253911629886400664, guid: f97cb10d154c5920cb8c906809841aaa, type: 3}
+  lineSegmentPrefab: {fileID: 221915335718071613, guid: 33763d83d10a38a62989cf7ca5a9be9f, type: 3}
+  baseLineMaterial: {fileID: 2100000, guid: 3d5037fe451cefd9c8d4e8985d40f437, type: 2}
   lineSegmentSpacing: 10
   lineSegmentRandomOffset: 2
   totalBiomes: {x: 10, y: 3}
