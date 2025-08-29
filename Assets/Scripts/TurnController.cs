@@ -106,7 +106,7 @@ public class TurnController : MonoBehaviour
         {
             // Fading unaccessable paths
             Node nextNodeComponent = nextNode.GetComponent<Node>();
-            if (nextNodeComponent.children.Count > 0)
+            if (nextNodeComponent.children != null)
                 fadeUnavailablePaths(currentNodeNode, nextNodeComponent);
             
 
