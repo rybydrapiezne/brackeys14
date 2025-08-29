@@ -148,7 +148,11 @@ public class GenerateMap : MonoBehaviour
                 if (currentNode.children.Count == 0)
                 {
                     Node nextNode = _levelNodes[level + 1].GetRandom().GetComponent<Node>();
-                    currentNode.children.Add(nextNode);
+                    PathDestination pd = new PathDestination();
+                    pd.node = nextNode;
+                    Material lineMaterial = new Material(baseMaterial);
+                    pd.material = lineMaterial;
+                    currentNode.children.Add(pd);
                     nextNode.parent.Add(currentNode);
                 }
             }
@@ -161,7 +165,11 @@ public class GenerateMap : MonoBehaviour
             if (currentNode.children.Count == 0)
             {
                 Node nextNode = endNode.GetComponent<Node>();
-                currentNode.children.Add(nextNode);
+                PathDestination pd = new PathDestination();
+                pd.node = nextNode;
+                Material lineMaterial = new Material(baseMaterial);
+                pd.material = lineMaterial;
+                currentNode.children.Add(pd);
                 nextNode.parent.Add(currentNode);
             }
         }
@@ -198,7 +206,11 @@ public class GenerateMap : MonoBehaviour
                 else
                     previousNode = previousBiomeRowNodes.GetRandom().GetComponent<Node>();
 
-                previousNode.children.Add(currentNode);
+                PathDestination pd = new PathDestination();
+                pd.node = currentNode;
+                Material lineMaterial = new Material(baseMaterial);
+                pd.material = lineMaterial;
+                previousNode.children.Add(pd);
                 currentNode.parent.Add(previousNode);
 
                 node.transform.position = biomeLocation + (new Vector3(nodesX, rowIndex - (nodesInBiomeRow - 1) / 2f, 0) * nodeInBiomeSpacing) + new Vector2(Random.Range(-nodeRandomOffset, nodeRandomOffset), Random.Range(-nodeRandomOffset, nodeRandomOffset));
@@ -213,7 +225,11 @@ public class GenerateMap : MonoBehaviour
                     if (previousNode.children.Count == 0)
                     {
                         Node currentNode = currentBiomeRowNodes.GetRandom().GetComponent<Node>();
-                        previousNode.children.Add(currentNode);
+                        PathDestination pd = new PathDestination();
+                        pd.node = currentNode;
+                        Material lineMaterial = new Material(baseMaterial);
+                        pd.material = lineMaterial;
+                        previousNode.children.Add(pd);
                         currentNode.parent.Add(previousNode);
                     }
                 }
@@ -230,7 +246,7 @@ public class GenerateMap : MonoBehaviour
             var currNode = node.GetComponent<Node>();
             if (currNode.children != null)
                 foreach (var child in currNode.children)
-                    DrawConnection(node, child.gameObject);
+                    DrawConnection(node, child.node.gameObject);
         }
     }
 
@@ -241,8 +257,6 @@ public class GenerateMap : MonoBehaviour
         var lineObject = new GameObject($"Line_{node1.name}_to_{node2.name}");
         Vector3 startPos = node1.transform.position + lineOffset;
         Vector3 endPos = node2.transform.position + lineOffset;
-        Material lineMaterial = new Material(baseMaterial);
-        node1.GetComponent<Node>().material.Add(lineMaterial);
         Vector3 direction = (endPos - startPos).normalized;
         float distance = Vector3.Distance(startPos, endPos);
         
@@ -263,7 +277,7 @@ public class GenerateMap : MonoBehaviour
             float randomOffset = Random.Range(-lineSegmentRandomOffset, lineSegmentRandomOffset);
             Vector3 position = basePosition + perpendicular * randomOffset;
             GameObject segment = Instantiate(lineSegmentPrefab, position, Quaternion.identity, lineObject.transform);
-            segment.GetComponent<SpriteRenderer>().material = lineMaterial;
+            segment.GetComponent<SpriteRenderer>().material = node1.GetComponent<Node>().children.Find(c => UnityEngine.Object.Equals(c.node.gameObject, node2.gameObject)).material;
             
         }
     }

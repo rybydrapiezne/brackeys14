@@ -16,7 +16,7 @@ public class TurnController : MonoBehaviour
     private bool encounterOngoing = false;
     [SerializeField] private AnimationCurve camMoveCurve;
 
-    private int levelsCheckCount = 5;
+    private int levelsCheckCount = 8;
     [SerializeField] private float fadedPathAlpha = 0.3f;
 
     private void Start()
@@ -35,11 +35,15 @@ public class TurnController : MonoBehaviour
         {
             Node nodeComponent = node.GetComponent<Node>();
             if(nodeComponent.level >  levelsCheckCount){
-                foreach (var material in nodeComponent.material)
+                foreach (var child in nodeComponent.children)
                 {
-                    Color materialColor = material.color;
+                    Color materialColor = child.node.sprite.color;
                     materialColor.a = fadedPathAlpha;
-                    material.color = materialColor;
+                    child.node.sprite.color = materialColor;
+
+                    materialColor = child.material.color;
+                    materialColor.a = fadedPathAlpha;
+                    child.material.color = materialColor;
                 }
             }
         }
@@ -69,15 +73,15 @@ public class TurnController : MonoBehaviour
         {
             if (currentNodeNode.children.Count > 1)
             {
-                nextNode = currentNodeNode.children[0].transform.position.y >
-                           currentNodeNode.children[1].transform.position.y
-                    ? currentNodeNode.children[0].gameObject
-                    : currentNodeNode.children[1].gameObject;
+                nextNode = currentNodeNode.children[0].node.transform.position.y >
+                           currentNodeNode.children[1].node.transform.position.y
+                    ? currentNodeNode.children[0].node.gameObject
+                    : currentNodeNode.children[1].node.gameObject;
                 nodeSelected = true;
             }
             else
             {
-                nextNode = currentNodeNode.children[0].gameObject;
+                nextNode = currentNodeNode.children[0].node.gameObject;
                 nodeSelected = true;
             }
         }
@@ -85,15 +89,15 @@ public class TurnController : MonoBehaviour
         {
             if (currentNodeNode.children.Count > 1)
             {
-                nextNode = currentNodeNode.children[0].transform.position.y <
-                           currentNodeNode.children[1].transform.position.y
-                    ? currentNodeNode.children[0].gameObject
-                    : currentNodeNode.children[1].gameObject;
+                nextNode = currentNodeNode.children[0].node.transform.position.y <
+                           currentNodeNode.children[1].node.transform.position.y
+                    ? currentNodeNode.children[0].node.gameObject
+                    : currentNodeNode.children[1].node.gameObject;
                 nodeSelected = true;
             }
             else
             {
-                nextNode = currentNodeNode.children[0].gameObject;
+                nextNode = currentNodeNode.children[0].node.gameObject;
                 nodeSelected = true;
             }
         }
@@ -114,61 +118,70 @@ public class TurnController : MonoBehaviour
     private void fadeUnavailablePaths(Node currentNodeComponent, Node nextNodeComponent)
     {
         // Hide unavailable paths
-        Queue<Node> nodesToProcess = new Queue<Node>(currentNodeComponent.children);
+        Queue<PathDestination> nodesToProcess = new Queue<PathDestination>(currentNodeComponent.children);
 
         while (true)
         {
             if (nodesToProcess.Count == 0) break;
 
-            Node currentNode = nodesToProcess.Dequeue();
-            if (currentNode.level >= nextNodeComponent.level + levelsCheckCount)
+            PathDestination currentNode = nodesToProcess.Dequeue();
+            if (currentNode.node.level > nextNodeComponent.level + levelsCheckCount)
                 break;
 
-            foreach (var material in currentNode.material)
-            {
-                Color materialColor = material.color;
-                materialColor.a = fadedPathAlpha;
-                material.color = materialColor;
-            }
+            Color materialColor = currentNode.node.sprite.color;
+            materialColor.a = fadedPathAlpha;
+            currentNode.node.sprite.color = materialColor;
 
-            if (currentNode.children != null)
+            materialColor = currentNode.material.color;
+            materialColor.a = fadedPathAlpha;
+            currentNode.material.color = materialColor;
+            
+
+            if (currentNode.node.children != null)
             {
-                foreach (var child in currentNode.children)
+                foreach (var child in currentNode.node.children)
                 {
                     nodesToProcess.Enqueue(child);
                 }
             }
         }
 
-        // Show all possible paths
-        foreach (var material in nextNodeComponent.material)
+        // Show selected path
         {
-            // currently cannot determine target, rewrite required
-            Color materialColor = material.color;
+            PathDestination pd = currentNodeComponent.children.Find(c => Object.Equals(c.node.gameObject, nextNodeComponent.gameObject));
+
+            Color materialColor = pd.node.sprite.color;
             materialColor.a = 1;
-            material.color = materialColor;
+            pd.node.sprite.color = materialColor;
+
+            materialColor = pd.material.color;
+            materialColor.a = 1;
+            pd.material.color = materialColor;
         }
 
-        nodesToProcess = new Queue<Node>(nextNodeComponent.children);
+        // Show all possible paths
+        nodesToProcess = new Queue<PathDestination>(nextNodeComponent.children);
 
         while (true)
         {
             if (nodesToProcess.Count == 0) break;
 
-            Node currentNode = nodesToProcess.Dequeue();
-            if (currentNode.level >= nextNodeComponent.level + levelsCheckCount)
+            PathDestination currentNode = nodesToProcess.Dequeue();
+            if (currentNode.node.level >= nextNodeComponent.level + levelsCheckCount)
                 break;
 
-            foreach (var material in currentNode.material)
-            {
-                Color materialColor = material.color;
-                materialColor.a = 1;
-                material.color = materialColor;
-            }
+            Color materialColor = currentNode.node.sprite.color;
+            materialColor.a = 1;
+            currentNode.node.sprite.color = materialColor;
 
-            if (currentNode.children != null)
+            materialColor = currentNode.material.color;
+            materialColor.a = 1;
+            currentNode.material.color = materialColor;
+            
+
+            if (currentNode.node.children != null)
             {
-                foreach (var child in currentNode.children)
+                foreach (var child in currentNode.node.children)
                 {
                     nodesToProcess.Enqueue(child);
                 }
