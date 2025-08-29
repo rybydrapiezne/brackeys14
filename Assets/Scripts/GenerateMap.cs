@@ -115,6 +115,18 @@ public class GenerateMap : MonoBehaviour
 
     private void GenerateBiomes()
     {
+        // Generate start and finish biomes
+        for (int _x = -3; _x < 3; _x++)
+        {
+            int x = _x >= 0 ? _x + totalBiomes.x : _x;
+            int level = Mathf.Max(x * biomePathLength, 0);
+            List<BiomeData> availableBiomes = biomes.FindAll(b => level >= b.minimumLevelRequired);
+            for (int y = 0; y < totalBiomes.y; y++)
+            {
+                Biome biomeComponent = SpawnBiome(x, y, availableBiomes);
+            }
+        }
+
         // Create nodes and back connections
         for (int biomeX = 0; biomeX < totalBiomes.x; biomeX++)
         {
@@ -128,16 +140,7 @@ public class GenerateMap : MonoBehaviour
             for (int biomeY = 0; biomeY < totalBiomes.y; biomeY++)
             {
                 // Create biome
-                GameObject biome = Instantiate(biomePrefab);
-                biome.transform.position = (Vector3)(new Vector2(biomeX, biomeY - ((totalBiomes.y-1)/2f)) * biomeSpacing) + new Vector3(biomeSpriteHorizontalOffset, 0, 100);
-                Biome biomeComponent = biome.GetComponent<Biome>();
-
-                BiomeData pickedBiome = availableBiomes.GetRandom();
-
-                biome.GetComponent<SpriteRenderer>().sprite = pickedBiome.sprite;
-                biomeComponent.biomeName = pickedBiome.biomeName;
-                biomeComponent.sprite = pickedBiome.sprite;
-                biomeComponent.minimumLevelRequired = pickedBiome.minimumLevelRequired;
+                Biome biomeComponent = SpawnBiome(biomeX, biomeY, availableBiomes);
 
                 // Create nodes for biome
                 GenerateGrid(biomeX, biomeY, level, biomeComponent);
@@ -175,6 +178,23 @@ public class GenerateMap : MonoBehaviour
                 nextNode.parent.Add(currentNode);
             }
         }
+    }
+
+    private Biome SpawnBiome(int biomeX, int biomeY, List<BiomeData> availableBiomes)
+    {
+        GameObject biome = Instantiate(biomePrefab);
+        biome.transform.position = (Vector3)(new Vector2(biomeX, biomeY - ((totalBiomes.y - 1) / 2f)) * biomeSpacing) + new Vector3(biomeSpriteHorizontalOffset, 0, 100);
+        Biome biomeComponent = biome.GetComponent<Biome>();
+
+        BiomeData pickedBiome = availableBiomes.GetRandom();
+
+        biome.name = "Biome " + biomeX + ", " + biomeY;
+        biome.GetComponent<SpriteRenderer>().sprite = pickedBiome.sprite;
+        biomeComponent.biomeName = pickedBiome.biomeName;
+        biomeComponent.sprite = pickedBiome.sprite;
+        biomeComponent.minimumLevelRequired = pickedBiome.minimumLevelRequired;
+
+        return biomeComponent;
     }
 
     private void GenerateGrid(int biomeX, int biomeY, int outerLevel, Biome currentBiome)
