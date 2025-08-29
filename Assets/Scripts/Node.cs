@@ -24,6 +24,8 @@ public class Node : MonoBehaviour
         sprite.color = hoverColor;
         futureDestinations = new();
 
+        if (children == null) return;
+
         Queue<PathDestination> queue = new Queue<PathDestination>(children);
         while (true)
         {
