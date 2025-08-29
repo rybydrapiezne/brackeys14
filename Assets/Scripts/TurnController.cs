@@ -5,6 +5,15 @@ using UnityEngine;
 using static ResourceSystem;
 public class TurnController : MonoBehaviour
 {
+    private static TurnController instance;
+    public static TurnController Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     [SerializeField] private GameObject currentNode;
     [SerializeField] private Camera cam;
     [SerializeField] private float transitionSpeed = 2f;
@@ -16,8 +25,19 @@ public class TurnController : MonoBehaviour
     private bool encounterOngoing = false;
     [SerializeField] private AnimationCurve camMoveCurve;
 
-    private int levelsCheckCount = 8;
-    [SerializeField] private float fadedPathAlpha = 0.3f;
+    public int levelsCheckCount = 8;
+    [SerializeField] public Color fadedPathColor = new Color(1f, 1f, 1f, 0.3f);
+
+    private void Awake()
+    {
+        if (instance)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
 
     private void Start()
     {
@@ -37,13 +57,10 @@ public class TurnController : MonoBehaviour
             if(nodeComponent.level >  levelsCheckCount){
                 foreach (var child in nodeComponent.children)
                 {
-                    Color materialColor = child.node.sprite.color;
-                    materialColor.a = fadedPathAlpha;
-                    child.node.sprite.color = materialColor;
+                    child.node.baseColor = fadedPathColor;
 
-                    materialColor = child.material.color;
-                    materialColor.a = fadedPathAlpha;
-                    child.material.color = materialColor;
+                    child.node.sprite.color = child.node.baseColor;
+                    child.material.color = child.node.baseColor;
                 }
             }
         }
@@ -51,7 +68,7 @@ public class TurnController : MonoBehaviour
 
     private void Update()
     {
-        if (!isMoving&&!encounterOngoing) SelectPath();
+        
     }
 
     private void EncounterStarted()
@@ -63,56 +80,18 @@ public class TurnController : MonoBehaviour
     {
         encounterOngoing = false;
     }
-    private void SelectPath()
+    public void SelectPath(GameObject nextNode)
     {
-        var nextNode = currentNode;
-        var nodeSelected = false;
-
-        // Path choosing
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            if (currentNodeNode.children.Count > 1)
-            {
-                nextNode = currentNodeNode.children[0].node.transform.position.y >
-                           currentNodeNode.children[1].node.transform.position.y
-                    ? currentNodeNode.children[0].node.gameObject
-                    : currentNodeNode.children[1].node.gameObject;
-                nodeSelected = true;
-            }
-            else
-            {
-                nextNode = currentNodeNode.children[0].node.gameObject;
-                nodeSelected = true;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (currentNodeNode.children.Count > 1)
-            {
-                nextNode = currentNodeNode.children[0].node.transform.position.y <
-                           currentNodeNode.children[1].node.transform.position.y
-                    ? currentNodeNode.children[0].node.gameObject
-                    : currentNodeNode.children[1].node.gameObject;
-                nodeSelected = true;
-            }
-            else
-            {
-                nextNode = currentNodeNode.children[0].node.gameObject;
-                nodeSelected = true;
-            }
-        }
-
-        if (nodeSelected && nextNode != currentNode)
-        {
-            // Fading unaccessable paths
-            Node nextNodeComponent = nextNode.GetComponent<Node>();
-            if (nextNodeComponent.children != null)
-                fadeUnavailablePaths(currentNodeNode, nextNodeComponent);
+        if (isMoving || encounterOngoing || currentNodeNode.children.Find(c => Object.Equals(c.node.gameObject, nextNode)) == null ) return;
+        
+        // Fading unaccessable paths
+        Node nextNodeComponent = nextNode.GetComponent<Node>();
+        if (nextNodeComponent.children != null)
+            fadeUnavailablePaths(currentNodeNode, nextNodeComponent);
             
 
-            // Starting traverse animation
-            StartCoroutine(TraverseToNextNode(nextNode));
-        }
+        // Starting traverse animation
+        StartCoroutine(TraverseToNextNode(nextNode));
     }
 
     private void fadeUnavailablePaths(Node currentNodeComponent, Node nextNodeComponent)
@@ -128,13 +107,10 @@ public class TurnController : MonoBehaviour
             if (currentNode.node.level > nextNodeComponent.level + levelsCheckCount)
                 break;
 
-            Color materialColor = currentNode.node.sprite.color;
-            materialColor.a = fadedPathAlpha;
-            currentNode.node.sprite.color = materialColor;
+            currentNode.node.baseColor = fadedPathColor;
 
-            materialColor = currentNode.material.color;
-            materialColor.a = fadedPathAlpha;
-            currentNode.material.color = materialColor;
+            currentNode.node.sprite.color = currentNode.node.baseColor;
+            currentNode.material.color = currentNode.node.baseColor;
             
 
             if (currentNode.node.children != null)
@@ -152,11 +128,10 @@ public class TurnController : MonoBehaviour
 
             Color materialColor = pd.node.sprite.color;
             materialColor.a = 1;
-            pd.node.sprite.color = materialColor;
+            pd.node.baseColor = materialColor;
 
-            materialColor = pd.material.color;
-            materialColor.a = 1;
-            pd.material.color = materialColor;
+            pd.node.sprite.color = pd.node.baseColor;
+            pd.material.color = pd.node.baseColor;
         }
 
         // Show all possible paths
@@ -170,14 +145,11 @@ public class TurnController : MonoBehaviour
             if (currentNode.node.level >= nextNodeComponent.level + levelsCheckCount)
                 break;
 
-            Color materialColor = currentNode.node.sprite.color;
-            materialColor.a = 1;
-            currentNode.node.sprite.color = materialColor;
+            currentNode.node.baseColor = Color.white;
 
-            materialColor = currentNode.material.color;
-            materialColor.a = 1;
-            currentNode.material.color = materialColor;
-            
+            currentNode.node.sprite.color = currentNode.node.baseColor;
+            currentNode.material.color = currentNode.node.baseColor;
+
 
             if (currentNode.node.children != null)
             {

@@ -61,7 +61,9 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private GameObject rootNode;
     [SerializeField] private GameObject endNode;
     [SerializeField] private GameObject lineSegmentPrefab;
-    [SerializeField] private Material baseMaterial;
+    [SerializeField] private Material baseLineMaterial;
+
+    [Space(6)]
     [SerializeField] private float lineSegmentSpacing = 10f; // Custom spacing between line segment prefabs
     [SerializeField] private float lineSegmentRandomOffset = 2f; // Random offset for line segments
     [Space(5)]
@@ -150,7 +152,7 @@ public class GenerateMap : MonoBehaviour
                     Node nextNode = _levelNodes[level + 1].GetRandom().GetComponent<Node>();
                     PathDestination pd = new PathDestination();
                     pd.node = nextNode;
-                    Material lineMaterial = new Material(baseMaterial);
+                    Material lineMaterial = new Material(baseLineMaterial);
                     pd.material = lineMaterial;
                     currentNode.children.Add(pd);
                     nextNode.parent.Add(currentNode);
@@ -167,7 +169,7 @@ public class GenerateMap : MonoBehaviour
                 Node nextNode = endNode.GetComponent<Node>();
                 PathDestination pd = new PathDestination();
                 pd.node = nextNode;
-                Material lineMaterial = new Material(baseMaterial);
+                Material lineMaterial = new Material(baseLineMaterial);
                 pd.material = lineMaterial;
                 currentNode.children.Add(pd);
                 nextNode.parent.Add(currentNode);
@@ -208,7 +210,7 @@ public class GenerateMap : MonoBehaviour
 
                 PathDestination pd = new PathDestination();
                 pd.node = currentNode;
-                Material lineMaterial = new Material(baseMaterial);
+                Material lineMaterial = new Material(baseLineMaterial);
                 pd.material = lineMaterial;
                 previousNode.children.Add(pd);
                 currentNode.parent.Add(previousNode);
@@ -227,7 +229,7 @@ public class GenerateMap : MonoBehaviour
                         Node currentNode = currentBiomeRowNodes.GetRandom().GetComponent<Node>();
                         PathDestination pd = new PathDestination();
                         pd.node = currentNode;
-                        Material lineMaterial = new Material(baseMaterial);
+                        Material lineMaterial = new Material(baseLineMaterial);
                         pd.material = lineMaterial;
                         previousNode.children.Add(pd);
                         currentNode.parent.Add(previousNode);

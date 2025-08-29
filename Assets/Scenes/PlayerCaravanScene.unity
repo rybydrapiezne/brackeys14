@@ -1315,7 +1315,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  fadedPathAlpha: 0.3
+  levelsCheckCount: 8
+  fadedPathColor: {r: 1, g: 1, b: 1, a: 0.3}
 --- !u!114 &1377193721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,7 +1334,7 @@ MonoBehaviour:
   rootNode: {fileID: 915472100}
   endNode: {fileID: 1599882444}
   lineSegmentPrefab: {fileID: 221915335718071613, guid: 33763d83d10a38a62989cf7ca5a9be9f, type: 3}
-  baseMaterial: {fileID: 2100000, guid: 3d5037fe451cefd9c8d4e8985d40f437, type: 2}
+  baseLineMaterial: {fileID: 2100000, guid: 3d5037fe451cefd9c8d4e8985d40f437, type: 2}
   lineSegmentSpacing: 10
   lineSegmentRandomOffset: 2
   totalBiomes: {x: 10, y: 3}
