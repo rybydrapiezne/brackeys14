@@ -16,6 +16,7 @@ public class TurnController : MonoBehaviour
 
     [SerializeField] private GameObject currentNode;
     [SerializeField] private Camera cam;
+    [SerializeField] private Vector3 camOffset = new Vector3(100, 0, -10);
     [SerializeField] private float transitionSpeed = 2f;
     [SerializeField] private int suppliesTraverseCost;
     [SerializeField] private List<EncounterData> encounters;
@@ -46,9 +47,9 @@ public class TurnController : MonoBehaviour
         currentNodeNode = currentNode.GetComponent<Node>();
         cam.transform.position = new Vector3(
             currentNode.transform.position.x,
-            currentNode.transform.position.y,
-            cam.transform.position.z
-        );
+            0,
+            0
+        ) + camOffset;
         playerCaravan.transform.position=currentNode.transform.position;
 
         foreach (var node in GenerateMap.Instance.nodes)
@@ -170,8 +171,8 @@ public class TurnController : MonoBehaviour
         var targetPosition = new Vector3(
             nextNode.transform.position.x,
             0,
-            cam.transform.position.z
-        );
+            0
+        ) + camOffset;
         var elapsedTime = 0f;
 
         while (elapsedTime < 1f)
