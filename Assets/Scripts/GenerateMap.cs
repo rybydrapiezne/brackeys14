@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 public class Dictionary<TKey1, TKey2, TValue> : Dictionary<Tuple<TKey1, TKey2>, TValue>, IDictionary<Tuple<TKey1, TKey2>, TValue>
 {
-
     public TValue this[TKey1 key1, TKey2 key2]
     {
         get { return base[Tuple.Create(key1, key2)]; }
@@ -52,7 +51,9 @@ public class GenerateMap : MonoBehaviour
     [SerializeField] private GameObject nodePrefab;
     [SerializeField] private GameObject rootNode;
     [SerializeField] private GameObject endNode;
-    
+    [SerializeField] private GameObject lineSegmentPrefab;
+    [SerializeField] private float lineSegmentSpacing = 10f; // Custom spacing between line segment prefabs
+    [SerializeField] private float lineSegmentRandomOffset = 2f; // Random offset for line segments
     [Space(5)]
     [SerializeField] private Vector2Int totalBiomes = new Vector2Int(10, 3); // Total biomes to go through (total biomes = biomesHorizontally.x * biomesHorizontally.y)
     [SerializeField] private Vector2 biomeSpacing = new Vector2(163, 99);
@@ -68,7 +69,6 @@ public class GenerateMap : MonoBehaviour
     [Space(5)]
     public List<GameObject> nodes;
     private readonly List<List<GameObject>> _levelNodes = new();
-    private Material lineMaterial;
 
     [Space(5)]
     public GameObject biomePrefab;
@@ -76,7 +76,6 @@ public class GenerateMap : MonoBehaviour
 
     private void Awake()
     {
-        lineMaterial = new Material(Shader.Find("Sprites/Default"));
         nodes = new List<GameObject>();
         var rootNodeNode = rootNode.GetComponent<Node>();
         rootNodeNode.parent = null;
@@ -157,7 +156,7 @@ public class GenerateMap : MonoBehaviour
 
         for (int nodesX = 0; nodesX < biomePathLength; nodesX++)
         {
-            int nodesInBiomeRow = (Random.value < 0.75f) ? 1 : 2; ; // 1 or 2, with greater probability of 1
+            int nodesInBiomeRow = (Random.value < 0.75f) ? 1 : 2; // 1 or 2, with greater probability of 1
             List<GameObject> currentBiomeRowNodes = new();
 
             for (int rowIndex = 0; rowIndex < nodesInBiomeRow; rowIndex++)
@@ -184,12 +183,12 @@ public class GenerateMap : MonoBehaviour
                 previousNode.children.Add(currentNode);
                 currentNode.parent.Add(previousNode);
 
-
                 node.transform.position = biomeLocation + (new Vector3(nodesX, rowIndex - (nodesInBiomeRow - 1) / 2f, 0) * nodeInBiomeSpacing) + new Vector2(Random.Range(-nodeRandomOffset, nodeRandomOffset), Random.Range(-nodeRandomOffset, nodeRandomOffset));
             }
 
             // Fix missing forward connections from previous level, biome-wise
-            if (nodesX < biomePathLength) {
+            if (nodesX < biomePathLength)
+            {
                 foreach (var previousNodeGO in previousBiomeRowNodes)
                 {
                     Node previousNode = previousNodeGO.GetComponent<Node>();
@@ -222,16 +221,30 @@ public class GenerateMap : MonoBehaviour
     private void DrawConnection(GameObject node1, GameObject node2)
     {
         var lineObject = new GameObject($"Line_{node1.name}_to_{node2.name}");
-        var line = lineObject.AddComponent<LineRenderer>();
+        Vector3 startPos = node1.transform.position + lineOffset;
+        Vector3 endPos = node2.transform.position + lineOffset;
+        
+        Vector3 direction = (endPos - startPos).normalized;
+        float distance = Vector3.Distance(startPos, endPos);
+        
+        float segmentLength = lineSegmentSpacing;
+        if (segmentLength <= 0 && lineSegmentPrefab.GetComponent<SpriteRenderer>())
+        {
+            segmentLength = lineSegmentPrefab.GetComponent<SpriteRenderer>().bounds.size.x;
+        }
+        segmentLength = Mathf.Max(segmentLength, 0.1f);
+        int segmentCount = Mathf.Max(1, Mathf.FloorToInt(distance / segmentLength));
 
-        line.startWidth = 1f;
-        line.endWidth = 1f;
-        line.material = lineMaterial;
-        line.startColor = Color.gray;
-        line.endColor = Color.gray;
+        Vector3 perpendicular = new Vector3(-direction.y, direction.x, 0);
 
-        line.positionCount = 2;
-        line.SetPosition(0, node1.transform.position + lineOffset);
-        line.SetPosition(1, node2.transform.position + lineOffset);
+        for (int i = 0; i < segmentCount; i++)
+        {
+            float t = (float)i / segmentCount;
+            Vector3 basePosition = Vector3.Lerp(startPos, endPos, t);
+            float randomOffset = Random.Range(-lineSegmentRandomOffset, lineSegmentRandomOffset);
+            Vector3 position = basePosition + perpendicular * randomOffset;
+            GameObject segment = Instantiate(lineSegmentPrefab, position, Quaternion.identity, lineObject.transform);
+            
+        }
     }
 }
