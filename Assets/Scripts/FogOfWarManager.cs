@@ -11,6 +11,7 @@ public class FogOfWarManager : MonoBehaviour
     [SerializeField] private float _moveDuration = 1.0f;
     private float _scale;
     private int _currentLevel = 0;
+    private float _lastNodeXPos = 0;
 
     private Coroutine _currentMove;
 
@@ -28,7 +29,7 @@ public class FogOfWarManager : MonoBehaviour
 
     public void MoveFog(int depth)
     {
-        float targetX = GetLeftmostNodeX(depth);
+        float? targetX = GetLeftmostNodeX(depth);
 
         if (depth <= _currentLevel)
 
@@ -37,7 +38,12 @@ public class FogOfWarManager : MonoBehaviour
                 StopCoroutine(_currentMove);
             }
 
-        _currentMove = StartCoroutine(ScaleFogOverTime(targetX));
+        if (targetX != null)
+        {
+            _lastNodeXPos = targetX.Value;
+        }
+
+        _currentMove = StartCoroutine(ScaleFogOverTime(targetX ?? _lastNodeXPos + 200));
         _currentLevel = depth;
     }
 
@@ -61,7 +67,7 @@ public class FogOfWarManager : MonoBehaviour
     }
 
 
-    private static float GetLeftmostNodeX(int targetLevel)
+    private static float? GetLeftmostNodeX(int targetLevel)
     {
         List<Node> allNodes = FindObjectsOfType<Node>(includeInactive: true).ToList();
 
@@ -70,7 +76,7 @@ public class FogOfWarManager : MonoBehaviour
         if (!filteredNodes.Any())
         {
             Debug.LogWarning("No nodes found at level " + targetLevel);
-            return 0f;
+            return null;
         }
 
         Node leftmost = filteredNodes.Aggregate((minNode, nextNode) =>
