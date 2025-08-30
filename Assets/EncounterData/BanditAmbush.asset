@@ -13,27 +13,28 @@ MonoBehaviour:
   m_Name: BanditAmbush
   m_EditorClassIdentifier: 
   encounterName: Bandit Ambush
-  description: While travelling through valley a group of bandits stage an ambush
-    on you.
+  description: "The trail narrows between jagged rocks, you hear a sudden shout behind
+    you. Five figures leap from the shadows. They point at you with crossbows as
+    their leader comes forward and says with cold voice: \u201CGive us every piece
+    of gold you have and we\u2019ll let you go\u201D"
+  biome: 00000000010000000200000003000000040000000500000008000000
+  depth: 0.5
   choices:
-  - choiceDescription: You give them your valuables
-    risky: 0
+  - choiceDescription: 'Comply and give them your valuables. '
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: -40
     gearOutcome: 0
-    typeOfPrerequisites: 0
-  - choiceDescription: You fight the bandits (FIGHT WIP)
-    risky: 0
+    typeOfPrerequisites: 1
+  - choiceDescription: 'Stand up against them and draw your weapons '
     suppliesOutcome: 10
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 10
     typeOfPrerequisites: 0
-  - choiceDescription: You are trying to make a diversion to get away
-    risky: 0
+  - choiceDescription: Create diversion so that the rest of fellowship can escape.
     suppliesOutcome: 0
-    peopleOutcome: -2
+    peopleOutcome: -1
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 1
@@ -79,7 +80,7 @@ MonoBehaviour:
     normalPrerequisite:
       ResourceType: 2
       AmountNeeded: 0
-      peopleAmount: 3
+      peopleAmount: 2
     conditionalPrerequisite:
       value1: 0
       value2: 0

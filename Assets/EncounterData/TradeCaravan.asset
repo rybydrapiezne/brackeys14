@@ -13,21 +13,30 @@ MonoBehaviour:
   m_Name: TradeCaravan
   m_EditorClassIdentifier: 
   encounterName: Trade Caravan
-  description: On your way you've encountered a trade caravan.
+  description: 'At the crossing of two dusty trails,  you spot the bright colors
+    of a merchant caravan. Camels laden with goods, guards keeping watch, and traders
+    calling out their wares as they see.The scent of spices fills the air. Your paths
+    merge and soon you travel side by side, though dozen of guards are watching you
+    suspiciously. '
+  biome: 00000000010000000200000003000000040000000500000006000000
+  depth: 0
   choices:
-  - choiceDescription: You travel with them
+  - choiceDescription: It's a dangerous world. It's best to travel together.
     suppliesOutcome: 10
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
-  - choiceDescription: You buy travelling gear.
+  - choiceDescription: You see that one of the wagons that sells gear that may be
+      useful in your journey. But of course it doesn't come cheap.
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: -20
     gearOutcome: 40
     typeOfPrerequisites: 1
-  - choiceDescription: You attack the traders. (FIGHT WIP)
+  - choiceDescription: The merchants may be well-guarded, but their caravan is filled
+      with goods you desperately need. Draw your weapons, preparing to take what
+      you need by force.
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 40
