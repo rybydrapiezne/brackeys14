@@ -20,21 +20,21 @@ public static class ResourceSystem
 
     private static Dictionary<ResourceType, int> maxResources = new Dictionary<ResourceType, int>
     {
-        [None]=0,
+        [None] = 0,
         [Supplies] = 100,
         [People] = 20,
-        [Valuables]=1000,
-        [Gear]=1000
+        [Valuables] = 1000,
+        [Gear] = 1000
     };
 
     private static Dictionary<ResourceType, int> resources = new Dictionary<ResourceType, int>
     {
-        [None]=0,
+        [None] = 0,
         [Supplies] = 100,
         [People] = 10,
-        [Valuables]=0,
-        [Gear]=50
-        
+        [Valuables] = 0,
+        [Gear] = 50
+
     };
 
     public static bool addResource(ResourceType resource, int amount)
@@ -50,18 +50,19 @@ public static class ResourceSystem
                 success = false;
                 OnResourceLimitReached?.Invoke(null, new OnResourceLimitReachedArgs(resource, amount, desired - max));
             }
-        } else
+        }
+        else
         { // out of resource
             if (desired <= 0)
             {
                 resources[resource] = 0;
                 success = false;
-                OnOutOfResource?.Invoke(null, new OnOutOfResourceArgs(resource, amount, - desired));
+                OnOutOfResource?.Invoke(null, new OnOutOfResourceArgs(resource, amount, -desired));
             }
         }
 
         if (success) resources[resource] += amount;
-        
+
         OnResourceChanged?.Invoke(null, new OnResourceChangedArgs(resource, amount));
 
         return success;
@@ -71,6 +72,21 @@ public static class ResourceSystem
     {
         return resources[resource];
     }
+
+    public static int getDangerAttraction(Node currentNode, List<LuckStatus> luckStatuses   )
+    {
+        int sum = getResource(ResourceType.Gear) + getResource(ResourceType.Supplies) + getResource(ResourceType.Valuables) * 2;
+        int result = sum / 4;
+        foreach (var status in luckStatuses)
+        {
+            result = (int)(status.multiplier * result);    
+        }
+
+        result = (int)(result * currentNode.biome.dangerMultiplier);
+
+        return result;
+    }
+
 }
 
 public class ResourceEventArgs : EventArgs
