@@ -1097,6 +1097,15 @@ MonoBehaviour:
   suppliesTraverseCost: 0
   encounters:
   - {fileID: 11400000, guid: 494cdc2a00c2fd1c5b9cb24cfa2a19e5, type: 2}
+  - {fileID: 11400000, guid: 116df40c2eb56c6aa94e230ebb8c798f, type: 2}
+  - {fileID: 11400000, guid: d8e4c9d6b9ac201d08c0465b12c0ac26, type: 2}
+  - {fileID: 11400000, guid: 49f94d9446695755eae1423073e8bf96, type: 2}
+  - {fileID: 11400000, guid: 2d775eac6d01921b49731575d75930c3, type: 2}
+  - {fileID: 11400000, guid: 5dd47b344bd8af7c6bc76b2c3e9bde3a, type: 2}
+  - {fileID: 11400000, guid: 31244622e2561f330b4f91bb192f1fe4, type: 2}
+  - {fileID: 11400000, guid: c700cca4799b8036181619b28db79d87, type: 2}
+  - {fileID: 11400000, guid: 13a1a4346237d7b0e9f39e9b8ecb747c, type: 2}
+  - {fileID: 11400000, guid: 47029f501c95c9d09893ffd19c9e1ce0, type: 2}
   playerCaravan: {fileID: 66711003}
   fog: {fileID: 666083976}
   camMoveCurve:
