@@ -13,21 +13,36 @@ MonoBehaviour:
   m_Name: TradeCaravan
   m_EditorClassIdentifier: 
   encounterName: Trade Caravan
-  description: On your way you've encountered a trade caravan.
+  description: 'At the crossing of two dusty trails,  you spot the bright colors
+    of a merchant caravan. Camels laden with goods, guards keeping watch, and traders
+    calling out their wares as they see.The scent of spices fills the air. Your paths
+    merge and soon you travel side by side, though dozen of guards are watching you
+    suspiciously. '
+  biome: 127
+  depth: 0
   choices:
-  - choiceDescription: You travel with them
+  - choiceDescription: It's a dangerous world. It's best to travel together.
+    resultText: 
+    risky: 0
     suppliesOutcome: 10
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
-  - choiceDescription: You buy travelling gear.
+  - choiceDescription: You see that one of the wagons that sells gear that may be
+      useful in your journey. But of course it doesn't come cheap.
+    resultText: 
+    risky: 0
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: -20
     gearOutcome: 40
     typeOfPrerequisites: 1
-  - choiceDescription: You attack the traders. (FIGHT WIP)
+  - choiceDescription: The merchants may be well-guarded, but their caravan is filled
+      with goods you desperately need. Draw your weapons, preparing to take what
+      you need by force.
+    resultText: 
+    risky: 0
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 40
@@ -48,6 +63,19 @@ MonoBehaviour:
       value5: 0
       expected: 0
       condition: 0
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
   - prerequisiteType: 1
     normalPrerequisite:
       ResourceType: 3
@@ -61,6 +89,19 @@ MonoBehaviour:
       value5: 0
       expected: 0
       condition: 0
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
   - prerequisiteType: 0
     normalPrerequisite:
       ResourceType: 0
@@ -74,3 +115,16 @@ MonoBehaviour:
       value5: 0
       expected: 0
       condition: 0
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0

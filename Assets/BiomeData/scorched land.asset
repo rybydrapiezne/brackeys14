@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 228f3511be24d2246a5af516ae7892bc, type: 3}
-  m_Name: biome 7
+  m_Name: scorched land
   m_EditorClassIdentifier: 
-  biomeName: biome7
-  sprite: {fileID: -8087552364635085763, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
-  minimumLevelRequired: 0
+  biomeName: 128
+  sprite: {fileID: 5958283600070713598, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
+  description: 
+  minimumLevelRequired: 6

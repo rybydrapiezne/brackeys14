@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "NewEncounter", menuName = "Encounters/EncounterData")]
 public class EncounterData : ScriptableObject
@@ -7,10 +8,10 @@ public class EncounterData : ScriptableObject
     public string encounterName;
     [TextArea(3, 10)]
     public string description;
-
-
+    public BiomeType biome;
+    public float depth;
     public Choice[] choices;
-    public Sprite encounterImage;
+    public Sprite encounterImage; 
     public PrerequisiteWrapper[] prerequisites;
 }
 
