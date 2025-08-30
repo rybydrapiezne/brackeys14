@@ -197,6 +197,7 @@ public class GenerateMap : MonoBehaviour
         biome.GetComponent<SpriteRenderer>().sprite = pickedBiome.sprite;
         biomeComponent.biomeName = pickedBiome.biomeName;
         biomeComponent.sprite = pickedBiome.sprite;
+        biomeComponent.description = pickedBiome.description;
         biomeComponent.minimumLevelRequired = pickedBiome.minimumLevelRequired;
 
         return biomeComponent;

@@ -14,22 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounterName: Quick Sands
   description: The sand is beginning to slip away from under your feet.
-  biome: 
+  biome: 33
   depth: 0
   choices:
   - choiceDescription: Save yourselves!
+    resultText: 
+    risky: 0
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 2
   - choiceDescription: 'Everyone for themselves! '
+    resultText: 
+    risky: 0
     suppliesOutcome: -10
     peopleOutcome: 0
     valuablesOutcome: -10
     gearOutcome: -20
     typeOfPrerequisites: 2
   - choiceDescription: The cargo is upmost importan!
+    resultText: 
+    risky: 0
     suppliesOutcome: 0
     peopleOutcome: -2
     valuablesOutcome: 0
@@ -50,6 +56,19 @@ MonoBehaviour:
       value5: 0
       expected: 100
       condition: 1
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
   - prerequisiteType: 2
     normalPrerequisite:
       ResourceType: 0
@@ -63,6 +82,19 @@ MonoBehaviour:
       value5: 0
       expected: 100
       condition: 0
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
   - prerequisiteType: 2
     normalPrerequisite:
       ResourceType: 0
@@ -76,3 +108,16 @@ MonoBehaviour:
       value5: 0
       expected: 100
       condition: 0
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
