@@ -5,6 +5,7 @@ public class BiomeData : ScriptableObject
 {
     public BiomeType biomeName;
     public Sprite sprite;
+    [TextArea(3, 10)]
     public string description;
 
     [Space(2)]
