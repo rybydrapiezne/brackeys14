@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum Amounts
 {
-    None=0,
+    None = 0,
     PositiveSmallAmount = 10,
     PositiveMediumAmount = 20,
     PositiveLargeAmount = 40,
@@ -10,6 +10,8 @@ public enum Amounts
     NegativeSmallAmount = -10,
     NegativeMediumAmount = -20,
     NegativeLargeAmount = -40,
-    NegativeVeryLargeAmount = -100
+    NegativeVeryLargeAmount = -100,
+    PositiveVerySmallAmount = 5,
+    NegativeVerySmallAmount = -5
     
 }

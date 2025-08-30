@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounterName: Quick Sands
   description: The sand is beginning to slip away from under your feet.
-  biome: 33
+  biome: -1
   depth: 0
+  dangerLevel: 0
+  isUnique: 0
   choices:
   - choiceDescription: Save yourselves!
     resultText: 
@@ -25,6 +27,9 @@ MonoBehaviour:
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 2
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
   - choiceDescription: 'Everyone for themselves! '
     resultText: 
     risky: 0
@@ -33,6 +38,9 @@ MonoBehaviour:
     valuablesOutcome: -10
     gearOutcome: -20
     typeOfPrerequisites: 2
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
   - choiceDescription: The cargo is upmost importan!
     resultText: 
     risky: 0
@@ -41,6 +49,9 @@ MonoBehaviour:
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 2
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
   encounterImage: {fileID: 21300000, guid: 6a686cf08dbb60f59a16418223b97caf, type: 3}
   prerequisites:
   - prerequisiteType: 2
@@ -59,16 +70,23 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 0
       minAmount: 0
+      enemiesCount: 0
       successText: 
       failureText: 
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
   - prerequisiteType: 2
     normalPrerequisite:
       ResourceType: 0
@@ -85,16 +103,23 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 0
       minAmount: 0
+      enemiesCount: 0
       successText: 
       failureText: 
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
   - prerequisiteType: 2
     normalPrerequisite:
       ResourceType: 0
@@ -111,13 +136,20 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 0
       minAmount: 0
+      enemiesCount: 0
       successText: 
       failureText: 
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0

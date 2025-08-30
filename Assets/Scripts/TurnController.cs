@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using static ResourceSystem;
@@ -34,6 +35,9 @@ public class TurnController : MonoBehaviour
     public int levelsCheckCount = 8;
     [SerializeField] public Color fadedPathColor = new Color(1f, 1f, 1f, 0.3f);
     public static event EventHandler OnLastNodeReached;
+
+    private int doomLevel = -4; // "It starts 4 turns after the start of your journey"
+    private List<LuckStatus> luckStasuses = new();
 
     private void Awake()
     {
@@ -104,6 +108,15 @@ public class TurnController : MonoBehaviour
 
         // Move fog
         fog.MoveFog(currentNodeNode.level + fog.initialDepth + 1);
+
+        for (int i = 0; i < luckStasuses.Count; i++)
+        {
+            LuckStatus temp = luckStasuses[i];
+            temp.turnsLeft--;
+            luckStasuses[i] = temp;
+        }
+
+        luckStasuses.RemoveAll(ls => ls.turnsLeft <= 0);
 
         // Starting traverse animation
         StartCoroutine(TraverseToNextNode(nextNode));
@@ -181,6 +194,11 @@ public class TurnController : MonoBehaviour
         isMoving = true;
         playerCaravan.GetComponent<PlayerCaravanController>().startCaravanMovement(nextNode.transform.position);
         addResource(ResourceType.Supplies, -suppliesTraverseCost);
+        if (getResource(ResourceType.Supplies) == 0)
+        {
+            addResource(ResourceType.People, -1);
+        }
+
         var startPosition = cam.transform.position;
         var targetPosition = new Vector3(
             nextNode.transform.position.x,
@@ -201,8 +219,47 @@ public class TurnController : MonoBehaviour
         currentNode = nextNode;
 
         currentNodeNode = currentNode.GetComponent<Node>();
-        int encounter = Random.Range(0, encounters.Count);
-        EncounterData currentEncounter = encounters[encounter];
+
+        BiomeType currentBiome;
+        if (currentNodeNode.biome)
+        {
+            currentBiome = currentNodeNode.biome.biomeName;
+        }
+        else
+        {
+            if (currentNode.CompareTag("EndNode"))
+                OnLastNodeReached?.Invoke(null, null);
+            yield break;
+        }
+
+        traverseByBiome(nextNode, currentBiome);
+
+        // Filter encounters by current biome
+        var filteredEncounters = encounters.Where(e => (e.biome & currentBiome) != 0).ToList();
+        int dangerAttraction = getDangerAttraction(currentNodeNode, luckStasuses);
+
+        List<int> weights = new List<int>();
+        foreach (var e in filteredEncounters)
+        {
+            int weight = Mathf.Max(1, 100 - Mathf.Abs(dangerAttraction - e.dangerLevel));
+            weights.Add(weight);
+        }
+
+        int totalWeight = weights.Sum();
+        int randomValue = Random.Range(0, totalWeight);
+        int cumulative = 0;
+        EncounterData currentEncounter = filteredEncounters[0];
+
+        for (int i = 0; i < filteredEncounters.Count; i++)
+        {
+            cumulative += weights[i];
+            if (randomValue < cumulative)
+            {
+                currentEncounter = filteredEncounters[i];
+                break;
+            }
+        }
+
         while (playerCaravan.GetComponent<PlayerCaravanController>().isMoving)
         {
             yield return null;
@@ -210,16 +267,55 @@ public class TurnController : MonoBehaviour
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
             currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites);
         isMoving = false;
-        if (currentNode.CompareTag("EndNode"))
-            OnLastNodeReached?.Invoke(null, null);
+
     }
 
-
-
-    public int CalculateDangerAttraction()
+    private void traverseByBiome(GameObject nextNode, BiomeType biome)
     {
-        int result = (ResourceSystem.) / 3;
-        return result;
+
+        if (biome.HasFlag(BiomeType.Desert))
+             addResource( ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
+
+        if (biome.HasFlag(BiomeType.Riverlands))
+        {
+             addResource( ResourceType.Supplies, (int)Amounts.PositiveVerySmallAmount);
+             addResource( ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
+        }
+
+        if (biome.HasFlag(BiomeType.Canyon))
+             addResource( ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
+
+        if (biome.HasFlag(BiomeType.Plateau))
+        {
+            bool success =  addResource( ResourceType.Gear, (int)Amounts.NegativeSmallAmount);
+            if (!success)
+            {
+                doomLevel++;
+                Node nextNodeComponent = nextNode.GetComponent<Node>();
+                ImpendingDoom.Instance.Refresh(nextNodeComponent.level);
+            }
+        }
+
+        if (biome.HasFlag(BiomeType.Steppes)) { }
+
+        if (biome.HasFlag(BiomeType.Dunes))
+        {
+             addResource( ResourceType.Supplies, (int)Amounts.NegativeVerySmallAmount);
+             addResource( ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
+        }
+
+        if (biome.HasFlag(BiomeType.WarlordsTerritory))
+        {
+            bool success =  addResource( ResourceType.Valuables, (int)Amounts.NegativeSmallAmount);
+            if (!success)  addResource( ResourceType.People, -1);
+        }
+
+        if (biome.HasFlag(BiomeType.ScorchedLand))
+             addResource( ResourceType.Supplies, (int)Amounts.NegativeMediumAmount);
+
+        if (biome.HasFlag(BiomeType.Wastelands))
+             addResource( ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
     }
+
 
 }
