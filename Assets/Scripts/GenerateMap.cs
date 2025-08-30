@@ -113,6 +113,11 @@ public class GenerateMap : MonoBehaviour
         ConnectNodes();
     }
 
+    private void Start()
+    {
+        ImpendingDoom.Instance.setTotalLevels(biomePathLength * totalBiomes.x);
+    }
+
     private void GenerateBiomes()
     {
         // Generate start and finish biomes
@@ -192,6 +197,7 @@ public class GenerateMap : MonoBehaviour
         biome.GetComponent<SpriteRenderer>().sprite = pickedBiome.sprite;
         biomeComponent.biomeName = pickedBiome.biomeName;
         biomeComponent.sprite = pickedBiome.sprite;
+        biomeComponent.description = pickedBiome.description;
         biomeComponent.minimumLevelRequired = pickedBiome.minimumLevelRequired;
 
         return biomeComponent;
