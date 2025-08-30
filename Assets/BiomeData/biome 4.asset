@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228f3511be24d2246a5af516ae7892bc, type: 3}
   m_Name: biome 4
   m_EditorClassIdentifier: 
-  biomeName: biome4
+  biomeName: 3
   sprite: {fileID: -9021369458962728093, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
   minimumLevelRequired: 6

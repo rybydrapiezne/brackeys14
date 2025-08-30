@@ -13,27 +13,40 @@ MonoBehaviour:
   m_Name: Oasis(bandit)
   m_EditorClassIdentifier: 
   encounterName: Oasis
-  description: You come across an oasis. There is an small group of bandits here
-    who come out to meet you, waving their weapons.
+  description: "Amid endless sea of sand, you see your salvation. A couple of palms
+    bends over a clear pool, offering shade, water, and a brief escape from the desert\u2019s
+    heat. As you get closer you see the oasis is already occupied. Eight figures
+    in black hoods rise to meet you, weapons in hand."
+  biome: 0000000005000000
+  depth: 0
   choices:
-  - choiceDescription: You avoid the oasis.
+  - choiceDescription: "It\u2019s too dangerous. Steer clear, marching on through
+      the desert losing all hope for much needed rest."
+    resultText: "They stare at you triumphantly while you travel past the oasis keeping
+      a significant distance. At least you didn\u2019t get in any trouble."
+    risky: 0
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
-  - choiceDescription: You barter with bandits for water supply.
-    suppliesOutcome: 10
+  - choiceDescription: Offer them some of your valuables in exchange for water and
+      rest under the palms
+    resultText: 
+    risky: 1
+    suppliesOutcome: 0
     peopleOutcome: 0
-    valuablesOutcome: -20
+    valuablesOutcome: 0
     gearOutcome: 0
-    typeOfPrerequisites: 1
-  - choiceDescription: You fight the bandits for oasis. (FIGHT WIP)
-    suppliesOutcome: 40
+    typeOfPrerequisites: 3
+  - choiceDescription: Draw your weapons, ready to fight.
+    resultText: 
+    risky: 1
+    suppliesOutcome: 0
     peopleOutcome: 0
-    valuablesOutcome: 10
-    gearOutcome: 10
-    typeOfPrerequisites: 0
+    valuablesOutcome: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 3
   encounterImage: {fileID: 21300000, guid: 186f9a014942d201384ed5c446a2c0d7, type: 3}
   prerequisites:
   - prerequisiteType: 0
@@ -49,7 +62,20 @@ MonoBehaviour:
       value5: 0
       expected: 0
       condition: 0
-  - prerequisiteType: 1
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
+  - prerequisiteType: 3
     normalPrerequisite:
       ResourceType: 3
       AmountNeeded: 20
@@ -62,10 +88,28 @@ MonoBehaviour:
       value5: 0
       expected: 0
       condition: 0
-  - prerequisiteType: 0
+    riskyPrerequisite:
+      bettingResource: 3
+      minAmount: 30
+      successText: 'SUCCESS: They look at each other and nod. Bandits accept your
+        valuables and step aside. You resupply and rest shortly. Though you must
+        keep your eyes on them throughout the entire time.'
+      failureText: "FAILURE: Bandits laugh at each other when you show them what
+        you\u2019re willing to pay. They take your offering but don\u2019t let you
+        pass and threaten you with their daggers. Some people are not worth bargaining
+        with\u2026"
+      suppliesPositiveOutcome: 40
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
+  - prerequisiteType: 3
     normalPrerequisite:
-      ResourceType: 0
-      AmountNeeded: 0
+      ResourceType: 3
+      AmountNeeded: 20
       peopleAmount: 0
     conditionalPrerequisite:
       value1: 0
@@ -75,3 +119,20 @@ MonoBehaviour:
       value5: 0
       expected: 0
       condition: 0
+    riskyPrerequisite:
+      bettingResource: 4
+      minAmount: 45
+      successText: 'SUCCESS:  After a hard struggle, the bandits scatter into the
+        dunes, leaving their dead and their belongings behind. You claim the water,
+        gather some gear, and even find a few valuables among their packs.'
+      failureText: 'FAILURE: The fight turns bloody and chaotic beneath the palms.
+        The cost is heavy. Two of your men lie lifeless in the sand, and you decide
+        to retreat into the scorching heat of the desert.'
+      suppliesPositiveOutcome: 40
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 10
+      gearPositiveOutcome: 10
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: -2
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0

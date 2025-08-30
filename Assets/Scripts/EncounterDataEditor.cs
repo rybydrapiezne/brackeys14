@@ -12,6 +12,8 @@ public class EncounterDataEditor : Editor
 
         SerializedProperty encounterName = so.FindProperty("encounterName");
         SerializedProperty description = so.FindProperty("description");
+        SerializedProperty biome = so.FindProperty("biome");
+        SerializedProperty depth = so.FindProperty("depth");
         SerializedProperty choices = so.FindProperty("choices");
         SerializedProperty encounterImage = so.FindProperty("encounterImage");
         SerializedProperty prerequisites = so.FindProperty("prerequisites");
@@ -19,6 +21,16 @@ public class EncounterDataEditor : Editor
         EditorGUILayout.PropertyField(encounterName);
         EditorGUILayout.PropertyField(description);
         EditorGUILayout.PropertyField(encounterImage);
+        EditorGUILayout.PropertyField(biome);
+        
+        EditorGUILayout.LabelField("Depth", EditorStyles.boldLabel);
+        float newDepth = EditorGUILayout.Slider(depth.floatValue, 0f, 1f);
+        newDepth = Mathf.Round(newDepth * 10f) / 10f;
+        if (newDepth != depth.floatValue)
+        {
+            depth.floatValue = newDepth;
+        }
+
         EditorGUILayout.PropertyField(choices, true);
 
         if (choices.arraySize > 0 && prerequisites.arraySize != choices.arraySize)
@@ -53,6 +65,10 @@ public class EncounterDataEditor : Editor
             else if (typeOfPrerequisites.enumValueIndex == (int)EncounterPrerequisiteType.Conditional)
             {
                 EditorGUILayout.PropertyField(prerequisite.FindPropertyRelative("conditionalPrerequisite"), true);
+            }
+            else if (typeOfPrerequisites.enumValueIndex == (int)EncounterPrerequisiteType.Risky)
+            {
+                EditorGUILayout.PropertyField(prerequisite.FindPropertyRelative("riskyPrerequisite"), true);
             }
             else
             {
