@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeName: 8
   sprite: {fileID: -9021369458962728093, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
-  description: 
+  description: '<size=115%><b>Plateau</b></size>
+
+    High winds and rough stone
+    demand sturdy gear, but the wide view makes threats easier to avoid.'
   minimumLevelRequired: 6

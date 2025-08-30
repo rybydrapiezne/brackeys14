@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeName: 256
   sprite: {fileID: 2383698874366390972, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
-  description: 
+  description: '<size=115%><b>Wastelands</b></size>
+
+    Twisted lands of ruin where
+    dangers multiply and survival costs even more.'
   minimumLevelRequired: 6

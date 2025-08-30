@@ -49,7 +49,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _EnablePixelation: 1
     - _Octaves: 5
-    - _PixelationAmount: 1024
+    - _PixelationAmount: 512
     - _ScrollNoiseTex: 0
     - _SpriteWidth: 2048
     - _ZWrite: 0

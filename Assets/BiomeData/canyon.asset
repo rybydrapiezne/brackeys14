@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeName: 4
   sprite: {fileID: 5103075398784513515, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
-  description: 
+  description: '<size=115%><b>Canyon</b></size>
+
+    Sheer cliffs and rocky passages
+    strain your equipment, and dangers lurk in the narrow shadows.'
   minimumLevelRequired: 0

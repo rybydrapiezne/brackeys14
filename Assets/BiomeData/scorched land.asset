@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeName: 128
   sprite: {fileID: 5958283600070713598, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
-  description: 
+  description: '<size=115%><b>Scorched Land</b></size>
+
+    A dead, burning waste
+    devoid of foes, but the heat devours your supplies.'
   minimumLevelRequired: 6

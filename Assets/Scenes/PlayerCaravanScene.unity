@@ -1340,6 +1340,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6829172816762622004, guid: bc3a29f2b462ed242be9eb5787829392, type: 3}
+      propertyPath: initialDepth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7158466994421240886, guid: bc3a29f2b462ed242be9eb5787829392, type: 3}
       propertyPath: m_Name
       value: Fog
