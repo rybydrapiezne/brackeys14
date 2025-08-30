@@ -213,13 +213,6 @@ public class TurnController : MonoBehaviour
         if (currentNode.CompareTag("EndNode"))
             OnLastNodeReached?.Invoke(null, null);
     }
-
-
-
-    public int CalculateDangerAttraction()
-    {
-        int result = (ResourceSystem.) / 3;
-        return result;
-    }
+    
 
 }
