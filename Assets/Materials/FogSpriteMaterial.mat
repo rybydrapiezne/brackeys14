@@ -54,7 +54,7 @@ Material:
     - _SpriteWidth: 2048
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.754717, g: 0.7178226, b: 0.34887853, a: 1}
+    - _Color: {r: 0.764151, g: 0.5454162, b: 0.09011213, a: 1}
     - _FogDirection: {r: 0.3, g: 0.3, b: 0, a: 0}
     - _NoiseScrollDirection: {r: 1, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
