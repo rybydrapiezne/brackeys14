@@ -6,14 +6,33 @@ using System.Linq;
 
 public class FogOfWarManager : MonoBehaviour
 {
+    private static FogOfWarManager instance;
+    public static FogOfWarManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     public int initialDepth;
     [SerializeField] private float _moveDuration = 1.0f;
     private float _scale;
-    private int _currentLevel = 0;
+    public int currentLevel = 0;
     private float _lastNodeXPos = 0;
 
     private Coroutine _currentMove;
+
+    private void Awake()
+    {
+        if (instance)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
 
     void Start()
     {
@@ -24,14 +43,14 @@ public class FogOfWarManager : MonoBehaviour
 
     public void MoveFogForward(int count)
     {
-        MoveFog(_currentLevel + count);
+        MoveFog(currentLevel + count);
     }
 
     public void MoveFog(int depth)
     {
         float? targetX = GetLeftmostNodeX(depth);
 
-        if (depth <= _currentLevel)
+        if (depth <= currentLevel)
         {
             return;
         }
@@ -47,7 +66,7 @@ public class FogOfWarManager : MonoBehaviour
         }
 
         _currentMove = StartCoroutine(ScaleFogOverTime(targetX ?? _lastNodeXPos + 200));
-        _currentLevel = depth;
+        currentLevel = depth;
     }
 
     private IEnumerator ScaleFogOverTime(float targetX)

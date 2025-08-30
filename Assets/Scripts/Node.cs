@@ -21,6 +21,8 @@ public class Node : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (level > FogOfWarManager.Instance.currentLevel + 1) return;
+
         if(biome != null)
             OnHoverPopup.Instance.showPopup(biome.description);
 
