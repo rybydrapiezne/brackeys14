@@ -7,7 +7,7 @@ using System.Linq;
 public class FogOfWarManager : MonoBehaviour
 {
 
-    [SerializeField] private int _initialDepth;
+    public int initialDepth;
     [SerializeField] private float _moveDuration = 1.0f;
     private float _scale;
     private int _currentLevel = 0;
@@ -17,7 +17,7 @@ public class FogOfWarManager : MonoBehaviour
     void Start()
     {
         _scale = transform.localScale.x;
-        MoveFog(_initialDepth);
+        MoveFog(initialDepth);
     }
 
 
