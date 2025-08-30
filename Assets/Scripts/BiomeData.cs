@@ -7,6 +7,7 @@ public class BiomeData : ScriptableObject
     public Sprite sprite;
     [TextArea(3, 10)]
     public string description;
+    public float dangerMultiplier;
 
     [Space(2)]
     public int minimumLevelRequired = 0;
