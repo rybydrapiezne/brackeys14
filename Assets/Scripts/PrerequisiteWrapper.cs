@@ -7,6 +7,7 @@ public class PrerequisiteWrapper : IPrerequisite
     public EncounterPrerequisiteType prerequisiteType;
     public EncounterNormalPrerequisistes normalPrerequisite;
     public EncounterConditionalPrerequisites conditionalPrerequisite;
+    public EncounterPrerequisitesRisky riskyPrerequisite;
 
     public IPrerequisite ToIPrerequisite()
     {
@@ -14,6 +15,8 @@ public class PrerequisiteWrapper : IPrerequisite
             return normalPrerequisite;
         if (prerequisiteType == EncounterPrerequisiteType.Conditional)
             return conditionalPrerequisite;
+        if (prerequisiteType == EncounterPrerequisiteType.Risky)
+            return riskyPrerequisite;
         return null;
     }
 }
