@@ -8,7 +8,7 @@ public class EncounterData : ScriptableObject
     public string encounterName;
     [TextArea(3, 10)]
     public string description;
-    public BiomeType[] biome;
+    public BiomeType biome;
     public float depth;
     public Choice[] choices;
     public Sprite encounterImage; 
