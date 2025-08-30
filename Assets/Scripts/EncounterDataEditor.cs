@@ -12,14 +12,18 @@ public class EncounterDataEditor : Editor
 
         SerializedProperty encounterName = so.FindProperty("encounterName");
         SerializedProperty description = so.FindProperty("description");
+        SerializedProperty dangerLevel = so.FindProperty("dangerLevel");
         SerializedProperty biome = so.FindProperty("biome");
         SerializedProperty depth = so.FindProperty("depth");
         SerializedProperty choices = so.FindProperty("choices");
         SerializedProperty encounterImage = so.FindProperty("encounterImage");
         SerializedProperty prerequisites = so.FindProperty("prerequisites");
+        SerializedProperty isUnique = so.FindProperty("isUnique");
 
         EditorGUILayout.PropertyField(encounterName);
         EditorGUILayout.PropertyField(description);
+        EditorGUILayout.PropertyField(dangerLevel);
+        EditorGUILayout.PropertyField(isUnique);
         EditorGUILayout.PropertyField(encounterImage);
         EditorGUILayout.PropertyField(biome);
         

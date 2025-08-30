@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biomeName: 2
   sprite: {fileID: 1324973677555313548, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
-  description: 
+  description: '<size=115%><b>Riverlands</b></size>
+
+    The fertile waters ease
+    your hunger but wear down your tools as you push through rivers and marshes.'
   minimumLevelRequired: 0

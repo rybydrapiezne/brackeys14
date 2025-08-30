@@ -26,6 +26,7 @@ public class TurnController : MonoBehaviour
     [SerializeField] private GameObject playerCaravan;
     [SerializeField] private FogOfWarManager fog;
     private Node currentNodeNode;
+    private bool hasTakenContract = false;
     private bool isMoving;
     private bool encounterOngoing = false;
     [SerializeField] private AnimationCurve camMoveCurve;
@@ -57,12 +58,13 @@ public class TurnController : MonoBehaviour
             0,
             0
         ) + camOffset;
-        playerCaravan.transform.position=currentNode.transform.position;
+        playerCaravan.transform.position = currentNode.transform.position;
 
         foreach (var node in GenerateMap.Instance.nodes)
         {
             Node nodeComponent = node.GetComponent<Node>();
-            if(nodeComponent.level >  levelsCheckCount){
+            if (nodeComponent.level > levelsCheckCount)
+            {
                 foreach (var child in nodeComponent.children)
                 {
                     child.node.baseColor = fadedPathColor;
@@ -76,7 +78,7 @@ public class TurnController : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     private void EncounterStarted()
@@ -90,8 +92,8 @@ public class TurnController : MonoBehaviour
     }
     public void SelectPath(GameObject nextNode)
     {
-        if (isMoving || encounterOngoing || currentNodeNode.children.Find(c => Equals(c.node.gameObject, nextNode)) == null ) return;
-        
+        if (isMoving || encounterOngoing || currentNodeNode.children.Find(c => Equals(c.node.gameObject, nextNode)) == null) return;
+
         // Fading unaccessable paths
         Node nextNodeComponent = nextNode.GetComponent<Node>();
         if (nextNodeComponent.children != null)
@@ -105,7 +107,6 @@ public class TurnController : MonoBehaviour
         // Move fog
         fog.MoveFog(currentNodeNode.level + fog.initialDepth + 1);
 
-        
         // Starting traverse animation
         StartCoroutine(TraverseToNextNode(nextNode));
     }
@@ -127,7 +128,7 @@ public class TurnController : MonoBehaviour
 
             currentNode.node.sprite.color = currentNode.node.baseColor;
             currentNode.material.color = currentNode.node.baseColor;
-            
+
 
             if (currentNode.node.children != null)
             {
@@ -181,7 +182,7 @@ public class TurnController : MonoBehaviour
     {
         isMoving = true;
         playerCaravan.GetComponent<PlayerCaravanController>().startCaravanMovement(nextNode.transform.position);
-        addResource(ResourceType.Supplies,-suppliesTraverseCost);
+        addResource(ResourceType.Supplies, -suppliesTraverseCost);
         var startPosition = cam.transform.position;
         var targetPosition = new Vector3(
             nextNode.transform.position.x,
@@ -202,16 +203,25 @@ public class TurnController : MonoBehaviour
         currentNode = nextNode;
 
         currentNodeNode = currentNode.GetComponent<Node>();
-        int encounter=Random.Range(0,encounters.Count);
+        int encounter = Random.Range(0, encounters.Count);
         EncounterData currentEncounter = encounters[encounter];
         while (playerCaravan.GetComponent<PlayerCaravanController>().isMoving)
         {
             yield return null;
         }
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
-            currentEncounter.encounterImage,currentEncounter.description,currentEncounter.encounterName,currentEncounter.choices,currentEncounter.prerequisites);
+            currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites);
         isMoving = false;
-        if(currentNode.CompareTag("EndNode"))
-            OnLastNodeReached?.Invoke(null,null);
+        if (currentNode.CompareTag("EndNode"))
+            OnLastNodeReached?.Invoke(null, null);
     }
+
+
+
+    public int CalculateDangerAttraction()
+    {
+        int result = (ResourceSystem.) / 3;
+        return result;
+    }
+
 }

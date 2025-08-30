@@ -10,8 +10,10 @@ public class EncounterData : ScriptableObject
     public string description;
     public BiomeType biome;
     public float depth;
+    public int dangerLevel;
+    public bool isUnique;
     public Choice[] choices;
-    public Sprite encounterImage; 
+    public Sprite encounterImage;
     public PrerequisiteWrapper[] prerequisites;
 }
 
@@ -28,7 +30,10 @@ public struct Choice : IEquatable<Choice>
     public Amounts valuablesOutcome;
     public Amounts gearOutcome;
     public EncounterPrerequisiteType typeOfPrerequisites;
-
+    public int luckOutcome;
+    public int fogOfWarOutcome;
+    public int impendingDoomOutcome;
+    
     public bool Equals(Choice other)
     {
         return choiceDescription == other.choiceDescription && resultText == other.resultText && risky == other.risky && suppliesOutcome == other.suppliesOutcome && peopleOutcome == other.peopleOutcome && valuablesOutcome == other.valuablesOutcome && gearOutcome == other.gearOutcome && typeOfPrerequisites == other.typeOfPrerequisites;
@@ -78,8 +83,6 @@ public struct EncounterConditionalPrerequisites:IPrerequisite
     public ResourceSystem.ResourceType value5;
     public int expected;
     public EncounterConditionalPrerequisitesEnum condition;
-
-
 }
 
 [Serializable]
@@ -87,6 +90,8 @@ public struct EncounterPrerequisitesRisky : IPrerequisite
 {
     public ResourceSystem.ResourceType bettingResource;
     public int minAmount;
+    public int enemiesCount;
+
     [TextArea(3, 10)]
     public string successText;
     [TextArea(3, 10)]
@@ -95,10 +100,18 @@ public struct EncounterPrerequisitesRisky : IPrerequisite
     public int peoplePositiveOutcome;
     public Amounts valuablesPositiveOutcome;
     public Amounts gearPositiveOutcome;
+    public int luckPositiveOutcome;
+    public int fogPositiveOutcome;
+    public int doomPositiveOutcome;
+    
     public Amounts suppliesNegativeOutcome;
     public int peopleNegativeOutcome;
     public Amounts valuablesNegativeOutcome;
     public Amounts gearNegativeOutcome;
+    public int luckNegativeOutcome;
+    public int fogNegativeOutcome;
+    public int doomNegativeOutcome;
+    
 }
 public interface IPrerequisite
 {

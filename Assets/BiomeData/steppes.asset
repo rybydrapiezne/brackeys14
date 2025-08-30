@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: steppes
   m_EditorClassIdentifier: 
   biomeName: 16
-  sprite: {fileID: 107529690677879649, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
-  description: 
-  minimumLevelRequired: 6
+  sprite: {fileID: 2383698874366390972, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
+  description: '<size=115%><b>Steppes</b></size>
+
+    The open grasslands leave you
+    exposed, making every encounter more perilous.'
+  minimumLevelRequired: 5
