@@ -194,6 +194,10 @@ public class TurnController : MonoBehaviour
         isMoving = true;
         playerCaravan.GetComponent<PlayerCaravanController>().startCaravanMovement(nextNode.transform.position);
         addResource(ResourceType.Supplies, -suppliesTraverseCost);
+        if (getResource(ResourceType.Supplies) == 0)
+        {
+            addResource(ResourceType.People, -1);
+        }
 
         var startPosition = cam.transform.position;
         var targetPosition = new Vector3(
@@ -267,12 +271,12 @@ public class TurnController : MonoBehaviour
 
         if (biome.HasFlag(BiomeType.Riverlands))
         {
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, -1);
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, -1);
+            ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)Amounts.PositiveVerySmallAmount);
+            ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
         }
 
         if (biome.HasFlag(BiomeType.Canyon))
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, -1);
+            ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
 
         if (biome.HasFlag(BiomeType.Plateau))
         {
@@ -289,8 +293,8 @@ public class TurnController : MonoBehaviour
 
         if (biome.HasFlag(BiomeType.Dunes))
         {
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, -1);
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, -1);
+            ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)Amounts.NegativeVerySmallAmount);
+            ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
         }
 
         if (biome.HasFlag(BiomeType.WarlordsTerritory))
