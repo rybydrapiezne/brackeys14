@@ -113,6 +113,11 @@ public class GenerateMap : MonoBehaviour
         ConnectNodes();
     }
 
+    private void Start()
+    {
+        ImpendingDoom.Instance.setTotalLevels(biomePathLength * totalBiomes.x);
+    }
+
     private void GenerateBiomes()
     {
         // Generate start and finish biomes
