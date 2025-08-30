@@ -33,7 +33,7 @@ public class TurnController : MonoBehaviour
     [SerializeField] public Color fadedPathColor = new Color(1f, 1f, 1f, 0.3f);
     public static event EventHandler OnLastNodeReached;
 
-    private int doomLevel = -1;
+    private int doomLevel = -4; // "It starts 4 turns after the start of your journey"
 
     private void Awake()
     {
@@ -99,7 +99,7 @@ public class TurnController : MonoBehaviour
         // Impending doom
         doomLevel++;
 
-        ImpendingDoom.Instance.UpdateElements(Mathf.Max(doomLevel, 0), nextNodeComponent.level);
+        StartCoroutine(ImpendingDoom.Instance.UpdateElements(Mathf.Max(doomLevel, 0), nextNodeComponent.level, transitionSpeed));
 
         // Starting traverse animation
         StartCoroutine(TraverseToNextNode(nextNode));
