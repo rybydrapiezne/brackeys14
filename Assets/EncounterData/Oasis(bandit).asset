@@ -13,11 +13,15 @@ MonoBehaviour:
   m_Name: Oasis(bandit)
   m_EditorClassIdentifier: 
   encounterName: Oasis
-  description: You come across an oasis. There is an small group of bandits here
-    who come out to meet you, waving their weapons.
+  description: "Amid endless sea of sand, you see your salvation. A couple of palms
+    bends over a clear pool, offering shade, water, and a brief escape from the desert\u2019s
+    heat. As you get closer you see the oasis is already occupied. Eight figures
+    in black hoods rise to meet you, weapons in hand."
+  biome: 0000000005000000
+  depth: 0
   choices:
   - choiceDescription: "It\u2019s too dangerous. Steer clear, marching on through
-      the desert losing all hope for much needed rest. "
+      the desert losing all hope for much needed rest."
     resultText: "They stare at you triumphantly while you travel past the oasis keeping
       a significant distance. At least you didn\u2019t get in any trouble."
     risky: 0
@@ -27,7 +31,7 @@ MonoBehaviour:
     gearOutcome: 0
     typeOfPrerequisites: 0
   - choiceDescription: Offer them some of your valuables in exchange for water and
-      rest under the palms.
+      rest under the palms
     resultText: 
     risky: 1
     suppliesOutcome: 0
@@ -104,8 +108,8 @@ MonoBehaviour:
       gearNegativeOutcome: 0
   - prerequisiteType: 3
     normalPrerequisite:
-      ResourceType: 0
-      AmountNeeded: 0
+      ResourceType: 3
+      AmountNeeded: 20
       peopleAmount: 0
     conditionalPrerequisite:
       value1: 0

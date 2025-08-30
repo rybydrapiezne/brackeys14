@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounterName: Quick Sands
   description: The sand is beginning to slip away from under your feet.
+  biome: 
+  depth: 0
   choices:
-  - choiceDescription: You manage to escape because you don't have much stuff on
-      you.
+  - choiceDescription: Save yourselves!
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0

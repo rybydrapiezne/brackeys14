@@ -13,15 +13,20 @@ MonoBehaviour:
   m_Name: Oasis(safe)
   m_EditorClassIdentifier: 
   encounterName: Oasis
-  description: You've stumbled upon oasis. There's no one here.
+  description: "Amid endless sea of sand, you see your salvation. A couple of palms
+    bends over a clear pool, offering shade, water, and a brief escape from the desert\u2019s
+    heat. It seems noone is here beside some small animals\u2026"
+  biome: 000000000500000006000000
+  depth: 0
   choices:
-  - choiceDescription: Short rest
+  - choiceDescription: "There\u2019s no time to waste. Take a short rest and keep
+      going."
     suppliesOutcome: 40
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
-  - choiceDescription: Long Rest
+  - choiceDescription: " It\u2019s a safe spot. Take time to resupply."
     suppliesOutcome: 100
     peopleOutcome: 0
     valuablesOutcome: 0
