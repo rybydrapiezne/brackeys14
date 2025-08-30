@@ -21,6 +21,9 @@ public class Node : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if(biome != null)
+            OnHoverPopup.Instance.showPopup(biome.description);
+
         sprite.color = hoverColor;
         futureDestinations = new();
 
@@ -53,6 +56,8 @@ public class Node : MonoBehaviour
 
     void OnMouseExit()
     {
+        OnHoverPopup.Instance.hidePopup();
+
         sprite.color = baseColor;
 
         foreach (var fd in futureDestinations)
