@@ -32,11 +32,14 @@ public class FogOfWarManager : MonoBehaviour
         float? targetX = GetLeftmostNodeX(depth);
 
         if (depth <= _currentLevel)
+        {
+            return;
+        }
 
-            if (_currentMove != null)
-            {
-                StopCoroutine(_currentMove);
-            }
+        if (_currentMove != null)
+        {
+            StopCoroutine(_currentMove);
+        }
 
         if (targetX != null)
         {
