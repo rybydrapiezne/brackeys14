@@ -54,6 +54,10 @@ public class EncounterDataEditor : Editor
             {
                 EditorGUILayout.PropertyField(prerequisite.FindPropertyRelative("conditionalPrerequisite"), true);
             }
+            else if (typeOfPrerequisites.enumValueIndex == (int)EncounterPrerequisiteType.Risky)
+            {
+                EditorGUILayout.PropertyField(prerequisite.FindPropertyRelative("riskyPrerequisite"), true);
+            }
             else
             {
                 EditorGUILayout.LabelField("No prerequisites required.");
