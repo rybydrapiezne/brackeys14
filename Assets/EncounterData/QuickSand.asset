@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   encounterName: Quick Sands
   description: The sand is beginning to slip away from under your feet.
-  biome: 33
+  biome: -1
   depth: 0
   dangerLevel: 0
   isUnique: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
   - choiceDescription: 'Everyone for themselves! '
-    resultText: duuupaaa
+    resultText: 
     risky: 0
     suppliesOutcome: -10
     peopleOutcome: 0
