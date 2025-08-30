@@ -24,6 +24,7 @@ public class TurnController : MonoBehaviour
     [SerializeField] private int suppliesTraverseCost;
     [SerializeField] private List<EncounterData> encounters;
     [SerializeField] private GameObject playerCaravan;
+    [SerializeField] private FogOfWarManager fog;
     private Node currentNodeNode;
     private bool isMoving;
     private bool encounterOngoing = false;
@@ -101,6 +102,10 @@ public class TurnController : MonoBehaviour
 
         StartCoroutine(ImpendingDoom.Instance.UpdateElements(Mathf.Max(doomLevel, 0), nextNodeComponent.level, transitionSpeed));
 
+        // Move fog
+        fog.MoveFog(currentNodeNode.level + fog.initialDepth + 1);
+
+        
         // Starting traverse animation
         StartCoroutine(TraverseToNextNode(nextNode));
     }
