@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: desert
   m_EditorClassIdentifier: 
   biomeName: 1
-  sprite: {fileID: -2125447557164060210, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
+  sprite: {fileID: -8087552364635085763, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
   description: '<size=115%><b>Desert</b></size>
 
     An endless sea of sand drains
     your provisions; every step demands more supplies.'
-  minimumLevelRequired: 2
+  minimumLevelRequired: 0
