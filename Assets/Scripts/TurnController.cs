@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using static ResourceSystem;
+using Random = UnityEngine.Random;
+
 public class TurnController : MonoBehaviour
 {
     private static TurnController instance;
@@ -28,6 +31,7 @@ public class TurnController : MonoBehaviour
 
     public int levelsCheckCount = 8;
     [SerializeField] public Color fadedPathColor = new Color(1f, 1f, 1f, 0.3f);
+    public static event EventHandler OnLastNodeReached;
 
     private void Awake()
     {
@@ -83,7 +87,7 @@ public class TurnController : MonoBehaviour
     }
     public void SelectPath(GameObject nextNode)
     {
-        if (isMoving || encounterOngoing || currentNodeNode.children.Find(c => Object.Equals(c.node.gameObject, nextNode)) == null ) return;
+        if (isMoving || encounterOngoing || currentNodeNode.children.Find(c => Equals(c.node.gameObject, nextNode)) == null ) return;
         
         // Fading unaccessable paths
         Node nextNodeComponent = nextNode.GetComponent<Node>();
@@ -125,7 +129,7 @@ public class TurnController : MonoBehaviour
 
         // Show selected path
         {
-            PathDestination pd = currentNodeComponent.children.Find(c => Object.Equals(c.node.gameObject, nextNodeComponent.gameObject));
+            PathDestination pd = currentNodeComponent.children.Find(c => Equals(c.node.gameObject, nextNodeComponent.gameObject));
 
             Color materialColor = pd.node.sprite.color;
             materialColor.a = 1;
@@ -185,6 +189,7 @@ public class TurnController : MonoBehaviour
         cam.transform.position = targetPosition;
 
         currentNode = nextNode;
+
         currentNodeNode = currentNode.GetComponent<Node>();
         int encounter=Random.Range(0,encounters.Count);
         EncounterData currentEncounter = encounters[encounter];
@@ -195,5 +200,7 @@ public class TurnController : MonoBehaviour
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
             currentEncounter.encounterImage,currentEncounter.description,currentEncounter.encounterName,currentEncounter.choices,currentEncounter.prerequisites);
         isMoving = false;
+        if(currentNode.CompareTag("EndNode"))
+            OnLastNodeReached?.Invoke(null,null);
     }
 }

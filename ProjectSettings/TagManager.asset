@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Nomad
   - Camel
+  - EndNode
   layers:
   - Default
   - TransparentFX

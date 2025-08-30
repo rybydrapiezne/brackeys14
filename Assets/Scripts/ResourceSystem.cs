@@ -52,7 +52,7 @@ public static class ResourceSystem
             }
         } else
         { // out of resource
-            if (desired < 0)
+            if (desired <= 0)
             {
                 resources[resource] = 0;
                 success = false;
