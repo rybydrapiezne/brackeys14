@@ -220,10 +220,18 @@ public class TurnController : MonoBehaviour
 
         currentNodeNode = currentNode.GetComponent<Node>();
 
+        BiomeType currentBiome;
+        if (currentNodeNode.biome)
+        {
+            currentBiome = currentNodeNode.biome.biomeName;
+        }
+        else
+        {
+            if (currentNode.CompareTag("EndNode"))
+                OnLastNodeReached?.Invoke(null, null);
+            yield break;
+        }
 
-        BiomeType currentBiome = currentNodeNode.biome.biomeName;
-
-        
         traverseByBiome(nextNode, currentBiome);
 
         // Filter encounters by current biome
@@ -259,8 +267,7 @@ public class TurnController : MonoBehaviour
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
             currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites);
         isMoving = false;
-        if (currentNode.CompareTag("EndNode"))
-            OnLastNodeReached?.Invoke(null, null);
+
     }
 
     private void traverseByBiome(GameObject nextNode, BiomeType biome)
