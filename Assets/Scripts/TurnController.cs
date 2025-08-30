@@ -102,9 +102,9 @@ public class TurnController : MonoBehaviour
             fadeUnavailablePaths(currentNodeNode, nextNodeComponent);
 
         // Impending doom
-        doomLevel++;
+        ImpendingDoom.Instance.doomLevel++;
 
-        StartCoroutine(ImpendingDoom.Instance.UpdateElements(Mathf.Max(doomLevel, 0), nextNodeComponent.level, transitionSpeed));
+        ImpendingDoom.Instance.Refresh(nextNodeComponent.level);
 
         // Move fog
         fog.MoveFog(currentNodeNode.level + fog.initialDepth + 1);

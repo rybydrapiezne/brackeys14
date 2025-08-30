@@ -15,10 +15,14 @@ public class ImpendingDoom : MonoBehaviour
         }
     }
 
+    public int doomLevel = -4; // "It starts 4 turns after the start of your journey"
+
     [NonSerialized] public int totalLevels;
 
     [SerializeField] private Slider doomSlider;
     [SerializeField] private Slider playerSlider;
+
+    [SerializeField] float transitionSpeed = 1f;
 
     [SerializeField] private AnimationCurve moveCurve;
 
@@ -38,14 +42,19 @@ public class ImpendingDoom : MonoBehaviour
         totalLevels = levels;
     }
 
-    public IEnumerator UpdateElements(int doomLevel, int playerLevel, float transitionSpeed)
+    public void Refresh(int playerLevel)
+    {
+        StartCoroutine(UpdateElements(playerLevel));
+    }
+
+    private IEnumerator UpdateElements(int playerLevel)
     {
         //Debug.Log("doom " + doomLevel + " player " + playerLevel + " total " + totalLevels);
         float playerStartPosition = playerSlider.value;
         float playerTargetPosition = playerLevel / (float)totalLevels;
 
         float doomStartPosition = doomSlider.value;
-        float doomTargetPosition = doomLevel / (float)totalLevels;
+        float doomTargetPosition = Mathf.Max(doomLevel, 0) / (float)totalLevels;
 
         float elapsedTime = 0f;
 
