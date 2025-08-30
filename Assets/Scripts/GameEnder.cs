@@ -1,28 +1,43 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static ResourceSystem;
 
 public class GameEnder : MonoBehaviour
 {
-
+    [SerializeField] private GameObject endGamePanel;
+    [SerializeField] private TextMeshProUGUI endGameText;
+    [SerializeField] private TextMeshProUGUI endGameTitle;
+    [TextArea(3, 10)]
+    [SerializeField] private string descriptionPositive;
+    [SerializeField] private string titlePositive;
+    [TextArea(3, 10)]
+    [SerializeField] private string descriptionNegative;
+    [SerializeField] private string titleNegative;
     private void Start()
     {
-        OnOutOfResource += outOfResource;
-        TurnController.OnLastNodeReached += lastNodeReached;
+        OnOutOfResource += OutOfResource;
+        TurnController.OnLastNodeReached += LastNodeReached;
 
     }
 
-    private void lastNodeReached(object sender, EventArgs e)
+    private void LastNodeReached(object sender, EventArgs e)
     {
-        SceneManager.LoadSceneAsync("FinishedRunScene");
+        endGameText.text = descriptionPositive;
+        endGameTitle.text = titlePositive;
+        endGamePanel.SetActive(true);
+        
     }
 
-    private void outOfResource(object s, OnOutOfResourceArgs a)
+    private void OutOfResource(object s, OnOutOfResourceArgs a)
     {
         if (a.Resource == ResourceType.People)
         {
-            SceneManager.LoadSceneAsync("FailedRunScene");//TODO change this to index
+            endGameText.text = descriptionNegative;
+            endGameTitle.text = titleNegative;
+            endGamePanel.SetActive(true);
+            
         }
     }
 }
