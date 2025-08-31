@@ -222,6 +222,17 @@ public class TurnController : MonoBehaviour
 
         currentNodeNode = currentNode.GetComponent<Node>();
 
+        BiomeType currentBiome;
+        if (currentNodeNode.biome)
+        {
+            currentBiome = currentNodeNode.biome.biomeName;
+        }
+        else
+        {
+            if (currentNode.CompareTag("EndNode"))
+                OnLastNodeReached?.Invoke(null, null);
+            yield break;
+        }
 
         BiomeType currentBiome = currentNodeNode.biome.biomeName;
 
@@ -258,8 +269,7 @@ public class TurnController : MonoBehaviour
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
             currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites);
         isMoving = false;
-        if (currentNode.CompareTag("EndNode"))
-            OnLastNodeReached?.Invoke(null, null);
+
     }
 
     private void traverseByBiome(GameObject nextNode)
@@ -268,20 +278,20 @@ public class TurnController : MonoBehaviour
         BiomeType biome = nextNodeComponent.biome.biomeName;
 
         if (biome.HasFlag(BiomeType.Desert))
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
+             addResource( ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
 
         if (biome.HasFlag(BiomeType.Riverlands))
         {
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)Amounts.PositiveVerySmallAmount);
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
+             addResource( ResourceType.Supplies, (int)Amounts.PositiveVerySmallAmount);
+             addResource( ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
         }
 
         if (biome.HasFlag(BiomeType.Canyon))
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
+             addResource( ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
 
         if (biome.HasFlag(BiomeType.Plateau))
         {
-            bool success = ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)Amounts.NegativeSmallAmount);
+            bool success =  addResource( ResourceType.Gear, (int)Amounts.NegativeSmallAmount);
             if (!success)
             {
                 doomLevel++;
@@ -293,21 +303,21 @@ public class TurnController : MonoBehaviour
 
         if (biome.HasFlag(BiomeType.Dunes))
         {
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)Amounts.NegativeVerySmallAmount);
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
+             addResource( ResourceType.Supplies, (int)Amounts.NegativeVerySmallAmount);
+             addResource( ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
         }
 
         if (biome.HasFlag(BiomeType.WarlordsTerritory))
         {
-            bool success = ResourceSystem.addResource(ResourceSystem.ResourceType.Valuables, (int)Amounts.NegativeSmallAmount);
-            if (!success) ResourceSystem.addResource(ResourceSystem.ResourceType.People, -1);
+            bool success =  addResource( ResourceType.Valuables, (int)Amounts.NegativeSmallAmount);
+            if (!success)  addResource( ResourceType.People, -1);
         }
 
         if (biome.HasFlag(BiomeType.ScorchedLand))
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)Amounts.NegativeMediumAmount);
+             addResource( ResourceType.Supplies, (int)Amounts.NegativeMediumAmount);
 
         if (biome.HasFlag(BiomeType.Wastelands))
-            ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
+             addResource( ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
     }
 
 
