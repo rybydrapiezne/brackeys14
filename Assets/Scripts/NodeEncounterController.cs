@@ -135,6 +135,7 @@ public class NodeEncounterController : MonoBehaviour
             ResourceSystem.addResource(ResourceSystem.ResourceType.People, choice.peopleOutcome);
             ResourceSystem.addResource(ResourceSystem.ResourceType.Valuables, (int)choice.valuablesOutcome);
             ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)choice.gearOutcome);
+            ImpendingDoom.Instance.doomLevel += choice.impendingDoomOutcome;
             ApplyLuck(choice.luckOutcome);
             FogOfWarManager.Instance.MoveFogForward(choice.fogOfWarOutcome);
             encounterText.text = choice.resultText;
@@ -202,6 +203,7 @@ public class NodeEncounterController : MonoBehaviour
             ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)prerequisitesDictionary[choice].gearPositiveOutcome);
             ApplyLuck(prerequisitesDictionary[choice].luckPositiveOutcome);
             FogOfWarManager.Instance.MoveFogForward(prerequisitesDictionary[choice].fogPositiveOutcome);
+            ImpendingDoom.Instance.doomLevel += prerequisitesDictionary[choice].doomPositiveOutcome;
         }
         else
         {
@@ -212,6 +214,7 @@ public class NodeEncounterController : MonoBehaviour
             ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)prerequisitesDictionary[choice].gearNegativeOutcome);
             ApplyLuck(prerequisitesDictionary[choice].luckNegativeOutcome);
             FogOfWarManager.Instance.MoveFogForward(prerequisitesDictionary[choice].fogNegativeOutcome);
+            ImpendingDoom.Instance.doomLevel += prerequisitesDictionary[choice].doomNegativeOutcome;
         }
         encounterCanvas.SetActive(true);
         riskySituationCanvas.SetActive(false);

@@ -44,6 +44,10 @@ public class ImpendingDoom : MonoBehaviour
 
     public void Refresh(int playerLevel)
     {
+        if (playerLevel < doomLevel)
+        {
+            
+        }
         StartCoroutine(UpdateElements(playerLevel));
     }
 
