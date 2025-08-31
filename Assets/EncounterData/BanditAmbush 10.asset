@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a0a9197b80dc0451b82ac1f7bc0e272, type: 3}
-  m_Name: BanditAmbush
+  m_Name: BanditAmbush 10
   m_EditorClassIdentifier: 
   encounterName: Bandit Ambush
   description: "The trail narrows between jagged rocks, you hear a sudden shout behind
-    you. Five figures leap from the shadows. They point at you with crossbows as
-    their leader comes forward and says with cold voice: \u201CGive us every piece
-    of gold you have and we\u2019ll let you go\u201D"
+    you. Ten figures leap from the shadows. They point at you with crossbows as their
+    leader comes forward and says with cold voice: \u201CGive us every piece of gold
+    you have and we\u2019ll let you go\u201D"
   biome: 319
   depth: 0
-  dangerLevel: 50
+  dangerLevel: 80
   isUnique: 0
   choices:
   - choiceDescription: 'Comply and give them your valuables. '
@@ -74,7 +74,7 @@ MonoBehaviour:
       condition: 0
     riskyPrerequisite:
       bettingResource: 3
-      minAmount: 45
+      minAmount: 55
       enemiesCount: 0
       successText: 'SUCCESS: You hand over your valuables, trying to keep calm under
         their cold stares. The bandits snatch the goods and check their quality.
@@ -114,7 +114,7 @@ MonoBehaviour:
       condition: 0
     riskyPrerequisite:
       bettingResource: 4
-      minAmount: 40
+      minAmount: 50
       enemiesCount: 5
       successText: You lunge at bandits with your weapons in hands. Steel clashes
         in the narrow pass. They fire at once from their loaded crossbows. One of
@@ -125,7 +125,7 @@ MonoBehaviour:
         As two of your men  immediately fall to the ground, scatter and quickly retreat.
         In chaos bandits grab as much of valuables as they can and run away.
 
-        
+
 
 
 '
@@ -137,7 +137,7 @@ MonoBehaviour:
       fogPositiveOutcome: 0
       doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
-      peopleNegativeOutcome: -2
+      peopleNegativeOutcome: -3
       valuablesNegativeOutcome: -20
       gearNegativeOutcome: 0
       luckNegativeOutcome: 0

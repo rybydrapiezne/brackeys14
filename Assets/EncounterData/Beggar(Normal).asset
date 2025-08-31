@@ -13,26 +13,38 @@ MonoBehaviour:
   m_Name: Beggar(Normal)
   m_EditorClassIdentifier: 
   encounterName: Beggar
-  description: On your jurney you stumbled upon a man kneeling and begging.
+  description: 'On the road ahead, you encounter a beggar on his knees, pleading
+    for mercy. '
   biome: -1
   depth: 0
+  dangerLevel: 10
+  isUnique: 0
   choices:
-  - choiceDescription: Not our business
-    resultText: 
+  - choiceDescription: 'Everyone minds their own business. Walk past. '
+    resultText: You ignore his cries and continue your journey. His desperate voice
+      fades into the distance, leaving only the sound of your own weary steps.
     risky: 0
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
-  - choiceDescription: You give him food
-    resultText: 
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+  - choiceDescription: Spare some food and water.
+    resultText: 'You offer him a share of your food, and gratitude shines in his
+      tired eyes. With trembling steps he rises and chooses to follow you in your
+      journey. '
     risky: 0
     suppliesOutcome: -10
     peopleOutcome: 1
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 1
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
   encounterImage: {fileID: 21300000, guid: 1aaae923fa02470a7877e8d984dfee27, type: 3}
   prerequisites:
   - prerequisiteType: 0
@@ -51,16 +63,23 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 0
       minAmount: 0
+      enemiesCount: 0
       successText: 
       failureText: 
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
   - prerequisiteType: 1
     normalPrerequisite:
       ResourceType: 1
@@ -77,13 +96,20 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 0
       minAmount: 0
+      enemiesCount: 0
       successText: 
       failureText: 
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
