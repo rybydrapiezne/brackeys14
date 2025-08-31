@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource walk;
     public AudioSource hover;
     public AudioSource click;
+    public AudioSource menuPopup;
 
     private static AudioManager instance;
     public static AudioManager Instance

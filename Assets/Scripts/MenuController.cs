@@ -31,19 +31,28 @@ public class MenuController : MonoBehaviour
 
     public void OnStartClicked()
     {
+        AudioManager.Instance.click.Play();
         SceneManager.LoadSceneAsync("MainScene");
     }
 
     public void BackToMainMenu()
     {
+        AudioManager.Instance.click.Play();
         optionsPanel.SetActive(false);
         menuPanel.SetActive(true);
     }
 
     public void OnOptionsButtonClickedOptions()
     {
+        AudioManager.Instance.click.Play();
         optionsPanel.SetActive(true);
         menuPanel.SetActive(false);
+    }
+
+    public void QuitButtonClicked()
+    {
+        AudioManager.Instance.click.Play();
+        Application.Quit();
     }
 
     private void SetVolume(float volume, string name)
