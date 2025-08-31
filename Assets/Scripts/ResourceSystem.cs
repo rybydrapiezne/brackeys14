@@ -35,8 +35,19 @@ public static class ResourceSystem
         [People] = 10,
         [Valuables] = 25,
         [Gear] = 50
-
     };
+
+    public static void reset(Dictionary<ResourceType, int> newResourceCount)
+    {
+        OnResourceLimitReached = null;
+        OnOutOfResource = null;
+        OnResourceChanged = null;
+
+        foreach (var newRes in newResourceCount)
+        {
+            resources[newRes.Key] = newRes.Value;
+        }
+    }
 
     public static bool addResource(ResourceType resource, int amount)
     {
