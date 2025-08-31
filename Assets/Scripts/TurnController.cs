@@ -292,7 +292,7 @@ public class TurnController : MonoBehaviour
             bool success =  addResource( ResourceType.Gear, (int)Amounts.NegativeSmallAmount);
             if (!success)
             {
-                doomLevel++;
+                ImpendingDoom.Instance.doomLevel++;
                 ImpendingDoom.Instance.Refresh(nextNodeComponent.level);
             }
         }
