@@ -18,4 +18,5 @@ MonoBehaviour:
 
     The open grasslands leave you
     exposed, making every encounter more perilous.'
+  dangerMultiplier: 1.2
   minimumLevelRequired: 5

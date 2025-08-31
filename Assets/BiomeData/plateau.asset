@@ -18,4 +18,5 @@ MonoBehaviour:
 
     High winds and rough stone
     demand sturdy gear, but the wide view makes threats easier to avoid.'
+  dangerMultiplier: 0.8
   minimumLevelRequired: 2

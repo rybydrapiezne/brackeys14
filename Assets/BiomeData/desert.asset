@@ -18,4 +18,5 @@ MonoBehaviour:
 
     An endless sea of sand drains
     your provisions; every step demands more supplies.'
+  dangerMultiplier: 1
   minimumLevelRequired: 0

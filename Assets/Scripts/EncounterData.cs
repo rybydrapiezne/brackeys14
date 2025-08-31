@@ -30,9 +30,11 @@ public struct Choice : IEquatable<Choice>
     public Amounts valuablesOutcome;
     public Amounts gearOutcome;
     public EncounterPrerequisiteType typeOfPrerequisites;
-    public int luckOutcome;
+    public float luckOutcome;
     public int fogOfWarOutcome;
     public int impendingDoomOutcome;
+
+    public bool addDebt;
     
     public bool Equals(Choice other)
     {
@@ -100,7 +102,7 @@ public struct EncounterPrerequisitesRisky : IPrerequisite
     public int peoplePositiveOutcome;
     public Amounts valuablesPositiveOutcome;
     public Amounts gearPositiveOutcome;
-    public int luckPositiveOutcome;
+    public float luckPositiveOutcome;
     public int fogPositiveOutcome;
     public int doomPositiveOutcome;
     
@@ -108,7 +110,7 @@ public struct EncounterPrerequisitesRisky : IPrerequisite
     public int peopleNegativeOutcome;
     public Amounts valuablesNegativeOutcome;
     public Amounts gearNegativeOutcome;
-    public int luckNegativeOutcome;
+    public float luckNegativeOutcome;
     public int fogNegativeOutcome;
     public int doomNegativeOutcome;
     

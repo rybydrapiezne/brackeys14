@@ -18,4 +18,5 @@ MonoBehaviour:
 
     Twisted lands of ruin where
     dangers multiply and survival costs even more.'
+  dangerMultiplier: 1.3
   minimumLevelRequired: 10

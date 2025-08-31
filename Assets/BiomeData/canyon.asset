@@ -18,4 +18,5 @@ MonoBehaviour:
 
     Sheer cliffs and rocky passages
     strain your equipment, and dangers lurk in the narrow shadows.'
+  dangerMultiplier: 1.3
   minimumLevelRequired: 5

@@ -10,33 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a0a9197b80dc0451b82ac1f7bc0e272, type: 3}
-  m_Name: Oasis(bandit)
+  m_Name: Time to pay
   m_EditorClassIdentifier: 
-  encounterName: Oasis
-  description: "Amid endless sea of sand, you see your salvation. A couple of palms
-    bends over a clear pool, offering shade, water, and a brief escape from the desert\u2019s
-    heat. As you get closer you see the oasis is already occupied. Eight figures
-    in black hoods rise to meet you, weapons in hand."
-  biome: 5000000
+  encounterName: Time to pay
+  description: " It seems like your journey is slowly coming to the end. You remind
+    yourself that you once signed a contract, but haven\u2019t paid it off yet. Right
+    on cue the faceless cloaked figure returns. The voice that was once so smooth
+    the first time you met, now has turned cold and cruel: \u201CThe time has come.
+    You\u2019ve taken what was offered \u2014 now the price must be paid. There is
+    no escape. Give me 5 souls. And I\u2019ll be satisfied.\u201D"
+  biome: 0
   depth: 0
-  dangerLevel: 50
-  isUnique: 0
+  dangerLevel: 0
+  isUnique: 1
   choices:
-  - choiceDescription: "It\u2019s too dangerous. Steer clear, marching on through
-      the desert losing all hope for much needed rest."
-    resultText: "They stare at you triumphantly while you travel past the oasis keeping
-      a significant distance. At least you didn\u2019t get in any trouble."
+  - choiceDescription: Accept the demand
+    resultText: "As you say yes, one by one, five of your companions collapse, their
+      faces pale and lifeless. The figure says \u201CIt was a pleasure doing business
+      with you\u201D. You can\u2019t see the face but it laughs nonetheless, then
+      fades into shadows."
     risky: 0
     suppliesOutcome: 0
-    peopleOutcome: 0
+    peopleOutcome: -5
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
     luckOutcome: 0
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
-  - choiceDescription: Offer them some of your valuables in exchange for water and
-      rest under the palms
+    addDebt: 0
+  - choiceDescription: Attempt to pay with valuables instead.
     resultText: 
     risky: 1
     suppliesOutcome: 0
@@ -47,7 +50,8 @@ MonoBehaviour:
     luckOutcome: 0
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
-  - choiceDescription: Draw your weapons, ready to fight.
+    addDebt: 0
+  - choiceDescription: Try to fight the figure.
     resultText: 
     risky: 1
     suppliesOutcome: 0
@@ -58,7 +62,8 @@ MonoBehaviour:
     luckOutcome: 0
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
-  encounterImage: {fileID: 21300000, guid: 186f9a014942d201384ed5c446a2c0d7, type: 3}
+    addDebt: 0
+  encounterImage: {fileID: 21300000, guid: f711a5627ebf39c6fa823b71e9f43bc6, type: 3}
   prerequisites:
   - prerequisiteType: 0
     normalPrerequisite:
@@ -108,16 +113,17 @@ MonoBehaviour:
       condition: 0
     riskyPrerequisite:
       bettingResource: 3
-      minAmount: 30
+      minAmount: 200
       enemiesCount: 0
-      successText: 'SUCCESS: They look at each other and nod. Bandits accept your
-        valuables and step aside. You resupply and rest shortly. Though you must
-        keep your eyes on them throughout the entire time.'
-      failureText: "FAILURE: Bandits laugh at each other when you show them what
-        you\u2019re willing to pay. They take your offering but don\u2019t let you
-        pass and threaten you with their daggers. Some people are not worth bargaining
-        with\u2026"
-      suppliesPositiveOutcome: 40
+      successText: "The figure inspects your offered treasure, then snatches it with
+        a grin. \u201CGold may not replace life, but it will do for now.\u201D It
+        vanishes, leaving your companions alive but shaken."
+      failureText: "The treasures crumble in your hands. \u201CFools. I take only
+        what was promised. You really thought you could buy me over?\u201D All of
+        your companions die screaming in agony. \u201CYou could have just paid off
+        the debt. Well, I hope it was worth it\u201D. With those words the figure
+        vanishes. You are left alive, completely alone."
+      suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
@@ -125,7 +131,7 @@ MonoBehaviour:
       fogPositiveOutcome: 0
       doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
-      peopleNegativeOutcome: 0
+      peopleNegativeOutcome: -10
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
       luckNegativeOutcome: 0
@@ -133,8 +139,8 @@ MonoBehaviour:
       doomNegativeOutcome: 0
   - prerequisiteType: 3
     normalPrerequisite:
-      ResourceType: 3
-      AmountNeeded: 20
+      ResourceType: 0
+      AmountNeeded: 0
       peopleAmount: 0
     conditionalPrerequisite:
       value1: 0
@@ -146,23 +152,24 @@ MonoBehaviour:
       condition: 0
     riskyPrerequisite:
       bettingResource: 4
-      minAmount: 45
-      enemiesCount: 0
-      successText: 'SUCCESS:  After a hard struggle, the bandits scatter into the
-        dunes, leaving their dead and their belongings behind. You claim the water,
-        gather some gear, and even find a few valuables among their packs.'
-      failureText: 'FAILURE: The fight turns bloody and chaotic beneath the palms.
-        The cost is heavy. Two of your men lie lifeless in the sand, and you decide
-        to retreat into the scorching heat of the desert.'
-      suppliesPositiveOutcome: 40
+      minAmount: 120
+      enemiesCount: 1
+      successText: Your weapons clash against the shadows, sparks flying as the figure
+        shrieks and vanishes. The debt is gone. At least for now.
+      failureText: "Your weapons strike nothing but air. No matter how hard you hit,
+        nothing works. One by one, all of your companions fall to their demise each
+        time the dark silhouette touches them. You\u2019re the last one left.  \u201CYou
+        could have just paid off the debt. Well, I hope it was worth it\u201D. With
+        those words the figure vanishes. You are left alive, completely alone."
+      suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
-      valuablesPositiveOutcome: 10
-      gearPositiveOutcome: 10
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
       luckPositiveOutcome: 0
       fogPositiveOutcome: 0
       doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
-      peopleNegativeOutcome: -2
+      peopleNegativeOutcome: -10
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
       luckNegativeOutcome: 0

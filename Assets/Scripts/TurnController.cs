@@ -28,7 +28,7 @@ public class TurnController : MonoBehaviour
     [SerializeField] private FogOfWarManager fog;
     private Node currentNodeNode;
     private bool hasTakenContract = false;
-    private bool isMoving;
+    public bool isMoving;
     private bool encounterOngoing = false;
     [SerializeField] private AnimationCurve camMoveCurve;
 
@@ -106,6 +106,7 @@ public class TurnController : MonoBehaviour
 
         ImpendingDoom.Instance.Refresh(nextNodeComponent.level);
 
+        traverseByBiome(nextNode);
         // Move fog
         fog.MoveFog(currentNodeNode.level + fog.initialDepth + 1);
 
@@ -119,6 +120,7 @@ public class TurnController : MonoBehaviour
         luckStasuses.RemoveAll(ls => ls.turnsLeft <= 0);
 
         // Starting traverse animation
+        
         StartCoroutine(TraverseToNextNode(nextNode));
     }
 
@@ -223,9 +225,6 @@ public class TurnController : MonoBehaviour
 
         BiomeType currentBiome = currentNodeNode.biome.biomeName;
 
-        
-        traverseByBiome(nextNode, currentBiome);
-
         // Filter encounters by current biome
         var filteredEncounters = encounters.Where(e => (e.biome & currentBiome) != 0).ToList();
         int dangerAttraction = getDangerAttraction(currentNodeNode, luckStasuses);
@@ -263,8 +262,10 @@ public class TurnController : MonoBehaviour
             OnLastNodeReached?.Invoke(null, null);
     }
 
-    private void traverseByBiome(GameObject nextNode, BiomeType biome)
+    private void traverseByBiome(GameObject nextNode)
     {
+        Node nextNodeComponent = nextNode.GetComponent<Node>();
+        BiomeType biome = nextNodeComponent.biome.biomeName;
 
         if (biome.HasFlag(BiomeType.Desert))
             ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
@@ -284,8 +285,7 @@ public class TurnController : MonoBehaviour
             if (!success)
             {
                 doomLevel++;
-                Node nextNodeComponent = nextNode.GetComponent<Node>();
-                StartCoroutine(ImpendingDoom.Instance.UpdateElements(Mathf.Max(doomLevel, 0), nextNodeComponent.level, transitionSpeed));
+                ImpendingDoom.Instance.Refresh(nextNodeComponent.level);
             }
         }
 
@@ -308,6 +308,13 @@ public class TurnController : MonoBehaviour
 
         if (biome.HasFlag(BiomeType.Wastelands))
             ResourceSystem.addResource(ResourceSystem.ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
+    }
+
+
+    
+    public void AddLuckStatus(LuckStatus status)
+    {
+        luckStasuses.Add(status);
     }
 
 
