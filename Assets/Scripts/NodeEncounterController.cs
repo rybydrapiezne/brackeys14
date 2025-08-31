@@ -124,6 +124,7 @@ public class NodeEncounterController : MonoBehaviour
 
     private void HandleChoiceSelected(Choice choice)
     {
+        AudioManager.Instance.click.Play();
         if (choice.risky)
         {
             HandleRiskySituation(choice);
@@ -176,6 +177,7 @@ public class NodeEncounterController : MonoBehaviour
 
     public void ClosePopup()
     {
+        AudioManager.Instance.click.Play();
         encounterCanvas.SetActive(false);
         onEncounterEnd?.Invoke();
     }
@@ -187,8 +189,10 @@ public class NodeEncounterController : MonoBehaviour
 
     private void Gamble(Choice choice)
     {
+        AudioManager.Instance.click.Play();
         ResourceSystem.addResource(prerequisitesDictionary[choice].bettingResource, -(int)riskySituationSlider.value);
         int rand = Random.Range(0, prerequisitesDictionary[choice].minAmount);
+
         if (rand <= riskySituationSlider.value)
         {
             encounterText.text = prerequisitesDictionary[choice].successText;
@@ -216,6 +220,7 @@ public class NodeEncounterController : MonoBehaviour
 
     public void Cancel()
     {
+        AudioManager.Instance.click.Play();
         encounterCanvas.SetActive(true);
         riskySituationCanvas.SetActive(false);
     }
