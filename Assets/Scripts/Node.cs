@@ -16,8 +16,8 @@ public class Node : MonoBehaviour
 
     private void OnMouseUp()
     {
-        TurnController.Instance.SelectPath(gameObject);
         AudioManager.Instance.click.Play();
+        TurnController.Instance.SelectPath(gameObject);
     }
 
     void OnMouseEnter()

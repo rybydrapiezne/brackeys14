@@ -52,6 +52,9 @@ public class TurnController : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(AudioManager.fadeOut(AudioManager.Instance.desertTheme, 1f));
+        StartCoroutine(AudioManager.fadeIn(AudioManager.Instance.mainTheme, 1f));
+
         NodeEncounterController.onEncounterStart += EncounterStarted;
         NodeEncounterController.onEncounterEnd += EncounterEnded;
         currentNodeNode = currentNode.GetComponent<Node>();
@@ -117,6 +120,8 @@ public class TurnController : MonoBehaviour
         }
 
         luckStasuses.RemoveAll(ls => ls.turnsLeft <= 0);
+
+        AudioManager.Instance.walk.Play();
 
         // Starting traverse animation
         StartCoroutine(TraverseToNextNode(nextNode));
@@ -267,7 +272,7 @@ public class TurnController : MonoBehaviour
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
             currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites);
         isMoving = false;
-
+        AudioManager.Instance.walk.Stop();
     }
 
     private void traverseByBiome(GameObject nextNode, BiomeType biome)
