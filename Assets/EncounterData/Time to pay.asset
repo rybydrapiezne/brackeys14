@@ -63,7 +63,7 @@ MonoBehaviour:
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
     addDebt: 0
-  encounterImage: {fileID: 21300000, guid: f711a5627ebf39c6fa823b71e9f43bc6, type: 3}
+  encounterImage: {fileID: 3815211653395030246, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
   prerequisites:
   - prerequisiteType: 0
     normalPrerequisite:

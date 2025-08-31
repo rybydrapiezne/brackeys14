@@ -16,6 +16,7 @@ public class Node : MonoBehaviour
 
     private void OnMouseUp()
     {
+        AudioManager.Instance.click.Play();
         TurnController.Instance.SelectPath(gameObject);
     }
 
@@ -25,6 +26,8 @@ public class Node : MonoBehaviour
 
         if(biome != null)
             OnHoverPopup.Instance.showPopup(biome.description);
+
+        AudioManager.Instance.hover.Play();
 
         sprite.color = hoverColor;
         futureDestinations = new();
