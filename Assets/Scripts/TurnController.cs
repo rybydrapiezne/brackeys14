@@ -277,7 +277,12 @@ public class TurnController : MonoBehaviour
 
     private void traverseByBiome(GameObject nextNode)
     {
+
         Node nextNodeComponent = nextNode.GetComponent<Node>();
+        if (nextNodeComponent.biome == null)
+        {
+            return;
+        }
         BiomeType biome = nextNodeComponent.biome.biomeName;
 
         if (biome.HasFlag(BiomeType.Desert))
