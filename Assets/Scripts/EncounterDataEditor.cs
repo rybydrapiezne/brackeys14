@@ -1,3 +1,4 @@
+#if (UNITY_EDITOR) 
 using UnityEditor;
 using UnityEngine;
 using System;
@@ -85,3 +86,4 @@ public class EncounterDataEditor : Editor
         so.ApplyModifiedProperties();
     }
 }
+#endif

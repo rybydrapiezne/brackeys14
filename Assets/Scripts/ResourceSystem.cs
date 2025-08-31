@@ -19,6 +19,15 @@ public static class ResourceSystem
         Gear
     }
 
+    public static readonly Dictionary<ResourceType, int> defaultResources = new Dictionary<ResourceType, int>
+    {
+        [None] = 0,
+        [Supplies] = 80,
+        [People] = 10,
+        [Valuables] = 25,
+        [Gear] = 50
+    };
+
     private static Dictionary<ResourceType, int> maxResources = new Dictionary<ResourceType, int>
     {
         [None] = 0,
@@ -35,10 +44,20 @@ public static class ResourceSystem
         [People] = 10,
         [Valuables] = 25,
         [Gear] = 50
-
     };
 
     
+    public static void resourceSystemReset(Dictionary<ResourceType, int> newResourceCount)
+    {
+        OnResourceLimitReached = null;
+        OnOutOfResource = null;
+        OnResourceChanged = null;
+
+        foreach (var newRes in newResourceCount)
+        {
+            resources[newRes.Key] = newRes.Value;
+        }
+    }
 
     public static bool addResource(ResourceType resource, int amount)
     {
@@ -86,7 +105,7 @@ public static class ResourceSystem
         }
 
         // result = (int)(result * currentNode.biome.dangerMultiplier);
-        Debug.Log("Danger: " + result);
+        //Debug.Log("Danger: " + result);
         return (int)(result * 1.4);
     }
     
