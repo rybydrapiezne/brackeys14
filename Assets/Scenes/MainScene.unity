@@ -1096,7 +1096,6 @@ MonoBehaviour:
   transitionSpeed: 2
   suppliesTraverseCost: 0
   encounters:
-  - {fileID: 11400000, guid: 494cdc2a00c2fd1c5b9cb24cfa2a19e5, type: 2}
   - {fileID: 11400000, guid: 116df40c2eb56c6aa94e230ebb8c798f, type: 2}
   - {fileID: 11400000, guid: d8e4c9d6b9ac201d08c0465b12c0ac26, type: 2}
   - {fileID: 11400000, guid: 49f94d9446695755eae1423073e8bf96, type: 2}
