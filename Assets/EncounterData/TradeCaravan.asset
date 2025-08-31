@@ -24,7 +24,7 @@ MonoBehaviour:
   isUnique: 0
   choices:
   - choiceDescription: It's a dangerous world. It's best to travel together.
-    resultText: 
+    resultText: You travel together sharing food and water until the next crossroads.
     risky: 0
     suppliesOutcome: 10
     peopleOutcome: 0
@@ -35,9 +35,9 @@ MonoBehaviour:
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
     addDebt: 0
-  - choiceDescription: You see that one of the wagons that sells gear that may be
-      useful in your journey. But of course it doesn't come cheap.
-    resultText: 
+  - choiceDescription: Buy gear that may be useful in your journey.
+    resultText: The merchant smirks as you hand him a bag of coins, and his servants
+      bring out sturdy tools and weapons from the wagon.
     risky: 0
     suppliesOutcome: 0
     peopleOutcome: 0
@@ -48,9 +48,7 @@ MonoBehaviour:
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
     addDebt: 0
-  - choiceDescription: The merchants may be well-guarded, but their caravan is filled
-      with goods you desperately need. Draw your weapons, preparing to take what
-      you need by force.
+  - choiceDescription: \Draw your weapons, preparing to take what you need by force.
     resultText: 
     risky: 1
     suppliesOutcome: 0

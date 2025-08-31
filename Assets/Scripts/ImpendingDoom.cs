@@ -18,6 +18,7 @@ public class ImpendingDoom : MonoBehaviour
     public int doomLevel = -4; // "It starts 4 turns after the start of your journey"
 
     [NonSerialized] public int totalLevels;
+    [SerializeField] private PlayerCaravanController caravan;
 
     [SerializeField] private Slider doomSlider;
     [SerializeField] private Slider playerSlider;
@@ -46,7 +47,7 @@ public class ImpendingDoom : MonoBehaviour
     {
         if (playerLevel < doomLevel)
         {
-            
+            caravan.initiateDeath(10);
         }
         StartCoroutine(UpdateElements(playerLevel));
     }
