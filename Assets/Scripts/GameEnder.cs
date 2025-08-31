@@ -28,6 +28,17 @@ public class GameEnder : MonoBehaviour
     {
         if (Input.GetButtonDown("Restart") && gameEnded)
         {
+            System.Collections.Generic.Dictionary<ResourceSystem.ResourceType, int> newResources = 
+                new System.Collections.Generic.Dictionary<ResourceSystem.ResourceType, int>()
+            {
+                [ResourceSystem.ResourceType.None] = 0,
+                [ResourceSystem.ResourceType.Supplies] = 80,
+                [ResourceSystem.ResourceType.People] = 10,
+                [ResourceSystem.ResourceType.Valuables] = 25,
+                [ResourceSystem.ResourceType.Gear] = 50
+            };
+
+            ResourceSystem.reset(newResources);
             SceneManager.LoadScene("MainMenuScene");
         }
     }

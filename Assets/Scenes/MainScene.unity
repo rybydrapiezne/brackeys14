@@ -1223,10 +1223,19 @@ MonoBehaviour:
   endGamePanel: {fileID: 598725812}
   endGameText: {fileID: 425739211}
   endGameTitle: {fileID: 1087886810}
-  descriptionPositive: You reach the Holy Biscuit.
+  descriptionPositive: 'You have travalled through treachorous deserts and steppes
+    and reached the Holy Biscuit.  You will be remembered as legend!
+
+
+    Press
+    R to reset'
   titlePositive: Congratulations
-  descriptionNegative: All of you have died in seach of the Holy Biscuit. You will
+  descriptionNegative: 'All of you have died in seach of the Holy Biscuit. You will
     be another forgotten adventureres who met their end in the unforgiving desert.
+
+
+    Press
+    R to reset'
   titleNegative: Failure
   gameEnded: 0
 --- !u!1 &1580802711

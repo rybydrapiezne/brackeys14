@@ -100,7 +100,7 @@ public class TurnController : MonoBehaviour
     }
     public void SelectPath(GameObject nextNode)
     {
-        if (isMoving || encounterOngoing || currentNodeNode.children.Find(c => Equals(c.node.gameObject, nextNode)) == null) return;
+        if (isMoving || encounterOngoing || currentNodeNode.children.Find(c => Equals(c.node.gameObject, nextNode)) == null || GetComponent<GameEnder>().gameEnded) return;
 
         // Fading unaccessable paths
         Node nextNodeComponent = nextNode.GetComponent<Node>();

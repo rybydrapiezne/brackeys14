@@ -38,6 +38,8 @@ public static class ResourceSystem
 
     };
 
+    
+
     public static bool addResource(ResourceType resource, int amount)
     {
         bool success = true;
@@ -74,18 +76,31 @@ public static class ResourceSystem
         return resources[resource];
     }
 
-    public static int getDangerAttraction(Node currentNode, List<LuckStatus> luckStatuses   )
+    public static int getDangerAttraction(Node currentNode, List<LuckStatus> luckStatuses)
     {
         int sum = getResource(ResourceType.Gear) + getResource(ResourceType.Supplies) + getResource(ResourceType.Valuables) * 2;
         int result = sum / 4;
         foreach (var status in luckStatuses)
         {
-            result = (int)(status.multiplier * result);    
+            result = (int)(status.multiplier * result);
         }
 
         // result = (int)(result * currentNode.biome.dangerMultiplier);
         Debug.Log("Danger: " + result);
         return (int)(result * 1.4);
+    }
+    
+
+    public static void reset(Dictionary<ResourceType, int> newResourceCount)
+    {
+        OnResourceLimitReached = null;
+        OnOutOfResource = null;
+        OnResourceChanged = null;
+
+        foreach (var newRes in newResourceCount)
+        {
+            resources[newRes.Key] = newRes.Value;
+        }
     }
 
 }
