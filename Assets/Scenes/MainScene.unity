@@ -1105,8 +1105,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c700cca4799b8036181619b28db79d87, type: 2}
   - {fileID: 11400000, guid: 13a1a4346237d7b0e9f39e9b8ecb747c, type: 2}
   - {fileID: 11400000, guid: 47029f501c95c9d09893ffd19c9e1ce0, type: 2}
+  - {fileID: 11400000, guid: 1219071d7db9db647ae78e261725549b, type: 2}
+  - {fileID: 11400000, guid: 1219071d7db9db647ae78e261725549b, type: 2}
   playerCaravan: {fileID: 66711003}
   fog: {fileID: 666083976}
+  isMoving: 0
   camMoveCurve:
     serializedVersion: 2
     m_Curve:

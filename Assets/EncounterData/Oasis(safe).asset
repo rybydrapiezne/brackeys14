@@ -16,23 +16,37 @@ MonoBehaviour:
   description: "Amid endless sea of sand, you see your salvation. A couple of palms
     bends over a clear pool, offering shade, water, and a brief escape from the desert\u2019s
     heat. It seems noone is here beside some small animals\u2026"
-  biome: 000000000500000006000000
+  biome: 1388236160
   depth: 0
+  dangerLevel: 0
+  isUnique: 0
   choices:
   - choiceDescription: "There\u2019s no time to waste. Take a short rest and keep
       going."
+    resultText: 
+    risky: 0
     suppliesOutcome: 40
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
   - choiceDescription: " It\u2019s a safe spot. Take time to resupply."
+    resultText: 
+    risky: 0
     suppliesOutcome: 100
     peopleOutcome: 0
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
-  encounterImage: {fileID: 21300000, guid: 41607c0652af45f96833f30e2770a9f5, type: 3}
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  encounterImage: {fileID: 4507570854664994115, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
   prerequisites:
   - prerequisiteType: 0
     normalPrerequisite:
@@ -47,6 +61,26 @@ MonoBehaviour:
       value5: 0
       expected: 0
       condition: 0
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      enemiesCount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
   - prerequisiteType: 0
     normalPrerequisite:
       ResourceType: 0
@@ -60,3 +94,23 @@ MonoBehaviour:
       value5: 0
       expected: 0
       condition: 0
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      enemiesCount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
