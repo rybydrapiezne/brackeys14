@@ -91,7 +91,7 @@ public class FogOfWarManager : MonoBehaviour
 
     private static float? GetLeftmostNodeX(int targetLevel)
     {
-        List<Node> allNodes = FindObjectsOfType<Node>(includeInactive: true).ToList();
+        List<Node> allNodes = GenerateMap.Instance.nodes.Select(node => node.GetComponent<Node>()).ToList();
 
         var filteredNodes = allNodes.Where(n => n.level == targetLevel);
 
@@ -106,7 +106,7 @@ public class FogOfWarManager : MonoBehaviour
         );
 
 
-        Debug.Log("Result: " + leftmost.transform.position.x);
+        //Debug.Log("Result: " + leftmost.transform.position.x);
 
 
         return leftmost.transform.position.x;

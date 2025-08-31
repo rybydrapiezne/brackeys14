@@ -38,8 +38,6 @@ public class TurnController : MonoBehaviour
     public static event EventHandler OnLastNodeReached;
 
 
-
-    private int doomLevel = -4; // "It starts 4 turns after the start of your journey"
     private List<LuckStatus> luckStasuses = new();
 
     private void Awake()

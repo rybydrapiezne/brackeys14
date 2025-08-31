@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static ResourceSystem;
@@ -24,11 +26,24 @@ public class GameEnder : MonoBehaviour
 
     }
 
-    private void Update()
+    public void OnMainMenuButton()
     {
-        if (Input.GetButtonDown("Restart") && gameEnded)
+        if (gameEnded)
         {
+            StartCoroutine(AudioManager.fadeIn(AudioManager.Instance.desertTheme, 1f));
+            StartCoroutine(AudioManager.fadeOut(AudioManager.Instance.mainTheme, 1f));
+
             SceneManager.LoadScene("MainMenuScene");
+        }
+    }
+
+    public void OnRestartButton()
+    {
+        if (gameEnded)
+        {
+            resourceSystemReset(defaultResources);
+
+            SceneManager.LoadScene("MainScene");
         }
     }
 

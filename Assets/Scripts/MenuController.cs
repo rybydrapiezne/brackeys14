@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio; // Added for AudioMixer
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Audio; // Added for AudioMixer
+using static ResourceSystem;
 
 public class MenuController : MonoBehaviour
 {
@@ -32,6 +34,16 @@ public class MenuController : MonoBehaviour
     public void OnStartClicked()
     {
         AudioManager.Instance.click.Play();
+        Dictionary<ResourceType, int> newResources = new Dictionary<ResourceType, int>
+        {
+            [ResourceType.None] = 0,
+            [ResourceType.Supplies] = 80,
+            [ResourceType.People] = 10,
+            [ResourceType.Valuables] = 25,
+            [ResourceType.Gear] = 50
+        };
+
+        resourceSystemReset(defaultResources);
         SceneManager.LoadSceneAsync("MainScene");
     }
 
