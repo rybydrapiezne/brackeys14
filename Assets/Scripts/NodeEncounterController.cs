@@ -19,6 +19,8 @@ public class NodeEncounterController : MonoBehaviour
     [SerializeField] private Button riskySituationAcceptButton;
     [SerializeField] private TextMeshProUGUI difficultyAmountText;
     [SerializeField] private TextMeshProUGUI resourceBetAmountText;
+    [SerializeField] private TextMeshProUGUI successRateText;
+    private int currentDifficulty = 0;
     [SerializeField] private List<GameObject> choiceButtons;
     [SerializeField] private GameObject closeButton;
     [SerializeField] private List<resourceImageData> resourceImages;
@@ -139,6 +141,8 @@ public class NodeEncounterController : MonoBehaviour
             ApplyLuck(choice.luckOutcome);
             FogOfWarManager.Instance.MoveFogForward(choice.fogOfWarOutcome);
             encounterText.text = choice.resultText;
+            if(choice.addDebt)
+                TurnController.Instance.hasTakenContract = true;
             HandleEncounterEnd();
         }
     }
@@ -151,6 +155,7 @@ public class NodeEncounterController : MonoBehaviour
             tempPrerequisites.minAmount = tempPrerequisites.minAmount - 5 * (ResourceSystem.getResource(ResourceSystem.ResourceType.People) - tempPrerequisites.enemiesCount);
             prerequisitesDictionary[choice] = tempPrerequisites;
         }
+        currentDifficulty = prerequisitesDictionary[choice].minAmount;
         encounterCanvas.SetActive(false);
         riskySituationCanvas.SetActive(true);
         riskySituationSlider.maxValue = ResourceSystem.getResource(prerequisitesDictionary[choice].bettingResource);
@@ -185,6 +190,11 @@ public class NodeEncounterController : MonoBehaviour
 
     private void OnSliderValueChange()
     {
+        if (currentDifficulty != 0)
+        {
+            float successRate = 100 * ((float)riskySituationSlider.value / (float)currentDifficulty);
+            successRateText.text = $"SUCCESS RATE: {(int)successRate}%";    
+        }
         resourceBetAmountText.text = riskySituationSlider.value.ToString();
     }
 
@@ -193,7 +203,7 @@ public class NodeEncounterController : MonoBehaviour
         AudioManager.Instance.click.Play();
         ResourceSystem.addResource(prerequisitesDictionary[choice].bettingResource, -(int)riskySituationSlider.value);
         int rand = Random.Range(0, prerequisitesDictionary[choice].minAmount);
-
+        
         if (rand <= riskySituationSlider.value)
         {
             encounterText.text = prerequisitesDictionary[choice].successText;

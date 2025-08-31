@@ -22,7 +22,7 @@ MonoBehaviour:
   biome: 0
   depth: 0
   dangerLevel: 0
-  isUnique: 1
+  isUnique: 0
   choices:
   - choiceDescription: Accept the demand
     resultText: "As you say yes, one by one, five of your companions collapse, their

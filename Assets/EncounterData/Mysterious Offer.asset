@@ -21,7 +21,7 @@ MonoBehaviour:
   biome: -1
   depth: 0
   dangerLevel: 0
-  isUnique: 0
+  isUnique: 1
   choices:
   - choiceDescription: Ask for supplies.
     resultText: "You reach out, and sacks of grain and water jars appear from thin

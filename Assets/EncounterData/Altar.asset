@@ -43,8 +43,8 @@ MonoBehaviour:
     risky: 0
     suppliesOutcome: 0
     peopleOutcome: 0
-    valuablesOutcome: -20
-    gearOutcome: 40
+    valuablesOutcome: 0
+    gearOutcome: 0
     typeOfPrerequisites: 0
     luckOutcome: 1.2
     fogOfWarOutcome: 0

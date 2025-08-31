@@ -36,7 +36,7 @@ MonoBehaviour:
     addDebt: 0
   - choiceDescription: "Try to repair the barge.\r"
     resultText: 
-    risky: 0
+    risky: 1
     suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0

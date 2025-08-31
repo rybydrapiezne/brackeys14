@@ -22,8 +22,7 @@ MonoBehaviour:
   dangerLevel: 50
   isUnique: 0
   choices:
-  - choiceDescription: "It\u2019s too dangerous. Steer clear, marching on through
-      the desert losing all hope for much needed rest."
+  - choiceDescription: "It\u2019s too dangerous. Steer clear of it."
     resultText: "They stare at you triumphantly while you travel past the oasis keeping
       a significant distance. At least you didn\u2019t get in any trouble."
     risky: 0
@@ -36,8 +35,7 @@ MonoBehaviour:
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
     addDebt: 0
-  - choiceDescription: Offer them some of your valuables in exchange for water and
-      rest under the palms
+  - choiceDescription: Offer them your valuables in exchange for water and rest.
     resultText: 
     risky: 1
     suppliesOutcome: 0

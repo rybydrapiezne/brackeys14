@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using static ResourceSystem.ResourceType;
 
 
@@ -23,16 +24,16 @@ public static class ResourceSystem
         [None] = 0,
         [Supplies] = 100,
         [People] = 20,
-        [Valuables] = 1000,
-        [Gear] = 1000
+        [Valuables] = 100,
+        [Gear] = 100
     };
 
     private static Dictionary<ResourceType, int> resources = new Dictionary<ResourceType, int>
     {
         [None] = 0,
-        [Supplies] = 100,
+        [Supplies] = 75,
         [People] = 10,
-        [Valuables] = 0,
+        [Valuables] = 25,
         [Gear] = 50
 
     };
@@ -53,7 +54,7 @@ public static class ResourceSystem
         }
         else
         { // out of resource
-            if (desired <= 0)
+            if (desired < 0)
             {
                 resources[resource] = 0;
                 success = false;
@@ -82,8 +83,8 @@ public static class ResourceSystem
             result = (int)(status.multiplier * result);    
         }
 
-        result = (int)(result * currentNode.biome.dangerMultiplier);
-
+        // result = (int)(result * currentNode.biome.dangerMultiplier);
+        Debug.Log("Danger: " + result);
         return result;
     }
 
