@@ -18,7 +18,7 @@ MonoBehaviour:
     Their eyes shift toward you, one of them smiling: \u201CCare for a game?\u201D"
   biome: -1
   depth: 0
-  dangerLevel: 20
+  dangerLevel: 40
   isUnique: 0
   choices:
   - choiceDescription: Walk away, ignoring the table.
@@ -33,6 +33,7 @@ MonoBehaviour:
     luckOutcome: 0
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
+    addDebt: 0
   - choiceDescription: Sit down and join their game.
     resultText: Luck turns against you. One bad hand after another drains your purse,
       and the strangers laugh as you leave lighter than you arrived.
@@ -45,6 +46,7 @@ MonoBehaviour:
     luckOutcome: 0
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
+    addDebt: 0
   encounterImage: {fileID: -7005424237314540665, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
   prerequisites:
   - prerequisiteType: 0

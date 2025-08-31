@@ -1223,10 +1223,12 @@ MonoBehaviour:
   endGamePanel: {fileID: 598725812}
   endGameText: {fileID: 425739211}
   endGameTitle: {fileID: 1087886810}
-  descriptionPositive: You have successfully hauled your caravan through deadly desert.
+  descriptionPositive: You reach the Holy Biscuit.
   titlePositive: Congratulations
-  descriptionNegative: Unfortunately your caravan has been abandoned.
+  descriptionNegative: All of you have died in seach of the Holy Biscuit. You will
+    be another forgotten adventureres who met their end in the unforgiving desert.
   titleNegative: Failure
+  gameEnded: 0
 --- !u!1 &1580802711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,7 +1360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246c35c28b7d65a5b80a51768f62b47b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 75
 --- !u!114 &1580802716
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -118,7 +118,7 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 4
       minAmount: 50
-      enemiesCount: 5
+      enemiesCount: 10
       successText: You lunge at bandits with your weapons in hands. Steel clashes
         in the narrow pass. They fire at once from their loaded crossbows. One of
         the bolts kills one of you. Yet against the odds, you overpower the ambushers

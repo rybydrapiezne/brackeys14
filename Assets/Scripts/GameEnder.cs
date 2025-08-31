@@ -15,6 +15,8 @@ public class GameEnder : MonoBehaviour
     [TextArea(3, 10)]
     [SerializeField] private string descriptionNegative;
     [SerializeField] private string titleNegative;
+    public bool gameEnded = false;
+
     private void Start()
     {
         OnOutOfResource += OutOfResource;
@@ -22,12 +24,20 @@ public class GameEnder : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("Restart") && gameEnded)
+        {
+            SceneManager.LoadScene("MainMenuScene");
+        }
+    }
+
     private void LastNodeReached(object sender, EventArgs e)
     {
         endGameText.text = descriptionPositive;
         endGameTitle.text = titlePositive;
         endGamePanel.SetActive(true);
-        
+        gameEnded = true;
     }
 
     private void OutOfResource(object s, OnOutOfResourceArgs a)
@@ -37,7 +47,7 @@ public class GameEnder : MonoBehaviour
             endGameText.text = descriptionNegative;
             endGameTitle.text = titleNegative;
             endGamePanel.SetActive(true);
-            
+            gameEnded = true;
         }
     }
 }

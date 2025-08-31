@@ -102,15 +102,15 @@ public class PlayerCaravanController : MonoBehaviour
 
     public void initiateDeath(int amount)
     {
-        int removed=0;
-        List<GameObject> deadNomads=new List<GameObject>();
+        int removed = 0;
+        List<GameObject> deadNomads = new List<GameObject>();
         foreach (GameObject member in _caravan)
         {
             if (member.CompareTag("Nomad"))
             {
                 deadNomads.Add(member);
                 removed--;
-                if(removed<=amount)
+                if (removed <= amount)
                     break;
             }
         }
@@ -121,8 +121,10 @@ public class PlayerCaravanController : MonoBehaviour
             StartCoroutine(killMember(deadNomads[i]));
         }
 
-        if(removed == 0)
+        if (removed == 0)
             Debug.LogWarning("Could not find Nomad");
+        
+        
     }
 
     private IEnumerator killMember(GameObject member)

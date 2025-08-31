@@ -31,7 +31,7 @@ public static class ResourceSystem
     private static Dictionary<ResourceType, int> resources = new Dictionary<ResourceType, int>
     {
         [None] = 0,
-        [Supplies] = 75,
+        [Supplies] = 80,
         [People] = 10,
         [Valuables] = 25,
         [Gear] = 50
@@ -85,7 +85,7 @@ public static class ResourceSystem
 
         // result = (int)(result * currentNode.biome.dangerMultiplier);
         Debug.Log("Danger: " + result);
-        return result;
+        return (int)(result * 1.4);
     }
 
 }

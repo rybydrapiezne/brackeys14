@@ -15,7 +15,7 @@ MonoBehaviour:
   encounterName: Blocked Path
   description: As you move along the narrow corridors of the canyon, a giant boulder
     is blocking your path. Finding another way will take significant time.
-  biome: 4
+  biome: 12
   depth: 0
   dangerLevel: 40
   isUnique: 0

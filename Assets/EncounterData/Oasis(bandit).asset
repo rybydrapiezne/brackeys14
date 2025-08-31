@@ -17,7 +17,7 @@ MonoBehaviour:
     bends over a clear pool, offering shade, water, and a brief escape from the desert\u2019s
     heat. As you get closer you see the oasis is already occupied. Eight figures
     in black hoods rise to meet you, weapons in hand."
-  biome: 5000000
+  biome: 49
   depth: 0
   dangerLevel: 50
   isUnique: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 4
       minAmount: 45
-      enemiesCount: 0
+      enemiesCount: 10
       successText: 'SUCCESS:  After a hard struggle, the bandits scatter into the
         dunes, leaving their dead and their belongings behind. You claim the water,
         gather some gear, and even find a few valuables among their packs.'
