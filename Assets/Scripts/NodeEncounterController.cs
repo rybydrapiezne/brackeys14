@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,8 @@ using Random = UnityEngine.Random;
 
 public class NodeEncounterController : MonoBehaviour
 {
-    [SerializeField] private Image encounterImage;
+    [SerializeField] private Image encounterImageBackground;
+    [SerializeField] private Image encounterImageForeground;
     [SerializeField] private TextMeshProUGUI encounterText;
     [SerializeField] private TextMeshProUGUI encounterName;
     [SerializeField] private GameObject encounterCanvas;
@@ -20,14 +22,16 @@ public class NodeEncounterController : MonoBehaviour
     [SerializeField] private List<GameObject> choiceButtons;
     [SerializeField] private GameObject closeButton;
     [SerializeField] private List<resourceImageData> resourceImages;
+    [SerializeField] private List<biomeImageData> biomeImages;
     public static Action onEncounterStart;
     public static Action onEncounterEnd;
     
     private Dictionary<Choice,EncounterPrerequisitesRisky> prerequisitesDictionary=new();
-    public void EnableEncounter(int amountOfChoices, Sprite encounterImage, string encounterText, string encounterName, Choice[] choices, PrerequisiteWrapper[] prerequisites)
+    public void EnableEncounter(int amountOfChoices, Sprite encounterImage, string encounterText, string encounterName, Choice[] choices, PrerequisiteWrapper[] prerequisites,BiomeType biomeType)
     {
         onEncounterStart?.Invoke();
-        this.encounterImage.sprite = encounterImage;
+        encounterImageBackground.sprite = biomeImages.FirstOrDefault(biomeImageData => biomeImageData.biomeType == biomeType).image;
+        encounterImageForeground.sprite = encounterImage;
         this.encounterText.text = encounterText;
         this.encounterName.text = encounterName;
         encounterCanvas.SetActive(true); 
@@ -209,5 +213,12 @@ public class NodeEncounterController : MonoBehaviour
 public struct resourceImageData
 {
     public ResourceSystem.ResourceType resourceType;
+    public Sprite image;
+}
+
+[Serializable]
+public struct biomeImageData
+{
+    public BiomeType biomeType;
     public Sprite image;
 }

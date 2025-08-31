@@ -265,7 +265,7 @@ public class TurnController : MonoBehaviour
             yield return null;
         }
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
-            currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites);
+            currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites,currentNodeNode.biome.biomeName);
         isMoving = false;
 
     }
