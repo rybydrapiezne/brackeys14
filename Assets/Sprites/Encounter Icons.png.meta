@@ -1,0 +1,797 @@
+fileFormatVersion: 2
+guid: 91a9886274325a471ad48a4e1ede1bb0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4507570854664994115
+    second: Encounter Icons_0
+  - first:
+      213: -1620212740255229729
+    second: Encounter Icons_1
+  - first:
+      213: -2933406931617819829
+    second: Encounter Icons_2
+  - first:
+      213: 2281375772700661586
+    second: Encounter Icons_3
+  - first:
+      213: 8402502026589636125
+    second: Encounter Icons_4
+  - first:
+      213: 8728487563229532425
+    second: Encounter Icons_5
+  - first:
+      213: 2806647771374338539
+    second: Encounter Icons_6
+  - first:
+      213: -8969039625469289202
+    second: Encounter Icons_7
+  - first:
+      213: 2239962687753205082
+    second: Encounter Icons_8
+  - first:
+      213: 3815211653395030246
+    second: Encounter Icons_9
+  - first:
+      213: -7005424237314540665
+    second: Encounter Icons_10
+  - first:
+      213: 3678635457468321381
+    second: Encounter Icons_11
+  - first:
+      213: -4359929220441092578
+    second: Encounter Icons_12
+  - first:
+      213: 4079339889215196189
+    second: Encounter Icons_13
+  - first:
+      213: -424276078598846842
+    second: Encounter Icons_14
+  - first:
+      213: 3615830882916845372
+    second: Encounter Icons_15
+  - first:
+      213: -6859650955174371897
+    second: Encounter Icons_16
+  - first:
+      213: -2403441480225328067
+    second: Encounter Icons_17
+  - first:
+      213: -263247622957897967
+    second: Encounter Icons_18
+  - first:
+      213: -7267100298272144965
+    second: Encounter Icons_19
+  - first:
+      213: -4267835810238256053
+    second: Encounter Icons_20
+  - first:
+      213: 7256121228592589442
+    second: Encounter Icons_21
+  - first:
+      213: 4430750213309379996
+    second: Encounter Icons_22
+  - first:
+      213: 6081743906927122936
+    second: Encounter Icons_23
+  - first:
+      213: 6187578488810451108
+    second: Encounter Icons_24
+  - first:
+      213: 1507178161726420051
+    second: Encounter Icons_25
+  - first:
+      213: -4572156715665535207
+    second: Encounter Icons_26
+  - first:
+      213: 4739075776057466169
+    second: Encounter Icons_27
+  - first:
+      213: 310233142135380883
+    second: Encounter Icons_28
+  - first:
+      213: 5155364682655697264
+    second: Encounter Icons_29
+  - first:
+      213: 6712278127489488123
+    second: Encounter Icons_30
+  - first:
+      213: 8419059672233359403
+    second: Encounter Icons_31
+  - first:
+      213: 6653949960101770747
+    second: Encounter Icons_32
+  - first:
+      213: -130062218973182469
+    second: Encounter Icons_33
+  - first:
+      213: 3348661892881593811
+    second: Encounter Icons_34
+  - first:
+      213: 6195817726288682975
+    second: Encounter Icons_35
+  - first:
+      213: 319221790376395810
+    second: Encounter Icons_36
+  - first:
+      213: 2014858487962338698
+    second: Encounter Icons_37
+  - first:
+      213: -729294464207332430
+    second: Encounter Icons_38
+  - first:
+      213: 140272402719763857
+    second: Encounter Icons_39
+  - first:
+      213: 377120532470022208
+    second: Encounter Icons_40
+  - first:
+      213: -230710518096616642
+    second: Encounter Icons_41
+  - first:
+      213: -1188635761892307984
+    second: Encounter Icons_42
+  - first:
+      213: 7298369215950860233
+    second: Encounter Icons_43
+  - first:
+      213: -6486165624871956496
+    second: Encounter Icons_44
+  - first:
+      213: -1353294861232772382
+    second: Encounter Icons_45
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Encounter Icons_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34df5386fcb1e8e30800000000000000
+      internalID: 4507570854664994115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd85684d819d389e0800000000000000
+      internalID: -1620212740255229729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b43504300f17a47d0800000000000000
+      internalID: -2933406931617819829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25751039d2319af10800000000000000
+      internalID: 2281375772700661586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d160067231fab9470800000000000000
+      internalID: 8402502026589636125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90116b87131d12970800000000000000
+      internalID: 8728487563229532425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be1c86e174733f620800000000000000
+      internalID: 2806647771374338539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d108b0bf1978380800000000000000
+      internalID: -8969039625469289202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a55b8a95232f51f10800000000000000
+      internalID: 2239962687753205082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e0aa8fe8ca52f430800000000000000
+      internalID: 3815211653395030246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78b74f1c5cbb7ce90800000000000000
+      internalID: -7005424237314540665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56e4e8455732d0330800000000000000
+      internalID: 3678635457468321381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1e43c1597b6e73c0800000000000000
+      internalID: -4359929220441092578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_13
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1cc0c6140abc9830800000000000000
+      internalID: 4079339889215196189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6868b68872bac1af0800000000000000
+      internalID: -424276078598846842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c374520d7030e2230800000000000000
+      internalID: 3615830882916845372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd99addccf9dc0a0800000000000000
+      internalID: -6859650955174371897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d34fabc25b245aed0800000000000000
+      internalID: -2403441480225328067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 117e0a18ea1c85cf0800000000000000
+      internalID: -263247622957897967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb18a5e08c2162b90800000000000000
+      internalID: -7267100298272144965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4cae0b41f995c4c0800000000000000
+      internalID: -4267835810238256053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28aae6510dbe2b460800000000000000
+      internalID: 7256121228592589442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Encounter Icons_22
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c95bac808df2d7d30800000000000000
+      internalID: 4430750213309379996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3d0520bbb302cbfdc9f58f7f7eccc08f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Encounter Icons_0: 4507570854664994115
+      Encounter Icons_1: -1620212740255229729
+      Encounter Icons_10: -7005424237314540665
+      Encounter Icons_11: 3678635457468321381
+      Encounter Icons_12: -4359929220441092578
+      Encounter Icons_13: 4079339889215196189
+      Encounter Icons_14: -424276078598846842
+      Encounter Icons_15: 3615830882916845372
+      Encounter Icons_16: -6859650955174371897
+      Encounter Icons_17: -2403441480225328067
+      Encounter Icons_18: -263247622957897967
+      Encounter Icons_19: -7267100298272144965
+      Encounter Icons_2: -2933406931617819829
+      Encounter Icons_20: -4267835810238256053
+      Encounter Icons_21: 7256121228592589442
+      Encounter Icons_22: 4430750213309379996
+      Encounter Icons_3: 2281375772700661586
+      Encounter Icons_4: 8402502026589636125
+      Encounter Icons_5: 8728487563229532425
+      Encounter Icons_6: 2806647771374338539
+      Encounter Icons_7: -8969039625469289202
+      Encounter Icons_8: 2239962687753205082
+      Encounter Icons_9: 3815211653395030246
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

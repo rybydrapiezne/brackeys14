@@ -44,7 +44,7 @@ MonoBehaviour:
     luckOutcome: 0
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
-  encounterImage: {fileID: 0}
+  encounterImage: {fileID: -7267100298272144965, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
   prerequisites:
   - prerequisiteType: 0
     normalPrerequisite:
