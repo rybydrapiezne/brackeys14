@@ -28,7 +28,7 @@ public class TurnController : MonoBehaviour
     [SerializeField] private FogOfWarManager fog;
     private Node currentNodeNode;
     private bool hasTakenContract = false;
-    private bool isMoving;
+    public bool isMoving;
     private bool encounterOngoing = false;
     [SerializeField] private AnimationCurve camMoveCurve;
 
@@ -109,6 +109,7 @@ public class TurnController : MonoBehaviour
 
         ImpendingDoom.Instance.Refresh(nextNodeComponent.level);
 
+        traverseByBiome(nextNode);
         // Move fog
         fog.MoveFog(currentNodeNode.level + fog.initialDepth + 1);
 
@@ -124,6 +125,7 @@ public class TurnController : MonoBehaviour
         AudioManager.Instance.walk.Play();
 
         // Starting traverse animation
+        
         StartCoroutine(TraverseToNextNode(nextNode));
     }
 
@@ -237,8 +239,6 @@ public class TurnController : MonoBehaviour
             yield break;
         }
 
-        traverseByBiome(nextNode, currentBiome);
-
         // Filter encounters by current biome
         var filteredEncounters = encounters.Where(e => (e.biome & currentBiome) != 0).ToList();
         int dangerAttraction = getDangerAttraction(currentNodeNode, luckStasuses);
@@ -270,13 +270,15 @@ public class TurnController : MonoBehaviour
             yield return null;
         }
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
-            currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites);
+            currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites,currentNodeNode.biome.biomeName);
         isMoving = false;
         AudioManager.Instance.walk.Stop();
     }
 
-    private void traverseByBiome(GameObject nextNode, BiomeType biome)
+    private void traverseByBiome(GameObject nextNode)
     {
+        Node nextNodeComponent = nextNode.GetComponent<Node>();
+        BiomeType biome = nextNodeComponent.biome.biomeName;
 
         if (biome.HasFlag(BiomeType.Desert))
              addResource( ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
@@ -296,7 +298,6 @@ public class TurnController : MonoBehaviour
             if (!success)
             {
                 doomLevel++;
-                Node nextNodeComponent = nextNode.GetComponent<Node>();
                 ImpendingDoom.Instance.Refresh(nextNodeComponent.level);
             }
         }
@@ -320,6 +321,13 @@ public class TurnController : MonoBehaviour
 
         if (biome.HasFlag(BiomeType.Wastelands))
              addResource( ResourceType.Supplies, (int)Amounts.NegativeSmallAmount);
+    }
+
+
+    
+    public void AddLuckStatus(LuckStatus status)
+    {
+        luckStasuses.Add(status);
     }
 
 

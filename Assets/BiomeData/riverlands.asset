@@ -18,4 +18,5 @@ MonoBehaviour:
 
     The fertile waters ease
     your hunger but wear down your tools as you push through rivers and marshes.'
+  dangerMultiplier: 1
   minimumLevelRequired: 0

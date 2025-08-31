@@ -18,4 +18,5 @@ MonoBehaviour:
 
     Shifting sands sap your supplies
     and grind down your tools as you struggle forward.'
+  dangerMultiplier: 1
   minimumLevelRequired: 0

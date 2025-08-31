@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0a9197b80dc0451b82ac1f7bc0e272, type: 3}
+  m_Name: Blocked path
+  m_EditorClassIdentifier: 
+  encounterName: Blocked Path
+  description: As you move along the narrow corridors of the canyon, a giant boulder
+    is blocking your path. Finding another way will take significant time.
+  biome: 4
+  depth: 0
+  dangerLevel: 40
+  isUnique: 0
+  choices:
+  - choiceDescription: Try to remove the boulder.
+    resultText: 
+    risky: 1
+    suppliesOutcome: 0
+    peopleOutcome: 0
+    valuablesOutcome: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 3
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  - choiceDescription: Find another way around.
+    resultText: "You find another however it\u2019s much longer than the one blocked
+      by boulder. At least you keep moving and are not stuck in place. But the ones
+      chasing you, can surely use this time you just wasted."
+    risky: 0
+    suppliesOutcome: 0
+    peopleOutcome: 0
+    valuablesOutcome: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 0
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 1
+    addDebt: 0
+  encounterImage: {fileID: -1620212740255229729, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
+  prerequisites:
+  - prerequisiteType: 3
+    normalPrerequisite:
+      ResourceType: 3
+      AmountNeeded: 40
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+    riskyPrerequisite:
+      bettingResource: 4
+      minAmount: 30
+      enemiesCount: 0
+      successText: 'SUCCESS: Using ropes, levers, and sheer strength, you manage
+        to nudge the boulder enough to clear the path. Your party continues on without
+        delay.'
+      failureText: "FAILURE: The boulder won\u2019t move. You wasted so much time.
+        The ones chasing you, can surely use this greatly."
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 2
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 2
+      AmountNeeded: 0
+      peopleAmount: 3
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+    riskyPrerequisite:
+      bettingResource: 4
+      minAmount: 50
+      enemiesCount: 5
+      successText: You lunge at bandits with your weapons in hands. Steel clashes
+        in the narrow pass. They fire at once from their loaded crossbows. One of
+        the bolts kills one of you. Yet against the odds, you overpower the ambushers
+        and scatter them into the wilderness. Among their fallen you find water,
+        gear, and a handful of valuables.
+      failureText: 'FAILURE: You are not fast enough to evade bolts flying at you.
+        As two of your men  immediately fall to the ground, scatter and quickly retreat.
+        In chaos bandits grab as much of valuables as they can and run away.
+
+
+
+
+'
+      suppliesPositiveOutcome: 10
+      peoplePositiveOutcome: -1
+      valuablesPositiveOutcome: 10
+      gearPositiveOutcome: 20
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: -3
+      valuablesNegativeOutcome: -20
+      gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0

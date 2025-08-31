@@ -18,35 +18,51 @@ MonoBehaviour:
     their leader comes forward and says with cold voice: \u201CGive us every piece
     of gold you have and we\u2019ll let you go\u201D"
   biome: 319
-  depth: 0.5
+  depth: 0
+  dangerLevel: 50
+  isUnique: 0
   choices:
   - choiceDescription: 'Comply and give them your valuables. '
     resultText: 
-    risky: 0
+    risky: 1
     suppliesOutcome: 0
     peopleOutcome: 0
-    valuablesOutcome: -40
+    valuablesOutcome: 0
     gearOutcome: 0
-    typeOfPrerequisites: 1
+    typeOfPrerequisites: 3
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
   - choiceDescription: 'Stand up against them and draw your weapons '
     resultText: 
-    risky: 0
-    suppliesOutcome: 10
+    risky: 1
+    suppliesOutcome: 0
     peopleOutcome: 0
     valuablesOutcome: 0
-    gearOutcome: 10
-    typeOfPrerequisites: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 3
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
   - choiceDescription: Create diversion so that the rest of fellowship can escape.
-    resultText: 
+    resultText: "One of your men rushes forward, shouting and drawing the bandits\u2019
+      fire. In the confusion, the rest of you escape down the trail. When you finally
+      stop, breathless and alive, you realize he never returned.\r"
     risky: 0
     suppliesOutcome: 0
     peopleOutcome: -1
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 1
-  encounterImage: {fileID: 21300000, guid: 6459ff0a7f77f16209de557907f6aa48, type: 3}
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  encounterImage: {fileID: 4430750213309379996, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
   prerequisites:
-  - prerequisiteType: 1
+  - prerequisiteType: 3
     normalPrerequisite:
       ResourceType: 3
       AmountNeeded: 40
@@ -60,19 +76,33 @@ MonoBehaviour:
       expected: 0
       condition: 0
     riskyPrerequisite:
-      bettingResource: 0
-      minAmount: 0
-      successText: 
-      failureText: 
+      bettingResource: 3
+      minAmount: 45
+      enemiesCount: 0
+      successText: 'SUCCESS: You hand over your valuables, trying to keep calm under
+        their cold stares. The bandits snatch the goods and check their quality.
+        After a nod of satisfaction from the leader they start to slowly back away,
+        pointing their crossbows at you until they are far away. '
+      failureText: 'FAILURE: You hand over your valuables, trying to keep calm under
+        their cold stares. The bandits snatch the goods and check their quality.
+        Leader of the ambushers shakes his in disapproval. While they keep their
+        crossbows pointed at your chests, Leader rummages through your caravan and
+        takes all the valuable stuff. They leave you with nothing.'
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
-      valuablesNegativeOutcome: 0
-      gearNegativeOutcome: 0
-  - prerequisiteType: 0
+      valuablesNegativeOutcome: -100
+      gearNegativeOutcome: -100
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
+  - prerequisiteType: 3
     normalPrerequisite:
       ResourceType: 0
       AmountNeeded: 0
@@ -86,18 +116,36 @@ MonoBehaviour:
       expected: 0
       condition: 0
     riskyPrerequisite:
-      bettingResource: 0
-      minAmount: 0
-      successText: 
-      failureText: 
-      suppliesPositiveOutcome: 0
-      peoplePositiveOutcome: 0
-      valuablesPositiveOutcome: 0
-      gearPositiveOutcome: 0
+      bettingResource: 4
+      minAmount: 40
+      enemiesCount: 5
+      successText: You lunge at bandits with your weapons in hands. Steel clashes
+        in the narrow pass. They fire at once from their loaded crossbows. One of
+        the bolts kills one of you. Yet against the odds, you overpower the ambushers
+        and scatter them into the wilderness. Among their fallen you find water,
+        gear, and a handful of valuables.
+      failureText: 'FAILURE: You are not fast enough to evade bolts flying at you.
+        As two of your men  immediately fall to the ground, scatter and quickly retreat.
+        In chaos bandits grab as much of valuables as they can and run away.
+
+
+
+
+'
+      suppliesPositiveOutcome: 10
+      peoplePositiveOutcome: -1
+      valuablesPositiveOutcome: 10
+      gearPositiveOutcome: 20
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
-      peopleNegativeOutcome: 0
-      valuablesNegativeOutcome: 0
+      peopleNegativeOutcome: -2
+      valuablesNegativeOutcome: -20
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
   - prerequisiteType: 1
     normalPrerequisite:
       ResourceType: 2
@@ -114,13 +162,20 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 0
       minAmount: 0
+      enemiesCount: 0
       successText: 
       failureText: 
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0

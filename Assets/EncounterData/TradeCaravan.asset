@@ -20,6 +20,8 @@ MonoBehaviour:
     suspiciously. '
   biome: 127
   depth: 0
+  dangerLevel: 20
+  isUnique: 0
   choices:
   - choiceDescription: It's a dangerous world. It's best to travel together.
     resultText: 
@@ -29,6 +31,10 @@ MonoBehaviour:
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
   - choiceDescription: You see that one of the wagons that sells gear that may be
       useful in your journey. But of course it doesn't come cheap.
     resultText: 
@@ -38,17 +44,25 @@ MonoBehaviour:
     valuablesOutcome: -20
     gearOutcome: 40
     typeOfPrerequisites: 1
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
   - choiceDescription: The merchants may be well-guarded, but their caravan is filled
       with goods you desperately need. Draw your weapons, preparing to take what
       you need by force.
     resultText: 
-    risky: 0
+    risky: 1
     suppliesOutcome: 0
     peopleOutcome: 0
-    valuablesOutcome: 40
-    gearOutcome: 40
-    typeOfPrerequisites: 0
-  encounterImage: {fileID: 21300000, guid: f711a5627ebf39c6fa823b71e9f43bc6, type: 3}
+    valuablesOutcome: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 3
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  encounterImage: {fileID: 7256121228592589442, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
   prerequisites:
   - prerequisiteType: 0
     normalPrerequisite:
@@ -66,16 +80,23 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 0
       minAmount: 0
+      enemiesCount: 0
       successText: 
       failureText: 
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
   - prerequisiteType: 1
     normalPrerequisite:
       ResourceType: 3
@@ -92,17 +113,24 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 0
       minAmount: 0
+      enemiesCount: 0
       successText: 
       failureText: 
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
-  - prerequisiteType: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
+  - prerequisiteType: 3
     normalPrerequisite:
       ResourceType: 0
       AmountNeeded: 0
@@ -116,15 +144,29 @@ MonoBehaviour:
       expected: 0
       condition: 0
     riskyPrerequisite:
-      bettingResource: 0
-      minAmount: 0
-      successText: 
-      failureText: 
-      suppliesPositiveOutcome: 0
+      bettingResource: 4
+      minAmount: 70
+      enemiesCount: 12
+      successText: 'SUCCESS: The first moment some of the guards look in another
+        direction, you seize the opportunity and with swift and coordinated attack,
+        you immediately gain advantage and before others can react the fight is already
+        over. The rest of the guards surrender and merchants let you take anything
+        you want fearing for their lives. '
+      failureText: 'FAILURE: You see how merchants look impressed as they see the
+        mercenaries they hired fend you off with ease. As you see your third companion
+        fall to the ground while guards stay strong, you decide it''s enough and
+        retreat.'
+      suppliesPositiveOutcome: 40
       peoplePositiveOutcome: 0
-      valuablesPositiveOutcome: 0
-      gearPositiveOutcome: 0
+      valuablesPositiveOutcome: 40
+      gearPositiveOutcome: 40
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
-      peopleNegativeOutcome: 0
+      peopleNegativeOutcome: -3
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0

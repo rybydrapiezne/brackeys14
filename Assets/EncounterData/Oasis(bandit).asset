@@ -19,6 +19,8 @@ MonoBehaviour:
     in black hoods rise to meet you, weapons in hand."
   biome: 5000000
   depth: 0
+  dangerLevel: 50
+  isUnique: 0
   choices:
   - choiceDescription: "It\u2019s too dangerous. Steer clear, marching on through
       the desert losing all hope for much needed rest."
@@ -30,6 +32,10 @@ MonoBehaviour:
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 0
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
   - choiceDescription: Offer them some of your valuables in exchange for water and
       rest under the palms
     resultText: 
@@ -39,6 +45,10 @@ MonoBehaviour:
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 3
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
   - choiceDescription: Draw your weapons, ready to fight.
     resultText: 
     risky: 1
@@ -47,7 +57,11 @@ MonoBehaviour:
     valuablesOutcome: 0
     gearOutcome: 0
     typeOfPrerequisites: 3
-  encounterImage: {fileID: 21300000, guid: 186f9a014942d201384ed5c446a2c0d7, type: 3}
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  encounterImage: {fileID: 4507570854664994115, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
   prerequisites:
   - prerequisiteType: 0
     normalPrerequisite:
@@ -65,16 +79,23 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 0
       minAmount: 0
+      enemiesCount: 0
       successText: 
       failureText: 
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
   - prerequisiteType: 3
     normalPrerequisite:
       ResourceType: 3
@@ -91,6 +112,7 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 3
       minAmount: 30
+      enemiesCount: 0
       successText: 'SUCCESS: They look at each other and nod. Bandits accept your
         valuables and step aside. You resupply and rest shortly. Though you must
         keep your eyes on them throughout the entire time.'
@@ -102,10 +124,16 @@ MonoBehaviour:
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 0
       gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: 0
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
   - prerequisiteType: 3
     normalPrerequisite:
       ResourceType: 3
@@ -122,6 +150,7 @@ MonoBehaviour:
     riskyPrerequisite:
       bettingResource: 4
       minAmount: 45
+      enemiesCount: 0
       successText: 'SUCCESS:  After a hard struggle, the bandits scatter into the
         dunes, leaving their dead and their belongings behind. You claim the water,
         gather some gear, and even find a few valuables among their packs.'
@@ -132,7 +161,13 @@ MonoBehaviour:
       peoplePositiveOutcome: 0
       valuablesPositiveOutcome: 10
       gearPositiveOutcome: 10
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
       peopleNegativeOutcome: -2
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0

@@ -18,4 +18,5 @@ MonoBehaviour:
 
     A dead, burning waste
     devoid of foes, but the heat devours your supplies.'
+  dangerMultiplier: 0.5
   minimumLevelRequired: 10

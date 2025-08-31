@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0a9197b80dc0451b82ac1f7bc0e272, type: 3}
+  m_Name: Quicksands
+  m_EditorClassIdentifier: 
+  encounterName: Quicksands
+  description: "The ground ahead shifts strangely under your feet. Before you can
+    react, the sand gives way, sucking down men and cargo alike. Panic spreads as
+    you realize you\u2019ve walked straight into a bed of quicksands."
+  biome: 33
+  depth: 0
+  dangerLevel: 70
+  isUnique: 0
+  choices:
+  - choiceDescription: Save yourselves!
+    resultText: 
+    risky: 1
+    suppliesOutcome: 0
+    peopleOutcome: 0
+    valuablesOutcome: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 3
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  - choiceDescription: Save cargo!
+    resultText: At your command men throw themselves into action, hauling and straining
+      to pull cargo out with ropes and bare hands. Supplies are saved, but when the
+      sand settles, you notice that two of your comrades are gone forever beneath
+      the sand.
+    risky: 0
+    suppliesOutcome: 0
+    peopleOutcome: -2
+    valuablesOutcome: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 1
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  encounterImage: {fileID: -2933406931617819829, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
+  prerequisites:
+  - prerequisiteType: 3
+    normalPrerequisite:
+      ResourceType: 3
+      AmountNeeded: 40
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+    riskyPrerequisite:
+      bettingResource: 4
+      minAmount: 60
+      enemiesCount: 0
+      successText: "SUCCESS: You escape quicksand swiftly and with the use of your
+        gear you manage to also save your supplies from being buried under the sand.\r"
+      failureText: 'FAILURE: You escape quickly but the sand swallows your supplies
+        before you can drag them free. You survive, but the desert will feel harsher
+        with so much lost.'
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
+      suppliesNegativeOutcome: -40
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
+  - prerequisiteType: 1
+    normalPrerequisite:
+      ResourceType: 2
+      AmountNeeded: 0
+      peopleAmount: 3
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+    riskyPrerequisite:
+      bettingResource: 4
+      minAmount: 50
+      enemiesCount: 5
+      successText: You lunge at bandits with your weapons in hands. Steel clashes
+        in the narrow pass. They fire at once from their loaded crossbows. One of
+        the bolts kills one of you. Yet against the odds, you overpower the ambushers
+        and scatter them into the wilderness. Among their fallen you find water,
+        gear, and a handful of valuables.
+      failureText: 'FAILURE: You are not fast enough to evade bolts flying at you.
+        As two of your men  immediately fall to the ground, scatter and quickly retreat.
+        In chaos bandits grab as much of valuables as they can and run away.
+
+
+
+
+'
+      suppliesPositiveOutcome: 10
+      peoplePositiveOutcome: -1
+      valuablesPositiveOutcome: 10
+      gearPositiveOutcome: 20
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: -3
+      valuablesNegativeOutcome: -20
+      gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0

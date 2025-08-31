@@ -16,4 +16,5 @@ MonoBehaviour:
   sprite: {fileID: 5103075398784513515, guid: b155cb9c20f69b6429c8d024147528fd, type: 3}
   description: "<size=115%><b>Warlord\u2019s Territory</b></size>\nHere, every path
     is taxed by ruthless men; fail to pay and lives are the price."
+  dangerMultiplier: 0.5
   minimumLevelRequired: 0

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,8 @@ using Random = UnityEngine.Random;
 
 public class NodeEncounterController : MonoBehaviour
 {
-    [SerializeField] private Image encounterImage;
+    [SerializeField] private Image encounterImageBackground;
+    [SerializeField] private Image encounterImageForeground;
     [SerializeField] private TextMeshProUGUI encounterText;
     [SerializeField] private TextMeshProUGUI encounterName;
     [SerializeField] private GameObject encounterCanvas;
@@ -20,17 +22,19 @@ public class NodeEncounterController : MonoBehaviour
     [SerializeField] private List<GameObject> choiceButtons;
     [SerializeField] private GameObject closeButton;
     [SerializeField] private List<resourceImageData> resourceImages;
+    [SerializeField] private List<biomeImageData> biomeImages;
     public static Action onEncounterStart;
     public static Action onEncounterEnd;
-    
     private Dictionary<Choice,EncounterPrerequisitesRisky> prerequisitesDictionary=new();
-    public void EnableEncounter(int amountOfChoices, Sprite encounterImage, string encounterText, string encounterName, Choice[] choices, PrerequisiteWrapper[] prerequisites)
+    
+    public void EnableEncounter(int amountOfChoices, Sprite encounterImage, string encounterText, string encounterName, Choice[] choices, PrerequisiteWrapper[] prerequisites,BiomeType biomeType)
     {
         onEncounterStart?.Invoke();
-        this.encounterImage.sprite = encounterImage;
+        encounterImageBackground.sprite = biomeImages.FirstOrDefault(biomeImageData => biomeImageData.biomeType == biomeType).image;
+        encounterImageForeground.sprite = encounterImage;
         this.encounterText.text = encounterText;
         this.encounterName.text = encounterName;
-        encounterCanvas.SetActive(true); 
+        encounterCanvas.SetActive(true);
 
         if (amountOfChoices > choiceButtons.Count)
         {
@@ -42,7 +46,7 @@ public class NodeEncounterController : MonoBehaviour
         {
             int index = i;
             choiceButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = choices[i].choiceDescription;
-            
+
             if (choices[i].typeOfPrerequisites == EncounterPrerequisiteType.Normal)
             {
                 if (prerequisites[i].ToIPrerequisite() is EncounterNormalPrerequisistes normalPrerequisite)
@@ -70,7 +74,7 @@ public class NodeEncounterController : MonoBehaviour
                     switch (conditionalPrerequisite.condition)
                     {
                         case EncounterConditionalPrerequisitesEnum.Greater:
-                            choiceButtons[i].GetComponent<Button>().interactable = 
+                            choiceButtons[i].GetComponent<Button>().interactable =
                                 ConditionalPrerequisites.GreaterThan(
                                     ResourceSystem.getResource(conditionalPrerequisite.value1),
                                     ResourceSystem.getResource(conditionalPrerequisite.value2),
@@ -80,7 +84,7 @@ public class NodeEncounterController : MonoBehaviour
                                     conditionalPrerequisite.expected);
                             break;
                         case EncounterConditionalPrerequisitesEnum.Less:
-                            choiceButtons[i].GetComponent<Button>().interactable = 
+                            choiceButtons[i].GetComponent<Button>().interactable =
                                 ConditionalPrerequisites.LowerThan(
                                     ResourceSystem.getResource(conditionalPrerequisite.value1),
                                     ResourceSystem.getResource(conditionalPrerequisite.value2),
@@ -90,7 +94,7 @@ public class NodeEncounterController : MonoBehaviour
                                     conditionalPrerequisite.expected);
                             break;
                         case EncounterConditionalPrerequisitesEnum.Equal:
-                            choiceButtons[i].GetComponent<Button>().interactable = 
+                            choiceButtons[i].GetComponent<Button>().interactable =
                                 ConditionalPrerequisites.EqualTo(
                                     ResourceSystem.getResource(conditionalPrerequisite.value1),
                                     ResourceSystem.getResource(conditionalPrerequisite.value2),
@@ -106,12 +110,12 @@ public class NodeEncounterController : MonoBehaviour
             {
                 if (prerequisites[i].ToIPrerequisite() is EncounterPrerequisitesRisky riskyPrerequisite)
                 {
-                    prerequisitesDictionary.Add(choices[i],riskyPrerequisite);
+                    prerequisitesDictionary.Add(choices[i], riskyPrerequisite);
                 }
             }
 
             choiceButtons[i].SetActive(true);
-            
+
             Button button = choiceButtons[i].GetComponent<Button>();
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(() => HandleChoiceSelected(choices[index]));
@@ -131,6 +135,8 @@ public class NodeEncounterController : MonoBehaviour
             ResourceSystem.addResource(ResourceSystem.ResourceType.People, choice.peopleOutcome);
             ResourceSystem.addResource(ResourceSystem.ResourceType.Valuables, (int)choice.valuablesOutcome);
             ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)choice.gearOutcome);
+            ApplyLuck(choice.luckOutcome);
+            FogOfWarManager.Instance.MoveFogForward(choice.fogOfWarOutcome);
             encounterText.text = choice.resultText;
             HandleEncounterEnd();
         }
@@ -138,6 +144,12 @@ public class NodeEncounterController : MonoBehaviour
 
     private void HandleRiskySituation(Choice choice)
     {
+        if (prerequisitesDictionary.ContainsKey(choice) && prerequisitesDictionary[choice].enemiesCount > 0)
+        {
+            EncounterPrerequisitesRisky tempPrerequisites = prerequisitesDictionary[choice];
+            tempPrerequisites.minAmount = tempPrerequisites.minAmount - 5 * (ResourceSystem.getResource(ResourceSystem.ResourceType.People) - tempPrerequisites.enemiesCount);
+            prerequisitesDictionary[choice] = tempPrerequisites;
+        }
         encounterCanvas.SetActive(false);
         riskySituationCanvas.SetActive(true);
         riskySituationSlider.maxValue = ResourceSystem.getResource(prerequisitesDictionary[choice].bettingResource);
@@ -151,7 +163,7 @@ public class NodeEncounterController : MonoBehaviour
             }
         }
         riskySituationAcceptButton.onClick.AddListener(() => Gamble(choice));
-        riskySituationSlider.onValueChanged.AddListener(delegate{OnSliderValueChange();});
+        riskySituationSlider.onValueChanged.AddListener(delegate { OnSliderValueChange(); });
     }
 
     private void HandleEncounterEnd()
@@ -172,14 +184,15 @@ public class NodeEncounterController : MonoBehaviour
 
     private void OnSliderValueChange()
     {
-        resourceBetAmountText.text=riskySituationSlider.value.ToString();
+        resourceBetAmountText.text = riskySituationSlider.value.ToString();
     }
 
     private void Gamble(Choice choice)
     {
         AudioManager.Instance.click.Play();
-        ResourceSystem.addResource(prerequisitesDictionary[choice].bettingResource,-(int)riskySituationSlider.value);
-        int rand=Random.Range(0,prerequisitesDictionary[choice].minAmount);
+        ResourceSystem.addResource(prerequisitesDictionary[choice].bettingResource, -(int)riskySituationSlider.value);
+        int rand = Random.Range(0, prerequisitesDictionary[choice].minAmount);
+
         if (rand <= riskySituationSlider.value)
         {
             encounterText.text = prerequisitesDictionary[choice].successText;
@@ -187,6 +200,8 @@ public class NodeEncounterController : MonoBehaviour
             ResourceSystem.addResource(ResourceSystem.ResourceType.People, prerequisitesDictionary[choice].peoplePositiveOutcome);
             ResourceSystem.addResource(ResourceSystem.ResourceType.Valuables, (int)prerequisitesDictionary[choice].valuablesPositiveOutcome);
             ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)prerequisitesDictionary[choice].gearPositiveOutcome);
+            ApplyLuck(prerequisitesDictionary[choice].luckPositiveOutcome);
+            FogOfWarManager.Instance.MoveFogForward(prerequisitesDictionary[choice].fogPositiveOutcome);
         }
         else
         {
@@ -195,6 +210,8 @@ public class NodeEncounterController : MonoBehaviour
             ResourceSystem.addResource(ResourceSystem.ResourceType.People, prerequisitesDictionary[choice].peopleNegativeOutcome);
             ResourceSystem.addResource(ResourceSystem.ResourceType.Valuables, (int)prerequisitesDictionary[choice].valuablesNegativeOutcome);
             ResourceSystem.addResource(ResourceSystem.ResourceType.Gear, (int)prerequisitesDictionary[choice].gearNegativeOutcome);
+            ApplyLuck(prerequisitesDictionary[choice].luckNegativeOutcome);
+            FogOfWarManager.Instance.MoveFogForward(prerequisitesDictionary[choice].fogNegativeOutcome);
         }
         encounterCanvas.SetActive(true);
         riskySituationCanvas.SetActive(false);
@@ -207,11 +224,39 @@ public class NodeEncounterController : MonoBehaviour
         encounterCanvas.SetActive(true);
         riskySituationCanvas.SetActive(false);
     }
+
+    public static void ApplyLuck(float multiplier)
+    {
+        if (multiplier == 0) return;
+
+        TurnController tc = TurnController.Instance;
+        if (tc == null)
+        {
+            Debug.LogError("TurnController not found in scene!");
+            return;
+        }
+
+        LuckStatus newStatus = new LuckStatus
+        {
+            turnsLeft = 3,
+            multiplier = multiplier
+        };
+
+        tc.AddLuckStatus(newStatus);
+    }
+    
 }
 
 [Serializable]
 public struct resourceImageData
 {
     public ResourceSystem.ResourceType resourceType;
+    public Sprite image;
+}
+
+[Serializable]
+public struct biomeImageData
+{
+    public BiomeType biomeType;
     public Sprite image;
 }

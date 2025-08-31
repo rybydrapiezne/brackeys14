@@ -1,0 +1,177 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0a9197b80dc0451b82ac1f7bc0e272, type: 3}
+  m_Name: Time to pay
+  m_EditorClassIdentifier: 
+  encounterName: Time to pay
+  description: " It seems like your journey is slowly coming to the end. You remind
+    yourself that you once signed a contract, but haven\u2019t paid it off yet. Right
+    on cue the faceless cloaked figure returns. The voice that was once so smooth
+    the first time you met, now has turned cold and cruel: \u201CThe time has come.
+    You\u2019ve taken what was offered \u2014 now the price must be paid. There is
+    no escape. Give me 5 souls. And I\u2019ll be satisfied.\u201D"
+  biome: 0
+  depth: 0
+  dangerLevel: 0
+  isUnique: 1
+  choices:
+  - choiceDescription: Accept the demand
+    resultText: "As you say yes, one by one, five of your companions collapse, their
+      faces pale and lifeless. The figure says \u201CIt was a pleasure doing business
+      with you\u201D. You can\u2019t see the face but it laughs nonetheless, then
+      fades into shadows."
+    risky: 0
+    suppliesOutcome: 0
+    peopleOutcome: -5
+    valuablesOutcome: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 0
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  - choiceDescription: Attempt to pay with valuables instead.
+    resultText: 
+    risky: 1
+    suppliesOutcome: 0
+    peopleOutcome: 0
+    valuablesOutcome: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 3
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  - choiceDescription: Try to fight the figure.
+    resultText: 
+    risky: 1
+    suppliesOutcome: 0
+    peopleOutcome: 0
+    valuablesOutcome: 0
+    gearOutcome: 0
+    typeOfPrerequisites: 3
+    luckOutcome: 0
+    fogOfWarOutcome: 0
+    impendingDoomOutcome: 0
+    addDebt: 0
+  encounterImage: {fileID: 3815211653395030246, guid: 91a9886274325a471ad48a4e1ede1bb0, type: 3}
+  prerequisites:
+  - prerequisiteType: 0
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+    riskyPrerequisite:
+      bettingResource: 0
+      minAmount: 0
+      enemiesCount: 0
+      successText: 
+      failureText: 
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: 0
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
+  - prerequisiteType: 3
+    normalPrerequisite:
+      ResourceType: 3
+      AmountNeeded: 20
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+    riskyPrerequisite:
+      bettingResource: 3
+      minAmount: 200
+      enemiesCount: 0
+      successText: "The figure inspects your offered treasure, then snatches it with
+        a grin. \u201CGold may not replace life, but it will do for now.\u201D It
+        vanishes, leaving your companions alive but shaken."
+      failureText: "The treasures crumble in your hands. \u201CFools. I take only
+        what was promised. You really thought you could buy me over?\u201D All of
+        your companions die screaming in agony. \u201CYou could have just paid off
+        the debt. Well, I hope it was worth it\u201D. With those words the figure
+        vanishes. You are left alive, completely alone."
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: -10
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
+  - prerequisiteType: 3
+    normalPrerequisite:
+      ResourceType: 0
+      AmountNeeded: 0
+      peopleAmount: 0
+    conditionalPrerequisite:
+      value1: 0
+      value2: 0
+      value3: 0
+      value4: 0
+      value5: 0
+      expected: 0
+      condition: 0
+    riskyPrerequisite:
+      bettingResource: 4
+      minAmount: 120
+      enemiesCount: 1
+      successText: Your weapons clash against the shadows, sparks flying as the figure
+        shrieks and vanishes. The debt is gone. At least for now.
+      failureText: "Your weapons strike nothing but air. No matter how hard you hit,
+        nothing works. One by one, all of your companions fall to their demise each
+        time the dark silhouette touches them. You\u2019re the last one left.  \u201CYou
+        could have just paid off the debt. Well, I hope it was worth it\u201D. With
+        those words the figure vanishes. You are left alive, completely alone."
+      suppliesPositiveOutcome: 0
+      peoplePositiveOutcome: 0
+      valuablesPositiveOutcome: 0
+      gearPositiveOutcome: 0
+      luckPositiveOutcome: 0
+      fogPositiveOutcome: 0
+      doomPositiveOutcome: 0
+      suppliesNegativeOutcome: 0
+      peopleNegativeOutcome: -10
+      valuablesNegativeOutcome: 0
+      gearNegativeOutcome: 0
+      luckNegativeOutcome: 0
+      fogNegativeOutcome: 0
+      doomNegativeOutcome: 0
