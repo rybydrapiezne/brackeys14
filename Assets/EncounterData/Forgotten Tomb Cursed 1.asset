@@ -10,21 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a0a9197b80dc0451b82ac1f7bc0e272, type: 3}
-  m_Name: Forgotten Tomb Cursed
+  m_Name: Forgotten Tomb Cursed 1
   m_EditorClassIdentifier: 
   encounterName: Forgotten Tomb
-  description: "Half-buried in sand and stone lies the entrance to an ancient tomb.
-    Its weathered doorway whispers of treasures and dangers long forgotten. You don\u2019t
-    why but chills run down your spine when you get close."
-  biome: 265
+  description: Half-buried in sand and stone lies the entrance to an ancient tomb.
+    Its weathered doorway whispers of treasures and dangers long forgotten.
+  biome: 9
   depth: 0
-  dangerLevel: 70
+  dangerLevel: 50
   isUnique: 0
   choices:
   - choiceDescription: Ignore the tomb and continue your journey.
-    resultText: "You feel there\u2019s something wrong with this place when you travel
-      near it. Whatever dark secrets the tomb holds will remain buried in the sands
-      of time. Maybe it\u2019s for the best."
+    resultText: "It\u2019s best not to disturb the dead. Whatever secrets the tomb
+      holds will remain buried in the sands of time."
     risky: 0
     suppliesOutcome: 0
     peopleOutcome: 0
@@ -97,27 +95,24 @@ MonoBehaviour:
       condition: 0
     riskyPrerequisite:
       bettingResource: 4
-      minAmount: 60
+      minAmount: 50
       enemiesCount: 0
-      successText: 'SUCCESS:  You break into the burial chambers and find treasures
-        beyond imagination - jeweled masks, golden urns, and gems scattered across
-        the stone floor. Everything seems great until the tomb opens.and a figure
-        covered in rotting bandages and smelling like death itself comes out of it.
-        You grab what you can and run as quickly as you can and manage to get out.
-        But you feel that your dreams tonight will not be pleasant'
-      failureText: 'FAILURE: As you descend, the tomb itself turns against you. Traps
-        spring to life, the floor gives way, and falling stone crushes three of your
-        companions. Their screams echo in the dark before fading into silence. Shaken
-        and broken, you flee empty-handed.'
+      successText: "SUCCESS: With torches and tools, you pry open the tomb and uncover
+        old relics made of gold and jade. Riches are yours, they\u2019re no use for
+        the dead anyway."
+      failureText: FAILURE:The tomb proves to be treacherous. The part of the ceiling
+        suddenly collapses and debris cuts away one of your men. You retreat quickly
+        leaving them behind before the whole thing collapses. The riches remain buried
+        forever.
       suppliesPositiveOutcome: 0
       peoplePositiveOutcome: 0
-      valuablesPositiveOutcome: 100
+      valuablesPositiveOutcome: 40
       gearPositiveOutcome: 0
-      luckPositiveOutcome: 1.6
+      luckPositiveOutcome: 0
       fogPositiveOutcome: 0
       doomPositiveOutcome: 0
       suppliesNegativeOutcome: 0
-      peopleNegativeOutcome: -3
+      peopleNegativeOutcome: -1
       valuablesNegativeOutcome: 0
       gearNegativeOutcome: 0
       luckNegativeOutcome: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
     hooded priestess waits there and when she sees you she speaks: \u201CThe altar
     of fate demands blood. Offer a life, and fortune may favor your path. Refuse,
     and misfortune will follow you instead.\u201D"
-  biome: -1
+  biome: 400
   depth: 0
   dangerLevel: 40
   isUnique: 0

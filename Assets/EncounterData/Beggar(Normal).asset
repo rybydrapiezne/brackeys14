@@ -17,7 +17,7 @@ MonoBehaviour:
     for mercy. '
   biome: -1
   depth: 0
-  dangerLevel: 10
+  dangerLevel: 0
   isUnique: 0
   choices:
   - choiceDescription: 'Everyone minds their own business. Walk past. '

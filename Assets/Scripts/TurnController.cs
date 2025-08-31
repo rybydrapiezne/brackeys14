@@ -249,7 +249,7 @@ public class TurnController : MonoBehaviour
         List<int> weights = new List<int>();
         foreach (var e in filteredEncounters)
         {
-            int weight = Mathf.Max(1, 100 - Mathf.Abs(dangerAttraction - e.dangerLevel));
+            int weight = Mathf.Max(1, 200 - Mathf.Abs(dangerAttraction - e.dangerLevel));
             weights.Add(weight);
         }
 
@@ -287,7 +287,7 @@ public class TurnController : MonoBehaviour
     {
 
         Node nextNodeComponent = nextNode.GetComponent<Node>();
-        int suppliesLost = suppliesTraverseCost;
+        int suppliesLost = -suppliesTraverseCost;
         if (nextNodeComponent.biome == null)
         {
             return;

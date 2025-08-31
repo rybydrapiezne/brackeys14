@@ -47,7 +47,7 @@ public class ImpendingDoom : MonoBehaviour
     {
         if (playerLevel < doomLevel)
         {
-            caravan.initiateDeath(10);
+            ResourceSystem.addResource(ResourceSystem.ResourceType.People, -30);
         }
         StartCoroutine(UpdateElements(playerLevel));
     }

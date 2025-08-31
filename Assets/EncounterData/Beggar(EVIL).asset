@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Beggar(EVIL)
   m_EditorClassIdentifier: 
   encounterName: Beggar
-  description: On your jurney you stumbled upon a man kneeling and begging.
-  biome: -1
+  description: 'On the road ahead, you encounter a beggar on his knees, pleading
+    for mercy. '
+  biome: 417
   depth: 0
-  dangerLevel: 40
+  dangerLevel: 50
   isUnique: 0
   choices:
   - choiceDescription: 'Everyone minds their own business. Walk past. '
