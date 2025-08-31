@@ -234,8 +234,6 @@ public class TurnController : MonoBehaviour
             yield break;
         }
 
-        BiomeType currentBiome = currentNodeNode.biome.biomeName;
-
         // Filter encounters by current biome
         var filteredEncounters = encounters.Where(e => (e.biome & currentBiome) != 0).ToList();
         int dangerAttraction = getDangerAttraction(currentNodeNode, luckStasuses);

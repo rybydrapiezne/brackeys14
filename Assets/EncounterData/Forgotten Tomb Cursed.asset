@@ -34,22 +34,7 @@ MonoBehaviour:
     luckOutcome: 0
     fogOfWarOutcome: 0
     impendingDoomOutcome: 0
-<<<<<<< HEAD:Assets/EncounterData/Forgotten Tomb Cursed.asset
   - choiceDescription: Explore the tomb.
-=======
-  - choiceDescription: 'Everyone for themselves! '
-    resultText: 
-    risky: 0
-    suppliesOutcome: -10
-    peopleOutcome: 0
-    valuablesOutcome: -10
-    gearOutcome: -20
-    typeOfPrerequisites: 2
-    luckOutcome: 0
-    fogOfWarOutcome: 0
-    impendingDoomOutcome: 0
-  - choiceDescription: The cargo is upmost importan!
->>>>>>> 1a62ca97702e30c531f6e9942bd9a23889bc7f42:Assets/EncounterData/QuickSand.asset
     resultText: 
     risky: 1
     suppliesOutcome: 0
