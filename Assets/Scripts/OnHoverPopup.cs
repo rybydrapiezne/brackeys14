@@ -74,12 +74,12 @@ public class OnHoverPopup : MonoBehaviour
         //Debug.Log("rect " + canvasRect.rect);
 
         // Clamp should be reworked
-        if(screenPoint.x < textFieldRect.sizeDelta.x / 2 - pixelOffset.x)
+        if(screenPoint.x < textFieldRect.sizeDelta.x- pixelOffset.x)
         {
             localPoint.x += textFieldRect.sizeDelta.x - 2 * pixelOffset.x;
         }
 
-        if (screenPoint.y < textFieldRect.sizeDelta.y / 2 - pixelOffset.y)
+        if (screenPoint.y < textFieldRect.sizeDelta.y - pixelOffset.y)
         {
             localPoint.y += textFieldRect.sizeDelta.y - 2 * pixelOffset.y;
         }
