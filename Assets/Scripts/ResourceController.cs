@@ -46,6 +46,11 @@ public class ResourceController : MonoBehaviour
                 peopleAmount.text = getResource(ResourceType.People).ToString();
                 valuablesAmount.text = getResource(ResourceType.Valuables).ToString();
                 gearAmount.text = getResource(ResourceType.Gear).ToString();
+
+                suppliesAmount.GetComponent<TextEffect>().Refresh();
+                peopleAmount.GetComponent<TextEffect>().Refresh();
+                valuablesAmount.GetComponent<TextEffect>().Refresh();
+                gearAmount.GetComponent<TextEffect>().Refresh();
                 break;
         }
     }
@@ -83,6 +88,7 @@ public class ResourceController : MonoBehaviour
         }
 
         resLabel.text = getResource(args.Resource).ToString();
+        resLabel.GetComponent<TextEffect>().Refresh();
         yield return null;
     }
 
