@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 using Random = UnityEngine.Random;
 
 public class NodeEncounterController : MonoBehaviour
@@ -28,7 +30,14 @@ public class NodeEncounterController : MonoBehaviour
     public static Action onEncounterStart;
     public static Action onEncounterEnd;
     private Dictionary<Choice,EncounterPrerequisitesRisky> prerequisitesDictionary=new();
-    
+
+    private CanvasGroup canvasGroup;
+
+    private void Awake()
+    {
+        canvasGroup = encounterCanvas.GetComponent<CanvasGroup>();
+    }
+
     public void EnableEncounter(int amountOfChoices, Sprite encounterImage, string encounterText, string encounterName, Choice[] choices, PrerequisiteWrapper[] prerequisites,BiomeType biomeType)
     {
         onEncounterStart?.Invoke();
@@ -36,7 +45,11 @@ public class NodeEncounterController : MonoBehaviour
         encounterImageForeground.sprite = encounterImage;
         this.encounterText.text = encounterText;
         this.encounterName.text = encounterName;
+
+        canvasGroup.alpha = 0;
         encounterCanvas.SetActive(true);
+        StartCoroutine(fadeIn());
+        AudioManager.Instance.menuPopup.Play();
 
         if (amountOfChoices > choiceButtons.Count)
         {
@@ -184,7 +197,8 @@ public class NodeEncounterController : MonoBehaviour
     public void ClosePopup()
     {
         AudioManager.Instance.click.Play();
-        encounterCanvas.SetActive(false);
+        StartCoroutine(fadeOut());
+        
         onEncounterEnd?.Invoke();
     }
 
@@ -257,7 +271,38 @@ public class NodeEncounterController : MonoBehaviour
 
         tc.AddLuckStatus(newStatus);
     }
-    
+
+    private IEnumerator fadeIn()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < 1f)
+        {
+            elapsedTime += Time.deltaTime * 3f;
+            canvasGroup.alpha = Mathf.Lerp(0, 1, elapsedTime);
+            yield return null;
+        }
+
+        canvasGroup.alpha = 1;
+        yield return null;
+    }
+
+    private IEnumerator fadeOut()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < 1f)
+        {
+            elapsedTime += Time.deltaTime * 3f;
+            canvasGroup.alpha = Mathf.Lerp(1, 0, elapsedTime);
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0;
+        encounterCanvas.SetActive(false);
+        yield return null;
+    }
+
 }
 
 [Serializable]
