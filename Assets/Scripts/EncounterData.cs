@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "NewEncounter", menuName = "Encounters/EncounterData")]
 public class EncounterData : ScriptableObject

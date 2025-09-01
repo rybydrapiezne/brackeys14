@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using static ResourceSystem.ResourceType;
 
 
@@ -75,7 +74,7 @@ public static class ResourceSystem
         }
         else
         { // out of resource
-            if (desired < 0)
+            if (desired <= 0)
             {
                 resources[resource] = 0;
                 success = false;
@@ -107,19 +106,6 @@ public static class ResourceSystem
         // result = (int)(result * currentNode.biome.dangerMultiplier);
         //Debug.Log("Danger: " + result);
         return (int)(result * 1.4);
-    }
-    
-
-    public static void reset(Dictionary<ResourceType, int> newResourceCount)
-    {
-        OnResourceLimitReached = null;
-        OnOutOfResource = null;
-        OnResourceChanged = null;
-
-        foreach (var newRes in newResourceCount)
-        {
-            resources[newRes.Key] = newRes.Value;
-        }
     }
 
 }

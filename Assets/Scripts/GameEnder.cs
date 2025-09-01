@@ -1,7 +1,6 @@
+using EasyTextEffects;
 using System;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static ResourceSystem;
@@ -9,7 +8,7 @@ using static ResourceSystem;
 public class GameEnder : MonoBehaviour
 {
     [SerializeField] private GameObject endGamePanel;
-    [SerializeField] private TextMeshProUGUI endGameText;
+    [SerializeField] private TextMeshProUGUI endGameDescription;
     [SerializeField] private TextMeshProUGUI endGameTitle;
     [TextArea(3, 10)]
     [SerializeField] private string descriptionPositive;
@@ -30,19 +29,9 @@ public class GameEnder : MonoBehaviour
     {
         if (gameEnded)
         {
-            System.Collections.Generic.Dictionary<ResourceSystem.ResourceType, int> newResources = 
-                new System.Collections.Generic.Dictionary<ResourceSystem.ResourceType, int>()
-            {
-                [ResourceSystem.ResourceType.None] = 0,
-                [ResourceSystem.ResourceType.Supplies] = 80,
-                [ResourceSystem.ResourceType.People] = 10,
-                [ResourceSystem.ResourceType.Valuables] = 25,
-                [ResourceSystem.ResourceType.Gear] = 50
-            };
+            resourceSystemReset(defaultResources);
 
-            ResourceSystem.reset(newResources);
-            StartCoroutine(AudioManager.fadeIn(AudioManager.Instance.desertTheme, 1f));
-            StartCoroutine(AudioManager.fadeOut(AudioManager.Instance.mainTheme, 1f));
+            AudioManager.Instance.changeMusic(AudioManager.Instance.desertTheme, 1f);
 
             SceneManager.LoadScene("MainMenuScene");
         }
@@ -60,19 +49,23 @@ public class GameEnder : MonoBehaviour
 
     private void LastNodeReached(object sender, EventArgs e)
     {
-        endGameText.text = descriptionPositive;
+        endGameDescription.text = descriptionPositive;
         endGameTitle.text = titlePositive;
+        endGameTitle.GetComponent<TextEffect>().Refresh();
         endGamePanel.SetActive(true);
+        AudioManager.Instance.walk.Stop();
         gameEnded = true;
     }
 
     private void OutOfResource(object s, OnOutOfResourceArgs a)
     {
-        if (a.Resource == ResourceType.People)
+        if (a.Resource == ResourceType.People && !gameEnded)
         {
-            endGameText.text = descriptionNegative;
+            endGameDescription.text = descriptionNegative;
             endGameTitle.text = titleNegative;
+            endGameTitle.GetComponent<TextEffect>().Refresh();
             endGamePanel.SetActive(true);
+            AudioManager.Instance.walk.Stop();
             gameEnded = true;
         }
     }

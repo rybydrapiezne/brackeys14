@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using static ResourceSystem;
 using Random = UnityEngine.Random;
@@ -53,8 +52,7 @@ public class TurnController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(AudioManager.fadeOut(AudioManager.Instance.desertTheme, 1f));
-        StartCoroutine(AudioManager.fadeIn(AudioManager.Instance.mainTheme, 1f));
+        AudioManager.Instance.changeMusic(AudioManager.Instance.mainTheme, 1f);
 
         NodeEncounterController.onEncounterStart += EncounterStarted;
         NodeEncounterController.onEncounterEnd += EncounterEnded;
@@ -123,7 +121,8 @@ public class TurnController : MonoBehaviour
 
         luckStasuses.RemoveAll(ls => ls.turnsLeft <= 0);
 
-        AudioManager.Instance.walk.Play();
+        AudioManager.Instance.walk.pitch = Random.Range(0.8f, 1.2f);
+        StartCoroutine(AudioManager.fadeIn(AudioManager.Instance.walk, 1f));
 
         // Starting traverse animation
         
@@ -275,14 +274,16 @@ public class TurnController : MonoBehaviour
             {
                 yield return null;
             }
+
         currentNode.GetComponent<NodeEncounterController>().EnableEncounter(currentEncounter.choices.Length,
             currentEncounter.encounterImage, currentEncounter.description, currentEncounter.encounterName, currentEncounter.choices, currentEncounter.prerequisites,currentNodeNode.biome.biomeName);
         isMoving = false;
-        AudioManager.Instance.walk.Stop();
+        StartCoroutine(AudioManager.fadeOut(AudioManager.Instance.walk, .2f));
     }
 
     private void traverseByBiome(GameObject nextNode)
     {
+        AudioSource nextTheme = AudioManager.Instance.mainTheme;
 
         Node nextNodeComponent = nextNode.GetComponent<Node>();
         int suppliesLost = -suppliesTraverseCost;
@@ -293,7 +294,10 @@ public class TurnController : MonoBehaviour
         BiomeType biome = nextNodeComponent.biome.biomeName;
 
         if (biome.HasFlag(BiomeType.Desert))
+        {
+            nextTheme = AudioManager.Instance.desertTheme;
             suppliesLost += (int)Amounts.NegativeSmallAmount;
+        }
 
         if (biome.HasFlag(BiomeType.Riverlands))
         {
@@ -314,27 +318,40 @@ public class TurnController : MonoBehaviour
             }
         }
 
-        if (biome.HasFlag(BiomeType.Steppes)) { }
+        if (biome.HasFlag(BiomeType.Steppes)) 
+        { 
+            nextTheme = AudioManager.Instance.desertTheme;
+        }
 
         if (biome.HasFlag(BiomeType.Dunes))
         {
+            nextTheme = AudioManager.Instance.desertTheme;
             suppliesLost += (int)Amounts.NegativeVerySmallAmount;
             addResource(ResourceType.Gear, (int)Amounts.NegativeVerySmallAmount);
         }
 
         if (biome.HasFlag(BiomeType.WarlordsTerritory))
         {
+            nextTheme = AudioManager.Instance.battleTheme;
             bool success = addResource(ResourceType.Valuables, (int)Amounts.NegativeSmallAmount);
             if (!success) addResource(ResourceType.People, -1);
         }
 
         if (biome.HasFlag(BiomeType.ScorchedLand))
+        {
+            nextTheme = AudioManager.Instance.battleTheme;
             suppliesLost += (int)Amounts.NegativeMediumAmount;
+        }
 
         if (biome.HasFlag(BiomeType.Wastelands))
+        {
+            nextTheme = AudioManager.Instance.battleTheme;
             suppliesLost += (int)Amounts.NegativeSmallAmount;
-             
+        }
+        
         addResource( ResourceType.Supplies, suppliesLost);
+
+        AudioManager.Instance.changeMusic(nextTheme, 2f);
     }
 
 

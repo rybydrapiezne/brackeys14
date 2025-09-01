@@ -5,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static Unity.VisualScripting.Member;
 using Random = UnityEngine.Random;
 
 public class NodeEncounterController : MonoBehaviour
@@ -40,6 +39,8 @@ public class NodeEncounterController : MonoBehaviour
 
     public void EnableEncounter(int amountOfChoices, Sprite encounterImage, string encounterText, string encounterName, Choice[] choices, PrerequisiteWrapper[] prerequisites,BiomeType biomeType)
     {
+        if (TurnController.Instance.GetComponent<GameEnder>().gameEnded) return;
+
         onEncounterStart?.Invoke();
         encounterImageBackground.sprite = biomeImages.FirstOrDefault(biomeImageData => biomeImageData.biomeType == biomeType).image;
         encounterImageForeground.sprite = encounterImage;

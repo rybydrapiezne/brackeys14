@@ -889,6 +889,7 @@ GameObject:
   - component: {fileID: 1087886812}
   - component: {fileID: 1087886811}
   - component: {fileID: 1087886810}
+  - component: {fileID: 1087886813}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -949,7 +950,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1014,6 +1015,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 282}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1087886813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087886809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9840f87219df84505803024c796e739d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1087886810}
+  usePreset: 0
+  preset: {fileID: 0}
+  tagEffects: []
+  globalEffects:
+  - triggerWhen: 0
+    effect: {fileID: 11400000, guid: a901e1283c8bf7c4f9214cb639297ea7, type: 2}
+    onEffectCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+    overrideTagEffects: 0
+  updatesPerSecond: 30
 --- !u!224 &1120263829 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5324147813790552634, guid: da246a00141aa5b4882a3069722b2ec3, type: 3}
@@ -1649,7 +1674,7 @@ MonoBehaviour:
   baseLineMaterial: {fileID: 2100000, guid: 3d5037fe451cefd9c8d4e8985d40f437, type: 2}
   lineSegmentSpacing: 10
   lineSegmentRandomOffset: 2
-  totalBiomes: {x: 10, y: 3}
+  totalBiomes: {x: 1, y: 3}
   biomeSpacing: {x: 163, y: 99}
   nodeInBiomeSpacing: {x: 70, y: 40}
   biomePathLength: 2
@@ -1695,17 +1720,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endGamePanel: {fileID: 598725812}
-  endGameText: {fileID: 425739211}
+  endGameDescription: {fileID: 425739211}
   endGameTitle: {fileID: 1087886810}
   descriptionPositive: You have travelled through treachorous deserts and steppes
     and reached the Holy Biscuit. You will be remembered as legend!
   titlePositive: Congratulations
-  descriptionNegative: 'All of you have died in seach of the Holy Biscuit. You will
+  descriptionNegative: All of you have died in seach of the Holy Biscuit. You will
     be another forgotten adventureres who met their end in the unforgiving desert.
-
-
-    Press
-    R to reset'
   titleNegative: Failure
   gameEnded: 0
 --- !u!1 &1396420294
@@ -2292,8 +2313,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.07, y: 20.7, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 75, y: 75, z: 10.714286}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1599882448}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

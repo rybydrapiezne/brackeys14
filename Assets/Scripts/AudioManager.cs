@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource hover;
     public AudioSource click;
     public AudioSource menuPopup;
+
+    [NonSerialized] public AudioSource currentMusic;
 
     private static AudioManager instance;
     public static AudioManager Instance
@@ -35,14 +38,31 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(fadeIn(desertTheme, 5f));
+        currentMusic = desertTheme;
+    }
+
+    public void changeMusic(AudioSource to, float time)
+    {
+        if (currentMusic == to) return;
+
+        StartCoroutine(fadeOut(currentMusic, time));
+        StartCoroutine(fadeIn(to, time));
+
+        currentMusic = to;
     }
 
     public static IEnumerator fadeIn(AudioSource source, float time)
     {
         source.volume = 0;
-        source.Play();
+        if (source.isPlaying)
+        {
+            source.UnPause();
+        } else
+        {
+            source.Play();
+        }
 
-        float elapsedTime = 0f;
+            float elapsedTime = 0f;
 
         while (elapsedTime < 1f)
         {
@@ -66,6 +86,6 @@ public class AudioManager : MonoBehaviour
         }
 
         source.volume = 0;
-        source.Stop();
+        source.Pause();
     }
 }
