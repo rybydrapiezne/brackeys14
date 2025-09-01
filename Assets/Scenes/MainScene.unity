@@ -1674,7 +1674,7 @@ MonoBehaviour:
   baseLineMaterial: {fileID: 2100000, guid: 3d5037fe451cefd9c8d4e8985d40f437, type: 2}
   lineSegmentSpacing: 10
   lineSegmentRandomOffset: 2
-  totalBiomes: {x: 1, y: 3}
+  totalBiomes: {x: 10, y: 3}
   biomeSpacing: {x: 163, y: 99}
   nodeInBiomeSpacing: {x: 70, y: 40}
   biomePathLength: 2
