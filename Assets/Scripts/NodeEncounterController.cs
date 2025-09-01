@@ -40,6 +40,8 @@ public class NodeEncounterController : MonoBehaviour
     public void EnableEncounter(int amountOfChoices, Sprite encounterImage, string encounterText, string encounterName, Choice[] choices, PrerequisiteWrapper[] prerequisites,BiomeType biomeType)
     {
         if (TurnController.Instance.GetComponent<GameEnder>().gameEnded) return;
+        encounterCanvas.GetComponent<Canvas>().worldCamera = CameraManager.Instance.GetComponent<Camera>();
+        riskySituationCanvas.GetComponent<Canvas>().worldCamera = CameraManager.Instance.GetComponent<Camera>();
 
         onEncounterStart?.Invoke();
         encounterImageBackground.sprite = biomeImages.FirstOrDefault(biomeImageData => biomeImageData.biomeType == biomeType).image;
