@@ -48,6 +48,8 @@ public class TurnController : MonoBehaviour
         }
 
         instance = this;
+
+        OnLastNodeReached = null;
     }
 
     private void Start()
